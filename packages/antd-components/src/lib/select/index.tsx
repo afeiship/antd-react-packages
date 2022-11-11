@@ -6,11 +6,19 @@ import cx from 'classnames';
 
 const CLASS_NAME = 'react-ant-select';
 
+type StdEventTarget = {
+  target: {
+    value: any;
+  };
+};
+
+type TemplateCallback = (item: { item: any; index: number }) => React.ReactNode;
+
 type Props = {
   className?: string;
   items: any[];
-  onChange: (inEvent: any) => void;
-  template: (item: any) => React.ReactNode;
+  onChange: (inEvent: StdEventTarget) => void;
+  template: TemplateCallback;
 };
 
 export class AcSelect extends React.Component<Props> {
