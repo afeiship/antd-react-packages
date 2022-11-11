@@ -20,6 +20,7 @@ import { Select } from 'antd';
 
 ### 演示
 ```jsx live
+
 <>
     <AcSelect style={{ width: 200 }} />
     <hr />
@@ -29,6 +30,23 @@ import { Select } from 'antd';
         template={
             ({ item, index })=><Select.Option key={index}>{item}</Select.Option>
         }
+    />
+    <hr />
+    <AcSelect
+        style={{ width: 200 }}
+        items={['raw-a','raw-b','raw-c', 'raw-d']}
+        template={tpls.selectRaw}
+    />
+    <hr />
+    <AcSelect
+        style={{ width: '100%' }}
+        items={[
+            { value: 'a', label: 'A' },
+            { value: 'b', label: 'B' },
+            { value: 'c', label: 'C' },
+            { value: 'd', label: 'D' }
+        ]}
+        template={tpls.selectKv}
     />
 </>
 ```

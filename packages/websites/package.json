@@ -19,6 +19,7 @@
     "@docusaurus/remark-plugin-npm2yarn": "^2.2.0",
     "@docusaurus/theme-live-codeblock": "^2.2.0",
     "@jswork/antd-components": "^1.0.0",
+    "@jswork/antd-tpls": "^1.0.0",
     "@mdx-js/react": "^1.6.22",
     "@svgr/webpack": "^6.5.1",
     "clsx": "^1.1.1",
