@@ -1,0 +1,34 @@
+---
+id: select
+title: select.mdx
+sidebar_label: select.mdx
+slug: /
+---
+
+### installation
+> 直接用 `npm` 或者 `yarn` 安装。
+
+```bash npm2yarn
+npm install @jswork/antd-components
+```
+
+### usage
+```js
+import { AcSelect } from '@jswork/antd-components';
+import { Select } from 'antd';
+```
+
+### 演示
+```jsx live
+<>
+    <AcSelect style={{ width: 200 }} />
+    <hr />
+    <AcSelect
+        style={{ width: 200 }}
+        items={['a','b','c', 'd']}
+        template={
+            ({ item, index })=><Select.Option key={index}>{item}</Select.Option>
+        }
+    />
+</>
+```

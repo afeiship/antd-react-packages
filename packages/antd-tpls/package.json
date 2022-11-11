@@ -1,7 +1,7 @@
 {
-  "name": "@jswork/antd-components",
+  "name": "@jswork/antd-tpls",
   "version": "1.0.0",
-  "description": "Antd wrapped components.",
+  "description": "Antd list templates.",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "typings": "dist/esm/index.d.ts",
