@@ -12,10 +12,10 @@ type TemplateCallback = (item: { item: any; index: number }) => React.ReactNode;
 
 type Props = {
   className?: string;
-  items: any[];
-  onChange: StdCallback;
-  onSearch: StdCallback;
-  template: TemplateCallback;
+  items?: any[];
+  onChange?: StdCallback;
+  onSearch?: StdCallback;
+  template?: TemplateCallback;
 };
 
 export class AcSelect extends React.Component<Props> {
@@ -29,8 +29,8 @@ export class AcSelect extends React.Component<Props> {
   handleChange = (inValue) => {
     const { onChange, onSearch } = this.props;
     const stdEvent: StdEventTarget = { target: { value: inValue } };
-    onChange(stdEvent);
-    onSearch(stdEvent);
+    onChange!(stdEvent);
+    onSearch!(stdEvent);
   };
 
   render() {
