@@ -23,7 +23,7 @@ export class AcSelect extends React.Component<Props> {
   static defaultProps = {
     items: [],
     onChange: noop,
-    onSearch: noop,
+    onSearch: noop
   };
 
   handleChange = (inValue) => {
@@ -34,7 +34,7 @@ export class AcSelect extends React.Component<Props> {
   };
 
   render() {
-    const { className, onChange, ...props } = this.props;
+    const { className, onChange, onSearch, ...props } = this.props;
     return (
       <ReactList
         allowEmpty

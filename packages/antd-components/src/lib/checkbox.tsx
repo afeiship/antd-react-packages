@@ -2,26 +2,26 @@ import React from 'react';
 import noop from '@jswork/noop';
 import { Checkbox } from 'antd';
 import cx from 'classnames';
+import type { CheckboxProps } from 'antd/lib/checkbox';
 
 const CLASS_NAME = 'react-ant-checkbox';
 type StdEventTarget = { target: { value: any } };
 type StdCallback = (inEvent: StdEventTarget) => void;
-type TemplateCallback = (item: { item: any; index: number }) => React.ReactNode;
 
 type Props = {
   className?: string;
   value?: boolean;
   onChange?: StdCallback;
-};
+} & CheckboxProps;
 
 export class AcCheckbox extends React.Component<Props> {
   static displayName = CLASS_NAME;
   static defaultProps = {
-    onChange: noop,
+    onChange: noop
   };
 
   state = {
-    checked: this.props.value,
+    checked: this.props.value
   };
 
   handleChange = (inEvent) => {
@@ -35,7 +35,7 @@ export class AcCheckbox extends React.Component<Props> {
   };
 
   render() {
-    const { className, onChange, value, ...props } = this.props;
+    const { className, onChange, value, children, ...props } = this.props;
     const { checked } = this.state;
 
     return (
