@@ -36,13 +36,15 @@ export class AcSelect extends React.Component<Props> {
   render() {
     const { className, onChange, onSearch, ...props } = this.props;
     return (
-      <ReactList
-        allowEmpty
-        nodeName={Select}
-        onChange={this.handleChange}
-        className={cx(CLASS_NAME, className)}
-        {...props}
-      />
+      <>
+        <ReactList
+          allowEmpty
+          nodeName={Select}
+          onChange={this.handleChange}
+          className={cx(CLASS_NAME, className)}
+          {...props}
+        />
+      </>
     );
   }
 }

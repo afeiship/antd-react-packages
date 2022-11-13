@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { AcSelect } from '../../src/main';
+import { AcSelect, AcCheckbox } from '../../src/main';
 import styled from 'styled-components';
-import { Select } from 'antd';
+import * as tpls from '@jswork/antd-tpls';
 
 const Container = styled.div`
   width: 80%;
@@ -11,12 +11,22 @@ const Container = styled.div`
 export default () => {
   return (
     <Container>
-      <AcSelect />
-      {/*<AcSelect*/}
-      {/*  style={{ width: '100%' }}*/}
-      {/*  items={['a', 'b', 'c']}*/}
-      {/*  template={({ item, index }) => <Select.Option key={index}>{item}</Select.Option>}*/}
-      {/*/>*/}
+      <AcSelect
+        style={{ width: '100%' }}
+        placeholder="Please select"
+        items={['a', 'b', 'c']}
+        template={tpls.selectRaw}
+        onChange={(e) => {
+          console.log('e: ', e);
+        }}
+      />
+      <hr />
+      <AcCheckbox
+        onChange={(e) => {
+          console.log('e checked: ', e);
+        }}>
+        I Agree
+      </AcCheckbox>
     </Container>
   );
 };

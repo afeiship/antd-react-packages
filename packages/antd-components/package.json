@@ -18,8 +18,7 @@
     "docs:serve": "vite preview",
     "test": "jest",
     "test:watch": "jest --watch",
-    "pages": "github-cli -p",
-    "release": "release-it"
+    "pages": "github-cli -p"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
@@ -33,8 +32,8 @@
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@types/jest": "^27.0.3",
-    "@types/react": "^18.0.25",
-    "@types/react-dom": "^18.0.8",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
     "@types/react-test-renderer": "^17.0.0",
     "@types/styled-components": "^5.1.9",
     "@vitejs/plugin-react-refresh": "^1.3.1",
@@ -48,7 +47,6 @@
     "react-dom": "^18.2.0",
     "react-scripts-ts": "^3.1.0",
     "react-test-renderer": "^17.0.1",
-    "release-it": "^15.2.0",
     "rimraf": "^3.0.2",
     "rollup": "^2.36.0",
     "rollup-plugin-auto-external": "^2.0.0",
@@ -72,8 +70,12 @@
     "vite-plugin-pwa": "^0.7.3"
   },
   "dependencies": {
+    "@jswork/antd-tpls": "^1.0.0",
     "@jswork/noop": "^1.0.0",
     "classnames": "^2.2.6"
+  },
+  "resolutions": {
+    "@types/react": "^17 || ^18"
   },
   "publishConfig": {
     "access": "public",
