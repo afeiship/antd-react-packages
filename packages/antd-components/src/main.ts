@@ -3,4 +3,5 @@ export * from './lib/checkbox-group';
 export * from './lib/input';
 export * from './lib/input-number';
 export * from './lib/radio-group';
+export * from './lib/rate';
 export * from './lib/select';

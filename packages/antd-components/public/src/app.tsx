@@ -7,7 +7,8 @@ import {
   AcCheckboxGroup,
   AcInput,
   AcInputNumber,
-  AcRadioGroup
+  AcRadioGroup,
+  AcRate
 } from '../../src/main';
 
 console.log('tpls: ', tpls);
@@ -26,6 +27,8 @@ export default () => {
 
   return (
     <Container>
+      <AcRate />
+      <hr />
       <AcRadioGroup items={items1} />
       <AcRadioGroup
         items={items1}
