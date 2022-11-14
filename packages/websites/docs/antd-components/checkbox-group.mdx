@@ -1,7 +1,7 @@
 ---
-id: select
-title: select
-sidebar_label: select
+id: checkbox-group
+title: checkbox-group
+sidebar_label: checkbox-group
 slug: /
 ---
 
@@ -14,25 +14,13 @@ npm install @jswork/antd-components
 
 ### usage
 ```js
-import { AcSelect } from '@jswork/antd-components';
-import { Select } from 'antd';
+import { AcCheckboxGroup } from '@jswork/antd-components';
 ```
 
 ### 演示
 ```jsx live
-
 <>
-    <AcSelect style={{ width: 200 }} />
-    <hr />
-    <AcSelect
-        style={{ width: 200 }}
-        items={['a','b','c', 'd']}
-        template={
-            ({ item, index })=><Select.Option key={index}>{item}</Select.Option>
-        }
-    />
-    <hr />
-    <AcSelect
+    <AcCheckboxGroup
         style={{ width: '100%' }}
         items={[
             { value: 'a', label: 'A' },

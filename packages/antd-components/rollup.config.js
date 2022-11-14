@@ -1,14 +1,13 @@
 import typescript from 'rollup-plugin-typescript2';
 import commonjs from 'rollup-plugin-commonjs';
-// import external from 'rollup-plugin-peer-deps-external';
 import resolve from '@rollup/plugin-node-resolve';
-import copy from 'rollup-plugin-copy';
-import scss from 'rollup-plugin-scss';
 import externals from 'rollup-plugin-node-externals';
 import banner from 'rollup-plugin-banner';
 import { terser } from 'rollup-plugin-terser';
 import replace from '@rollup/plugin-replace';
 import image from '@rollup/plugin-image';
+// import copy from 'rollup-plugin-copy';
+// import scss from 'rollup-plugin-scss';
 
 import pkg from './package.json';
 import '@jswork/next-rollup-banner';
@@ -58,7 +57,7 @@ export default [
         clean: true
       }),
       commonjs({
-        include: ['node_modules/**'],
+        include: /node_modules/,
         namedExports: {
           'node_modules/react-is/index.js': Object.keys(require('react-is')),
           'node_modules/react/react.js': ['Children', 'Component', 'PropTypes', 'createElement'],
@@ -67,14 +66,14 @@ export default [
       })
     ]
   },
-  {
-    input: 'src/components/style.scss',
-    output: null,
-    plugins: [
-      scss({ output: 'dist/style.css' }),
-      copy({
-        targets: [{ src: 'src/components/*.scss', dest: 'dist' }]
-      })
-    ]
-  }
+  // {
+  //   input: 'src/components/style.scss',
+  //   output: null,
+  //   plugins: [
+  //     scss({ output: 'dist/style.css' }),
+  //     copy({
+  //       targets: [{ src: 'src/components/*.scss', dest: 'dist' }]
+  //     })
+  //   ]
+  // }
 ];

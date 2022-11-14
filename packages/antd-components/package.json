@@ -74,6 +74,9 @@
     "@jswork/noop": "^1.0.0",
     "classnames": "^2.2.6"
   },
+  "peerDependencies": {
+    "antd": "^4.24.2"
+  },
   "resolutions": {
     "@types/react": "^17 || ^18"
   },
