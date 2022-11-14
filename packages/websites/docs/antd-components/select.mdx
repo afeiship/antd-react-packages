@@ -6,7 +6,9 @@ slug: /
 ---
 
 ### installation
-> 直接用 `npm` 或者 `yarn` 安装。
+- 直接用 `npm` 或者 `yarn` 安装。
+- 添加 `items/template` 通用属性
+- 统一 `event` 为 `e.target.value` 取值
 
 ```bash npm2yarn
 npm install @jswork/antd-components
@@ -18,7 +20,7 @@ import { AcSelect } from '@jswork/antd-components';
 import { Select } from 'antd';
 ```
 
-### 演示
+### preview
 ```jsx live
 <>
     <AcSelect style={{ width: 200 }} />

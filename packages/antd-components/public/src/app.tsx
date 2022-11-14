@@ -1,7 +1,16 @@
 import React from 'react';
-import { AcSelect, AcCheckbox, AcCheckboxGroup } from '../../src/main';
 import styled from 'styled-components';
 import * as tpls from '@jswork/antd-tpls';
+import {
+  AcSelect,
+  AcCheckbox,
+  AcCheckboxGroup,
+  AcInput,
+  AcInputNumber,
+  AcRadioGroup
+} from '../../src/main';
+
+console.log('tpls: ', tpls);
 
 const Container = styled.div`
   width: 80%;
@@ -17,6 +26,18 @@ export default () => {
 
   return (
     <Container>
+      <AcRadioGroup items={items1} />
+      <AcRadioGroup
+        items={items1}
+        template={tpls.radioKv}
+        templateOptions={{ isButton: true }}
+        buttonStyle={'solid'}
+      />
+      <hr />
+      <AcInputNumber onChange={(e) => console.log(e)} />
+      <hr />
+      <AcInput />
+      <hr />
       <AcSelect
         style={{ width: '100%' }}
         placeholder="Please select"

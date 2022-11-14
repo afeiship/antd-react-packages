@@ -1,14 +1,17 @@
 import React, { HTMLAttributes } from 'react';
 import ReactList from '@jswork/react-list';
 import noop from '@jswork/noop';
-import { Checkbox } from 'antd';
+import { Radio } from 'antd';
 import cx from 'classnames';
-import { checkboxKv } from '@jswork/antd-tpls';
+import { radioKv } from '@jswork/antd-tpls';
 
-const CLASS_NAME = 'react-ant-checkbox';
+const CLASS_NAME = 'react-radio-group';
 type StdEventTarget = { target: { value: any } };
 type StdCallback = (inEvent: StdEventTarget) => void;
-type TemplateCallback = (item: { item: any; index: number }) => React.ReactNode;
+type TemplateCallback = (
+  item: { item: any; index: number },
+  opts?: any
+) => React.ReactNode;
 
 type Props = {
   className?: string;
@@ -18,16 +21,23 @@ type Props = {
   onChange?: StdCallback;
   onSearch?: StdCallback;
   template?: TemplateCallback;
+  templateOptions?: any;
+  buttonStyle?: 'solid' | 'outline';
 } & HTMLAttributes<any>;
 
-export class AcCheckboxGroup extends React.Component<Props> {
+export class AcRadioGroup extends React.Component<Props> {
   static displayName = CLASS_NAME;
   static defaultProps = {
     items: [],
-    template: checkboxKv,
+    template: radioKv,
     onChange: noop,
     onSearch: noop
   };
+
+  get templateCallback() {
+    const { template, templateOptions } = this.props;
+    return (item) => template!(item, templateOptions);
+  }
 
   handleChange = (inEvent) => {
     const { onChange, onSearch } = this.props;
@@ -41,18 +51,19 @@ export class AcCheckboxGroup extends React.Component<Props> {
       className,
       items,
       template,
+      templateOptions,
       onChange,
       onSearch,
-      children,
       ...props
     } = this.props;
+
     return (
-      <Checkbox.Group
+      <Radio.Group
         className={cx(CLASS_NAME, className)}
         onChange={this.handleChange}
         {...props}>
-        <ReactList items={items} template={template} />
-      </Checkbox.Group>
+        <ReactList items={items} template={this.templateCallback} />
+      </Radio.Group>
     );
   }
 }

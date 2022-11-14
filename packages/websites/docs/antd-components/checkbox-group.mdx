@@ -6,7 +6,9 @@ slug: /checkbox-group
 ---
 
 ### installation
-> 直接用 `npm` 或者 `yarn` 安装。
+- 直接用 `npm` 或者 `yarn` 安装。
+- 添加 `items/template` 通用属性
+- 统一 `event` 为 `e.target.value` 取值
 
 ```bash npm2yarn
 npm install @jswork/antd-components
@@ -17,10 +19,9 @@ npm install @jswork/antd-components
 import { AcCheckboxGroup } from '@jswork/antd-components';
 ```
 
-### 演示
+### preview
 ```jsx live
 <AcCheckboxGroup
-    style={{ width: '100%' }}
     items={[
         { value: 'a', label: 'A' },
         { value: 'b', label: 'B' },

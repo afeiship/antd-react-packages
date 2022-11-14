@@ -1,0 +1,28 @@
+---
+id: input
+title: input
+sidebar_label: input
+slug: /input
+---
+
+### installation
+- 直接用 `npm` 或者 `yarn` 安装。
+- 添加 `autoComplete` 属性，默认为 `off` 状态
+- 统一 `event` 为 `e.target.value` 取值
+
+```bash npm2yarn
+npm install @jswork/antd-components
+```
+
+### usage
+```js
+import { AcInput } from '@jswork/antd-components';
+```
+
+### preview
+```jsx live
+<>
+    <AcInput style={{ width: 200 }} />
+    <AcInput placeholder="Please input" style={{ width: 200 }} />
+</>
+```
