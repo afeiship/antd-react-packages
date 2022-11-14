@@ -8,7 +8,8 @@ import {
   AcInput,
   AcInputNumber,
   AcRadioGroup,
-  AcRate
+  AcRate,
+  AcSwitch
 } from '../../src/main';
 
 console.log('tpls: ', tpls);
@@ -27,6 +28,11 @@ export default () => {
 
   return (
     <Container>
+      <div>
+        <strong>AcSwitch: </strong>
+        <AcSwitch />
+      </div>
+      <hr />
       <AcRate />
       <hr />
       <AcRadioGroup items={items1} />

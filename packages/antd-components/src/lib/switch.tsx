@@ -1,19 +1,19 @@
 import React from 'react';
 import noop from '@jswork/noop';
-import { Rate, RateProps } from 'antd';
+import { Switch, SwitchProps } from 'antd';
 import cx from 'classnames';
 
-const CLASS_NAME = 'ac-rate';
+const CLASS_NAME = 'ac-switch';
 type StdEventTarget = { target: { value: any } };
 type StdCallback = (inEvent: StdEventTarget) => void;
 
 type Props = {
   className?: string;
-  value?: number;
+  value?: boolean;
   onChange?: StdCallback;
-} & RateProps;
+} & SwitchProps;
 
-export class AcRate extends React.Component<Props> {
+export class AcSwitch extends React.Component<Props> {
   static displayName = CLASS_NAME;
   static defaultProps = {
     onChange: noop
@@ -27,7 +27,7 @@ export class AcRate extends React.Component<Props> {
   render() {
     const { className, value, onChange, ...props } = this.props;
     return (
-      <Rate
+      <Switch
         className={cx(CLASS_NAME, className)}
         onChange={this.handleChange}
         {...props}
