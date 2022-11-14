@@ -1,6 +1,6 @@
 import React from 'react';
 import noop from '@jswork/noop';
-import { DatePicker } from 'antd';
+import { DatePicker, DatePickerProps } from 'antd';
 import cx from 'classnames';
 import moment from 'moment';
 
@@ -12,10 +12,10 @@ type StdCallback = (inEvent: StdEventTarget) => void;
 
 type Props = {
   className?: string;
-  value?: string | moment.Moment;
-  defaultValue?: string | moment.Moment;
+  value?: any;
+  defaultValue?: any;
   onChange?: StdCallback;
-} & Omit<typeof DatePicker, 'value' | 'defaultValue'>;
+} & DatePickerProps;
 
 export class AcDatePicker extends React.Component<Props> {
   static displayName = CLASS_NAME;
@@ -35,6 +35,7 @@ export class AcDatePicker extends React.Component<Props> {
   };
 
   stringify = (inValue) => {
+    if (!inValue) return null;
     const { format } = this.props;
     return inValue.format(format as string);
   };
