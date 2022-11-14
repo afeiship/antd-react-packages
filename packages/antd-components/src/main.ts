@@ -8,3 +8,4 @@ export * from './lib/rate';
 export * from './lib/select';
 export * from './lib/switch';
 export * from './lib/textarea';
+export * from './lib/transfer';

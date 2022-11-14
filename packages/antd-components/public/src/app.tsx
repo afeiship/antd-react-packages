@@ -11,7 +11,8 @@ import {
   AcRate,
   AcSwitch,
   AcDatePicker,
-  AcTextarea
+  AcTextarea,
+  AcTransfer
 } from '../../src/main';
 
 console.log('tpls: ', tpls);
@@ -28,8 +29,28 @@ export default () => {
     { value: 'v3', label: 'l3' }
   ];
 
+  // generate v1 - v9
+  const items2 = [
+    { value: 'v1', label: 'content1', key: 'k1', chosen: false },
+    { value: 'v2', label: 'content2', key: 'k2', chosen: true },
+    { value: 'v3', label: 'content3', key: 'k3', chosen: false },
+    { value: 'v4', label: 'content4', key: 'k4', chosen: false },
+    { value: 'v5', label: 'content5', key: 'k5', chosen: false },
+    { value: 'v6', label: 'content6', key: 'k6', chosen: false },
+    { value: 'v7', label: 'content7', key: 'k7', chosen: false }
+  ];
+
   return (
     <Container>
+      <AcTransfer
+        items={items2}
+        oneWay={false}
+        titles={['Left', 'Right']}
+        onChange={(e) => {
+          console.log('transfer evt: ', e.target.value);
+        }}
+      />
+      <hr />
       <AcTextarea
         defaultValue="abc"
         autoSize={{ minRows: 2, maxRows: 10 }}
