@@ -3,6 +3,7 @@ import ReactList from '@jswork/react-list';
 import noop from '@jswork/noop';
 import { Select } from 'antd';
 import cx from 'classnames';
+import { selectKv } from '@jswork/antd-tpls';
 
 const CLASS_NAME = 'react-ant-select';
 
@@ -22,6 +23,7 @@ export class AcSelect extends React.Component<Props> {
   static displayName = CLASS_NAME;
   static defaultProps = {
     items: [],
+    template: selectKv,
     onChange: noop,
     onSearch: noop
   };
