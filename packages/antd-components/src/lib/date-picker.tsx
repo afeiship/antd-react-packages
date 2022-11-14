@@ -5,6 +5,7 @@ import cx from 'classnames';
 import moment from 'moment';
 
 const CLASS_NAME = 'ac-date-picker';
+
 type StdEventTarget = { target: { value: any } };
 type StdCallback = (inEvent: StdEventTarget) => void;
 
