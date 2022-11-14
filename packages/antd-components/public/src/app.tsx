@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { AcSelect, AcCheckbox } from '../../src/main';
 import styled from 'styled-components';
 import * as tpls from '@jswork/antd-tpls';

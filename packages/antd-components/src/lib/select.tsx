@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { HTMLAttributes } from 'react';
 import ReactList from '@jswork/react-list';
 import noop from '@jswork/noop';
 import { Select } from 'antd';
@@ -16,7 +16,7 @@ type Props = {
   onChange?: StdCallback;
   onSearch?: StdCallback;
   template?: TemplateCallback;
-};
+} & HTMLAttributes<any>;
 
 export class AcSelect extends React.Component<Props> {
   static displayName = CLASS_NAME;
