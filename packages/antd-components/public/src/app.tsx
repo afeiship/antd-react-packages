@@ -9,7 +9,8 @@ import {
   AcInputNumber,
   AcRadioGroup,
   AcRate,
-  AcSwitch
+  AcSwitch,
+  AcDatePicker
 } from '../../src/main';
 
 console.log('tpls: ', tpls);
@@ -28,6 +29,15 @@ export default () => {
 
   return (
     <Container>
+      <AcDatePicker
+        style={{ width: '100%' }}
+        showTime
+        defaultValue="2022-11-14 18:00:23"
+        onChange={(e) => {
+          console.log('e: ', e.target.value);
+        }}
+      />
+      <hr />
       <div>
         <strong>AcSwitch: </strong>
         <AcSwitch />
