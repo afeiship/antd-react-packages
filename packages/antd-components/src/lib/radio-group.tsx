@@ -5,7 +5,7 @@ import { Radio } from 'antd';
 import cx from 'classnames';
 import { radioKv } from '@jswork/antd-tpls';
 
-const CLASS_NAME = 'react-radio-group';
+const CLASS_NAME = 'ac-radio-group';
 type StdEventTarget = { target: { value: any } };
 type StdCallback = (inEvent: StdEventTarget) => void;
 type TemplateCallback = (

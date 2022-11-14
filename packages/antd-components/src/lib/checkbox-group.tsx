@@ -5,7 +5,7 @@ import { Checkbox } from 'antd';
 import cx from 'classnames';
 import { checkboxKv } from '@jswork/antd-tpls';
 
-const CLASS_NAME = 'react-ant-checkbox';
+const CLASS_NAME = 'ac-ant-checkbox';
 type StdEventTarget = { target: { value: any } };
 type StdCallback = (inEvent: StdEventTarget) => void;
 type TemplateCallback = (item: { item: any; index: number }) => React.ReactNode;

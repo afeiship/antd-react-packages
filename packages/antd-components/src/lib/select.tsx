@@ -5,7 +5,7 @@ import { Select } from 'antd';
 import cx from 'classnames';
 import { selectKv } from '@jswork/antd-tpls';
 
-const CLASS_NAME = 'react-ant-select';
+const CLASS_NAME = 'ac-ant-select';
 
 type StdEventTarget = { target: { value: any } };
 type StdCallback = (inEvent: StdEventTarget) => void;

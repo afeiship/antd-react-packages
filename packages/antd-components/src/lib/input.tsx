@@ -3,7 +3,7 @@ import noop from '@jswork/noop';
 import { Input, InputProps } from 'antd';
 import cx from 'classnames';
 
-const CLASS_NAME = 'react-input';
+const CLASS_NAME = 'ac-input';
 type StdEventTarget = { target: { value: any } };
 type StdCallback = (inEvent: StdEventTarget) => void;
 
