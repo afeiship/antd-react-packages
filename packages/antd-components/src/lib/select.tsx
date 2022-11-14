@@ -22,6 +22,7 @@ type Props = {
 export class AcSelect extends React.Component<Props> {
   static displayName = CLASS_NAME;
   static defaultProps = {
+    placeholder: '请选择',
     items: [],
     template: selectKv,
     onChange: noop,
