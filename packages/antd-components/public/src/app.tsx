@@ -10,7 +10,8 @@ import {
   AcRadioGroup,
   AcRate,
   AcSwitch,
-  AcDatePicker
+  AcDatePicker,
+  AcTextarea
 } from '../../src/main';
 
 console.log('tpls: ', tpls);
@@ -29,6 +30,15 @@ export default () => {
 
   return (
     <Container>
+      <AcTextarea
+        defaultValue="abc"
+        autoSize={{ minRows: 2, maxRows: 10 }}
+        placeholder="Please input text..."
+        onChange={(e) => {
+          console.log('evt: ', e.target.value);
+        }}
+      />
+      <hr />
       <AcDatePicker
         style={{ width: '100%' }}
         showTime
