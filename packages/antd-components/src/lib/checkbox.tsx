@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { HTMLAttributes } from 'react';
 import noop from '@jswork/noop';
 import { Checkbox } from 'antd';
 import cx from 'classnames';
@@ -13,7 +13,8 @@ type Props = {
   value?: boolean;
   defaultValue?: boolean;
   onChange?: StdCallback;
-} & CheckboxProps;
+} & CheckboxProps &
+  HTMLAttributes<any>;
 
 export class AcCheckbox extends React.Component<Props> {
   static displayName = CLASS_NAME;

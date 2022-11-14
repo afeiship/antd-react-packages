@@ -1,5 +1,5 @@
 import React from 'react';
-import { AcSelect, AcCheckbox } from '../../src/main';
+import { AcSelect, AcCheckbox, AcCheckboxGroup } from '../../src/main';
 import styled from 'styled-components';
 import * as tpls from '@jswork/antd-tpls';
 
@@ -9,6 +9,12 @@ const Container = styled.div`
 `;
 
 export default () => {
+  const items1 = [
+    { value: 'v1', label: 'l1' },
+    { value: 'v2', label: 'l2' },
+    { value: 'v3', label: 'l3' }
+  ];
+
   return (
     <Container>
       <AcSelect
@@ -27,6 +33,13 @@ export default () => {
         }}>
         I Agree
       </AcCheckbox>
+      <hr />
+      <AcCheckboxGroup
+        items={items1}
+        onChange={(e) => {
+          console.log('checked: ', e.target.value);
+        }}
+      />
     </Container>
   );
 };

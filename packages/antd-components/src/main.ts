@@ -1,4 +1,3 @@
-import { AcSelect } from './lib/select';
-import { AcCheckbox } from './lib/checkbox';
-
-export { AcCheckbox, AcSelect };
+export * from './lib/select';
+export * from './lib/checkbox';
+export * from './lib/checkbox-group';
