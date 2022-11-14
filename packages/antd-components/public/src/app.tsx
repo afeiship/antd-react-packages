@@ -32,7 +32,7 @@ export default () => {
       <AcDatePicker
         style={{ width: '100%' }}
         showTime
-        defaultValue="2022-11-14 18:00:23"
+        defaultValue="2022-11-14 18:00:25"
         onChange={(e) => {
           console.log('e: ', e.target.value);
         }}

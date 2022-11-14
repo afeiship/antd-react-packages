@@ -48,7 +48,6 @@
   "boilerplate": "generator-typescript-package",
   "homepage": "https://js.work",
   "dependencies": {
-    "@jswork/antd-components": "^1.0.0",
     "@jswork/react-list": "^1.1.5"
   }
 }
