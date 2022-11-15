@@ -15,7 +15,8 @@ import {
   AcTransfer,
   AcRangePicker,
   AcSearch,
-  AcUploadDragger
+  AcUploadDragger,
+  AcCheckableTag
 } from '../../src/main';
 
 console.log('tpls: ', tpls);
@@ -45,6 +46,14 @@ export default () => {
 
   return (
     <Container>
+      <AcCheckableTag
+        value={false}
+        onChange={(e) => {
+          console.log('evt: ', e.target.value);
+        }}>
+        Tag2
+      </AcCheckableTag>
+      <hr />
       <AcUploadDragger />
       <hr />
       <AcSearch
@@ -88,7 +97,7 @@ export default () => {
       />
       <hr />
       <div>
-        <strong>AcSwitch: </strong>
+        <strong> AcSwitch: </strong>
         <AcSwitch />
       </div>
       <hr />
