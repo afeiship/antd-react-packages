@@ -11,7 +11,6 @@ type StdCallback = (inEvent: StdEventTarget) => void;
 type Props = {
   className?: string;
   value?: boolean;
-  defaultValue?: boolean;
   onChange?: StdCallback;
 } & CheckboxProps &
   HTMLAttributes<any>;
@@ -23,8 +22,16 @@ export class AcCheckbox extends React.Component<Props> {
   };
 
   state = {
-    checked: this.props.value
+    value: this.props.value
   };
+
+  shouldComponentUpdate(nextProps: Readonly<Props>): boolean {
+    const { value } = nextProps;
+    if (value !== this.state.value) {
+      this.setState({ value });
+    }
+    return true;
+  }
 
   handleChange = (inEvent) => {
     const { checked } = inEvent.target;
@@ -38,11 +45,12 @@ export class AcCheckbox extends React.Component<Props> {
 
   render() {
     const { className, onChange, value, defaultValue, ...props } = this.props;
+    const _value = this.state.value;
 
     return (
       <Checkbox
         className={cx(CLASS_NAME, className)}
-        defaultChecked={defaultValue}
+        checked={_value}
         onChange={this.handleChange}
         {...props}
       />

@@ -4,13 +4,23 @@ import cx from 'classnames';
 import ReactList from '@jswork/react-list';
 import { Checkbox, Space } from 'antd';
 import { AcCheckableTag } from './checkable-tag';
+import { AcCheckbox } from './checkbox';
 
 const CLASS_NAME = 'ac-checkable-all';
+const locales = {
+  'zh-CN': {
+    selectAll: '全选'
+  },
+  'en-US': {
+    selectAll: 'Select All'
+  }
+};
 type StdEventTarget = { target: { value: any } };
 type StdCallback = (inEvent: StdEventTarget) => void;
-
 type Props = {
   className?: string;
+  mode?: 'tag' | 'checkbox';
+  lang?: 'zh-CN' | 'en-US';
   items?: any[];
   value?: any[];
   onChange?: StdCallback;
@@ -19,6 +29,8 @@ type Props = {
 export class AcCheckableAll extends React.Component<Props> {
   static displayName = CLASS_NAME;
   static defaultProps = {
+    mode: 'checkbox',
+    lang: 'zh-CN',
     value: [],
     onChange: noop
   };
@@ -37,6 +49,11 @@ export class AcCheckableAll extends React.Component<Props> {
     const { value } = this.state;
     return value!?.length > 0 && !this.isAllSelected;
   }
+
+  t = (inKey: string) => {
+    const { lang } = this.props;
+    return locales[lang!][inKey] || inKey;
+  };
 
   shouldComponentUpdate(nextProps: Readonly<Props>): boolean {
     const { value } = nextProps;
@@ -62,8 +79,11 @@ export class AcCheckableAll extends React.Component<Props> {
   };
 
   render() {
-    const { className, items, value, onChange, ...props } = this.props;
-    const _value = this.state.value as any[];
+    const { className, items, value, onChange, mode, ...props } = this.props;
+    const isTag = mode === 'tag';
+    const Component: React.ComponentType<any> = isTag
+      ? AcCheckableTag
+      : AcCheckbox;
 
     return (
       <Space direction="horizontal" className={cx(CLASS_NAME, className)}>
@@ -71,7 +91,7 @@ export class AcCheckableAll extends React.Component<Props> {
           indeterminate={this.isIndeterminate}
           checked={this.isAllSelected}
           onChange={this.handleSelectAll}>
-          Select All
+          {this.t('selectAll')}
         </Checkbox>
         <ReactList
           items={items}
@@ -79,18 +99,18 @@ export class AcCheckableAll extends React.Component<Props> {
             const _value = this.state.value as any[];
             const isChecked = _value?.includes(item.value);
             return (
-              <AcCheckableTag
+              <Component
                 value={isChecked}
-                onChange={(e) => {
+                onChange={(inEvent) => {
                   const curSet = new Set([..._value]);
-                  const method = e.target.value ? 'add' : 'delete';
+                  const method = inEvent.target.value ? 'add' : 'delete';
                   curSet[method](item.value);
                   // @ts-ignore
                   this.handleChange([...curSet]);
                 }}
                 key={index}>
                 {item.label}
-              </AcCheckableTag>
+              </Component>
             );
           }}
           {...props}

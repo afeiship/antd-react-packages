@@ -55,6 +55,8 @@ export default () => {
     <Container>
       <AcCheckableAll
         items={items3}
+        lang="en-US"
+        mode="tag"
         value={['s1']}
         onChange={(e) => {
           console.log('evt: ', e.target.value);
