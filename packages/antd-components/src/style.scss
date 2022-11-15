@@ -1,0 +1,9 @@
+// upload-dragger
+.ant-upload.ac-upload-dragger {
+  border: 5px dashed rgb(0 0 0 / 16%);
+  border-radius: 5px;
+
+  &:hover {
+    border: 5px dashed #40a9ffd1;
+  }
+}

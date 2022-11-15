@@ -14,7 +14,8 @@ import {
   AcTextarea,
   AcTransfer,
   AcRangePicker,
-  AcSearch
+  AcSearch,
+  AcUploadDragger
 } from '../../src/main';
 
 console.log('tpls: ', tpls);
@@ -44,6 +45,8 @@ export default () => {
 
   return (
     <Container>
+      <AcUploadDragger />
+      <hr />
       <AcSearch
         allowClear
         onChange={(e) => {
