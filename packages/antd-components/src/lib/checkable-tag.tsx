@@ -46,7 +46,6 @@ export class AcCheckableTag extends React.Component<Props> {
   handleCloseClick = (inEvent) => {
     const { onCloseClick } = this.props;
     inEvent.stopPropagation();
-    console.log('close', inEvent);
     onCloseClick!(inEvent);
   };
 
