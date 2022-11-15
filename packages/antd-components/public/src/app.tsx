@@ -12,7 +12,8 @@ import {
   AcSwitch,
   AcDatePicker,
   AcTextarea,
-  AcTransfer
+  AcTransfer,
+  AcRangePicker
 } from '../../src/main';
 
 console.log('tpls: ', tpls);
@@ -42,6 +43,12 @@ export default () => {
 
   return (
     <Container>
+      <AcRangePicker
+        onChange={(e) => {
+          console.log('range evt: ', e.target.value);
+        }}
+      />
+      <hr />
       <AcTransfer
         items={items2}
         oneWay={false}
