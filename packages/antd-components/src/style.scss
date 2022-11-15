@@ -9,6 +9,13 @@
 }
 
 .ac-checkable-tag {
+  user-select: none;
+  background: #ededed;
+
+  &.ant-tag-checkable-checked {
+    background: #1890ff;
+  }
+
   > [role="img"] {
     margin-left: 2px;
   }
