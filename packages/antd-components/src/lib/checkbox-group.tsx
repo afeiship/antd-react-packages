@@ -10,7 +10,7 @@ type StdEventTarget = { target: { value: any } };
 type StdCallback = (inEvent: StdEventTarget) => void;
 type TemplateCallback = (item: { item: any; index: number }) => React.ReactNode;
 
-type Props = {
+export type AcCheckboxGroupProps = {
   className?: string;
   value?: any[];
   defaultValue?: any[];
@@ -20,7 +20,7 @@ type Props = {
   template?: TemplateCallback;
 } & HTMLAttributes<any>;
 
-export class AcCheckboxGroup extends React.Component<Props> {
+export class AcCheckboxGroup extends React.Component<AcCheckboxGroupProps> {
   static displayName = CLASS_NAME;
   static defaultProps = {
     items: [],

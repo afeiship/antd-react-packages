@@ -16,7 +16,8 @@ import {
   AcRangePicker,
   AcSearch,
   AcUploadDragger,
-  AcCheckableTag
+  AcCheckableTag,
+  AcCheckableAll
 } from '../../src/main';
 
 console.log('tpls: ', tpls);
@@ -44,8 +45,22 @@ export default () => {
     { value: 'v7', label: 'content7', key: 'k7', chosen: false }
   ];
 
+  const items3 = [
+    { value: 's1', label: 'Status1' },
+    { value: 's2', label: 'Status2' },
+    { value: 's3', label: 'Status3' }
+  ];
+
   return (
     <Container>
+      <AcCheckableAll
+        items={items3}
+        value={['s1']}
+        onChange={(e) => {
+          console.log('evt: ', e.target.value);
+        }}
+      />
+      <hr />
       <AcCheckableTag
         value={false}
         onChange={(e) => {

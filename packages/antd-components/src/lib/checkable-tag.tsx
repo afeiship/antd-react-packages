@@ -35,6 +35,14 @@ export class AcCheckableTag extends React.Component<Props> {
     value: Boolean(this.props.value)
   };
 
+  shouldComponentUpdate(nextProps: Readonly<Props>): boolean {
+    const { value } = nextProps;
+    if (value !== this.state.value) {
+      this.setState({ value });
+    }
+    return true;
+  }
+
   handleChange = (inEvent) => {
     const { onChange } = this.props;
     const target = { value: inEvent };

@@ -1,3 +1,4 @@
+export * from './lib/checkable-all';
 export * from './lib/checkable-tag';
 export * from './lib/checkbox';
 export * from './lib/checkbox-group';
