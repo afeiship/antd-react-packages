@@ -8,6 +8,7 @@ import reactRefresh from '@vitejs/plugin-react-refresh';
 export default defineConfig({
   root: 'public',
   base: '',
+  server: { port: 5173 },
   build: {
     outDir: '../docs',
     emptyOutDir: true

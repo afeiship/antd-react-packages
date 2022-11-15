@@ -6,6 +6,7 @@ export * from './lib/input-number';
 export * from './lib/radio-group';
 export * from './lib/range-picker';
 export * from './lib/rate';
+export * from './lib/search';
 export * from './lib/select';
 export * from './lib/switch';
 export * from './lib/textarea';

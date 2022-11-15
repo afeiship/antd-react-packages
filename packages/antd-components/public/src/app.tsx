@@ -13,7 +13,8 @@ import {
   AcDatePicker,
   AcTextarea,
   AcTransfer,
-  AcRangePicker
+  AcRangePicker,
+  AcSearch
 } from '../../src/main';
 
 console.log('tpls: ', tpls);
@@ -43,6 +44,13 @@ export default () => {
 
   return (
     <Container>
+      <AcSearch
+        allowClear
+        onChange={(e) => {
+          console.log('search: ', e.target.value);
+        }}
+      />
+      <hr />
       <AcRangePicker
         onChange={(e) => {
           console.log('range evt: ', e.target.value);
@@ -93,7 +101,7 @@ export default () => {
       <hr />
       <AcInputNumber onChange={(e) => console.log(e)} />
       <hr />
-      <AcInput />
+      <AcInput placeholder="Input text." style={{ width: '100%' }} />
       <hr />
       <AcSelect
         style={{ width: '100%' }}
