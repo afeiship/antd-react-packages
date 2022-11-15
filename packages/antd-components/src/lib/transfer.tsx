@@ -7,7 +7,7 @@ import { transferLabel } from '@jswork/antd-tpls';
 const CLASS_NAME = 'ac-transfer';
 type StdEventTarget = { target: { value: any } };
 type StdCallback = (inEvent: StdEventTarget) => void;
-type TemplateCallback = (item: { item: any }) => React.ReactNode;
+type TemplateCallback = (item: { item: any; index: number }) => React.ReactNode;
 
 type Props = {
   className?: string;
@@ -29,7 +29,7 @@ export class AcTransfer extends React.Component<Props> {
 
   get templateCallback(): any {
     const { template } = this.props;
-    return (item: any) => template({ item });
+    return (item: any) => template({ item, index: -1 });
   }
 
   state = {

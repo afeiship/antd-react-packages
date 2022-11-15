@@ -8,7 +8,7 @@ const defaults = {
   label: 'label',
 };
 
-export const transferLabel = ({ item }, options: Options) => {
+export const transferLabel = ({ item }, options?: Options) => {
   const { label } = { ...defaults, ...options };
   return item[label];
 };
