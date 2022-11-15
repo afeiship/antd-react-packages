@@ -7,3 +7,9 @@
     border: 5px dashed #40a9ffd1;
   }
 }
+
+.ac-checkable-tag {
+  > [role="img"] {
+    margin-left: 2px;
+  }
+}

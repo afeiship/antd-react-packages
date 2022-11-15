@@ -51,7 +51,16 @@ export default () => {
         onChange={(e) => {
           console.log('evt: ', e.target.value);
         }}>
-        Tag2
+        Normal
+      </AcCheckableTag>
+
+      <AcCheckableTag
+        value={false}
+        closable
+        onChange={(e) => {
+          console.log('evt: ', e.target.value);
+        }}>
+        Closeable
       </AcCheckableTag>
       <hr />
       <AcUploadDragger />
