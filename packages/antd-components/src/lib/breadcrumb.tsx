@@ -6,6 +6,7 @@ import cx from 'classnames';
 
 // hack for react-list
 // Warning: [antd: Breadcrumb] Only accepts Breadcrumb.Item and Breadcrumb.Separator as it's children
+// @see: https://juejin.cn/post/6844903505832968206
 ReactList['__ANT_BREADCRUMB_ITEM'] = true;
 
 const CLASS_NAME = 'ac-breadcrumb';
