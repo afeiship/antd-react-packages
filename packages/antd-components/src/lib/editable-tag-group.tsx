@@ -71,11 +71,9 @@ export class AcEditableTagGroup extends React.Component<Props> {
   private input: any;
   private btn: any;
 
-  constructor(inProps) {
-    super(inProps);
-    const { value } = inProps;
-    this.state = { value };
-  }
+  state = {
+    value: this.props.value
+  };
 
   template = ({ item, index }, cb) => {
     // TODO: tag.cloable will create ant-tag-hidden?
@@ -124,7 +122,7 @@ export class AcEditableTagGroup extends React.Component<Props> {
   handleInputChange = (inIndex, inEvent) => {
     const { value } = this.state;
     const { onChange } = this.props;
-    value[inIndex] = inEvent.target.value;
+    value![inIndex] = inEvent.target.value;
     const target = { value };
     this.setState(target, () => {
       onChange!({ target });
@@ -134,7 +132,7 @@ export class AcEditableTagGroup extends React.Component<Props> {
   handleInputBlur = () => {
     const { value } = this.state;
     const { onChange } = this.props;
-    const _value = value.filter(Boolean).map((item) => item.trim());
+    const _value = value!.filter(Boolean).map((item) => item.trim());
     const target = { value: _.uniq(_value) };
     this.setState(target, () => {
       onChange!({ target });
