@@ -72,10 +72,12 @@
   "dependencies": {
     "@jswork/antd-tpls": "^1.0.0",
     "@jswork/noop": "^1.0.0",
+    "@jswork/react-list": "^1.1.5",
     "classnames": "^2.2.6"
   },
   "peerDependencies": {
-    "antd": "^4.24.2"
+    "antd": "^4.24.2",
+    "@ant-design/icons": "^4.7.0"
   },
   "resolutions": {
     "@types/react": "^17 || ^18"
