@@ -20,3 +20,18 @@
     margin-left: 2px;
   }
 }
+
+.ac-checkable-all {
+  .ac-is-aside {
+    border-radius: 4px;
+  }
+
+  .ac-is-item {
+    padding: 1px 7px;
+    background: #ededed;
+
+    &.ant-tag-checkable-checked {
+      background: #1890ff;
+    }
+  }
+}
