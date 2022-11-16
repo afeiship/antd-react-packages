@@ -3,6 +3,7 @@ import noop from '@jswork/noop';
 import cx from 'classnames';
 import ReactList from '@jswork/react-list';
 import { Space, Button, Tag } from 'antd';
+import { CloseOutlined } from '@ant-design/icons';
 
 const CLASS_NAME = 'ac-checkable-all';
 const locales = {
@@ -110,6 +111,7 @@ export class AcCheckableAll extends React.Component<Props> {
                 }}
                 key={index}>
                 {item.label}
+                {isChecked && <CloseOutlined />}
               </Tag.CheckableTag>
             );
           }}
