@@ -32,7 +32,7 @@ type Props = {
    */
   max?: number;
   /**
-   * If use keymap `enter` key to quick add tag.
+   * Check use triggers key to quick create tag.
    */
   quick?: boolean;
   /**
