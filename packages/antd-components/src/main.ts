@@ -4,6 +4,7 @@ export * from './lib/checkable-tag';
 export * from './lib/checkbox';
 export * from './lib/checkbox-group';
 export * from './lib/date-picker';
+export * from './lib/editable-tag-group';
 export * from './lib/input';
 export * from './lib/input-number';
 export * from './lib/pre-select';

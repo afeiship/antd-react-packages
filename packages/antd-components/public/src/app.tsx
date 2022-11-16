@@ -19,7 +19,8 @@ import {
   AcCheckableTag,
   AcCheckableAll,
   AcPreSelect,
-  AcBreadcrumb
+  AcBreadcrumb,
+  AcEditableTagGroup
 } from '../../src/main';
 import { Space } from 'antd';
 
@@ -56,6 +57,8 @@ export default () => {
 
   return (
     <Container>
+      <AcEditableTagGroup quick />
+      <hr />
       <AcBreadcrumb items={items3} />
       <hr />
       <Space direction="vertical" style={{ display: 'flex' }}>

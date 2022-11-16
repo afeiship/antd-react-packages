@@ -72,12 +72,15 @@
   "dependencies": {
     "@jswork/antd-tpls": "^1.0.0",
     "@jswork/noop": "^1.0.0",
+    "@jswork/react-interactive-list": "^1.1.3",
     "@jswork/react-list": "^1.1.5",
-    "classnames": "^2.2.6"
+    "classnames": "^2.2.6",
+    "lodash": "^4.17.21",
+    "react-input-autosize": "^3.0.0"
   },
   "peerDependencies": {
-    "antd": "^4.24.2",
-    "@ant-design/icons": "^4.7.0"
+    "@ant-design/icons": "^4.7.0",
+    "antd": "^4.24.2"
   },
   "resolutions": {
     "@types/react": "^17 || ^18"
