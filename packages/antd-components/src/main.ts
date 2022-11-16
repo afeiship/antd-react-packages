@@ -5,6 +5,7 @@ export * from './lib/checkbox-group';
 export * from './lib/date-picker';
 export * from './lib/input';
 export * from './lib/input-number';
+export * from './lib/pre-select';
 export * from './lib/radio-group';
 export * from './lib/range-picker';
 export * from './lib/rate';

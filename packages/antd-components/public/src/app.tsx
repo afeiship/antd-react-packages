@@ -17,8 +17,10 @@ import {
   AcSearch,
   AcUploadDragger,
   AcCheckableTag,
-  AcCheckableAll
+  AcCheckableAll,
+  AcPreSelect
 } from '../../src/main';
+import { Space } from 'antd';
 
 console.log('tpls: ', tpls);
 
@@ -53,6 +55,24 @@ export default () => {
 
   return (
     <Container>
+      <Space direction="vertical" style={{ display: 'flex' }}>
+        <AcPreSelect
+          items={items1}
+          onChange={(e) => {
+            console.log('evt: ', e.target.value);
+          }}
+        />
+
+        <AcPreSelect
+          searchable
+          inputOptions={{ placeholder: 'search...' }}
+          items={items1}
+          onChange={(e) => {
+            console.log('evt: ', e.target.value);
+          }}
+        />
+      </Space>
+      <hr />
       <AcCheckableAll
         items={items3}
         lang="en-US"
