@@ -3,7 +3,7 @@ import ReactList from '@jswork/react-list';
 import noop from '@jswork/noop';
 import { Radio } from 'antd';
 import cx from 'classnames';
-import { radioKv } from '@jswork/antd-tpls';
+import { radioKv } from '@jswork/antd-tpls/dist/esm';
 
 const CLASS_NAME = 'ac-radio-group';
 type StdEventTarget = { target: { value: any } };
