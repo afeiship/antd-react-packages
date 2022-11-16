@@ -20,7 +20,7 @@ type StdCallback = (inEvent: StdEventTarget) => void;
 type Props = {
   className?: string;
   mode?: 'tag' | 'checkbox';
-  lang?: 'zh-CN' | 'en-US';
+  lang?: string;
   items?: any[];
   value?: any[];
   onChange?: StdCallback;
