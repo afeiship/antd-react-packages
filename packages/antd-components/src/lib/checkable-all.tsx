@@ -7,12 +7,8 @@ import { CloseOutlined } from '@ant-design/icons';
 
 const CLASS_NAME = 'ac-checkable-all';
 const locales = {
-  'zh-CN': {
-    selectAll: '全选'
-  },
-  'en-US': {
-    selectAll: 'Select All'
-  }
+  'zh-CN': { selectAll: '全部' },
+  'en-US': { selectAll: 'All' }
 };
 type StdEventTarget = { target: { value: any } };
 type StdCallback = (inEvent: StdEventTarget) => void;
