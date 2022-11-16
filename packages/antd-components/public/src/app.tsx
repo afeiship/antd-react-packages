@@ -18,7 +18,8 @@ import {
   AcUploadDragger,
   AcCheckableTag,
   AcCheckableAll,
-  AcPreSelect
+  AcPreSelect,
+  AcBreadcrumb
 } from '../../src/main';
 import { Space } from 'antd';
 
@@ -55,6 +56,8 @@ export default () => {
 
   return (
     <Container>
+      <AcBreadcrumb items={items3} />
+      <hr />
       <Space direction="vertical" style={{ display: 'flex' }}>
         <AcPreSelect
           items={items1}
