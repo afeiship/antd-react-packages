@@ -1,5 +1,5 @@
 import cx from 'classnames';
-import React from 'react';
+import React, { createRef } from 'react';
 import noop from '@jswork/noop';
 import ReactInteractiveList from '@jswork/react-interactive-list';
 import AutosizeInput from 'react-input-autosize';
@@ -55,12 +55,14 @@ export class AcEditableTagGroup extends React.Component<Props> {
     triggers: [' ', 'Enter', 'Tab']
   };
 
-  private input: any;
-  private btn: any;
-  private root: any;
+  private inputRef = createRef<HTMLInputElement>();
+  private btnRef = createRef<HTMLElement>();
+  private rootRef = createRef<HTMLDivElement>();
 
-  get latestInput() {
-    const els = document.querySelectorAll(`.${CLASS_NAME}__input input`);
+  get latestInput(): HTMLInputElement {
+    const root = this.rootRef.current!;
+    const selector = `.${CLASS_NAME}__input input`;
+    const els: NodeListOf<HTMLInputElement> = root.querySelectorAll(selector);
     return els[els.length - 1];
   }
 
@@ -74,7 +76,7 @@ export class AcEditableTagGroup extends React.Component<Props> {
     return (
       <Tag key={index}>
         <AutosizeInput
-          ref={(input) => (this.input = input)}
+          ref={this.inputRef}
           type="text"
           size="small"
           value={item}
@@ -92,12 +94,11 @@ export class AcEditableTagGroup extends React.Component<Props> {
 
   templateCreate = (_, cb) => {
     const create = () => {
-      cb();
-      setTimeout(() => this.input.focus());
+      cb(), setTimeout(() => this.inputRef.current!.focus());
     };
     return (
       <Button
-        ref={(btn) => (this.btn = btn)}
+        ref={this.btnRef}
         size="small"
         type="dashed"
         onClick={create}
@@ -135,11 +136,9 @@ export class AcEditableTagGroup extends React.Component<Props> {
 
   handleInputKeyDown = (inEvent) => {
     const { triggers } = this.props;
-    console.log('tab:', inEvent.key);
     if (triggers?.includes(inEvent.key)) {
-      const dom = this.btn.buttonNode || this.btn;
+      const dom = this.btnRef.current!;
       dom.click();
-      console.log('triggered!');
     }
   };
 
@@ -164,18 +163,17 @@ export class AcEditableTagGroup extends React.Component<Props> {
     const _value = this.state.value;
 
     return (
-      <ReactInteractiveList
-        ref={(root) => (this.root = root)}
-        min={min}
-        max={max}
-        items={_value}
-        template={this.template}
-        templateCreate={this.templateCreate}
-        templateDefault={this.templateDefault}
-        className={cx(CLASS_NAME, className)}
-        onChange={this.handleInterChange}
-        {...props}
-      />
+      <div className={cx(CLASS_NAME, className)} ref={this.rootRef} {...props}>
+        <ReactInteractiveList
+          min={min}
+          max={max}
+          items={_value}
+          template={this.template}
+          templateCreate={this.templateCreate}
+          templateDefault={this.templateDefault}
+          onChange={this.handleInterChange}
+        />
+      </div>
     );
   }
 }

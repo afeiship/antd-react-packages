@@ -57,7 +57,7 @@ export default () => {
 
   return (
     <Container>
-      <AcEditableTagGroup quick />
+      <AcEditableTagGroup />
       <hr />
       <AcBreadcrumb items={items3} />
       <hr />
