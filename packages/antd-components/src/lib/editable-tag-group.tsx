@@ -158,6 +158,14 @@ export class AcEditableTagGroup extends React.Component<Props> {
     });
   };
 
+  shouldComponentUpdate(nextProps: Readonly<Props>): boolean {
+    const { value } = nextProps;
+    if (value! == this.state.value) {
+      this.setState({ value });
+    }
+    return true;
+  }
+
   render() {
     const { className, value, onChange, min, max, ...props } = this.props;
     const _value = this.state.value;
