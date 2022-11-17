@@ -60,16 +60,22 @@ export class AcEditableTagGroup extends React.Component<Props> {
     triggers: [' ', 'Enter']
   };
 
-  static getDerivedStateFromProps(inProps, inState) {
-    const { value } = inProps;
-    if (value !== inState.value) {
-      return { value };
-    }
-    return null;
-  }
+  // static getDerivedStateFromProps(inProps, inState) {
+  //   const { value } = inProps;
+  //   if (value !== inState.value) {
+  //     return { value };
+  //   }
+  //   return null;
+  // }
 
   private input: any;
   private btn: any;
+  private root: any;
+
+  get latestInput() {
+    const els = document.querySelectorAll(`.${CLASS_NAME}__input input`);
+    return els[els.length - 1];
+  }
 
   state = {
     value: this.props.value
@@ -126,17 +132,28 @@ export class AcEditableTagGroup extends React.Component<Props> {
   };
 
   handleInputBlur = () => {
-    const { value } = this.state;
-    const _value = value!.filter(Boolean).map((item) => item.trim());
-    this.handleChange(_value);
+    // todo: remove settimout
+    let { value } = this.state;
+    setTimeout(() => {
+      if (document.activeElement !== this.latestInput) {
+        value = value?.filter((item) => item.trim()).filter(Boolean);
+      }
+      this.handleChange(value);
+    }, 100);
   };
 
   handleInputKeyDown = (inEvent) => {
     const { quick, triggers } = this.props;
+    const { value } = this.state;
     if (triggers?.includes(inEvent.key)) {
       !quick && inEvent.preventDefault();
-      const dom = this.btn.buttonNode || this.btn;
-      dom.click();
+      // const dom = this.btn.buttonNode || this.btn;
+      // dom.focus();
+      value!.push('');
+      this.handleChange(value);
+      setTimeout(() => {
+        this.latestInput.focus();
+      }, 100);
     }
   };
 
@@ -147,7 +164,7 @@ export class AcEditableTagGroup extends React.Component<Props> {
 
   handleChange = (inValue) => {
     const { onChange } = this.props;
-    const value = _.uniq(inValue);
+    const value = inValue.map((item) => item.trim());
     const target = { value };
     this.setState(target, () => {
       onChange!({ target });
@@ -161,6 +178,7 @@ export class AcEditableTagGroup extends React.Component<Props> {
 
     return (
       <ReactInteractiveList
+        ref={(root) => (this.root = root)}
         min={min}
         max={max}
         items={_value}
