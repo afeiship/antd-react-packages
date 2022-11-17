@@ -121,22 +121,14 @@ export class AcEditableTagGroup extends React.Component<Props> {
 
   handleInputChange = (inIndex, inEvent) => {
     const { value } = this.state;
-    const { onChange } = this.props;
     value![inIndex] = inEvent.target.value;
-    const target = { value };
-    this.setState(target, () => {
-      onChange!({ target });
-    });
+    this.handleChange(value);
   };
 
   handleInputBlur = () => {
     const { value } = this.state;
-    const { onChange } = this.props;
     const _value = value!.filter(Boolean).map((item) => item.trim());
-    const target = { value: _.uniq(_value) };
-    this.setState(target, () => {
-      onChange!({ target });
-    });
+    this.handleChange(_value);
   };
 
   handleInputKeyDown = (inEvent) => {
@@ -150,8 +142,13 @@ export class AcEditableTagGroup extends React.Component<Props> {
 
   handleInterChange = (inEvent) => {
     const { value } = inEvent.target;
+    this.handleChange(value);
+  };
+
+  handleChange = (inValue) => {
     const { onChange } = this.props;
-    const target = { value: _.uniq(value) };
+    const value = _.uniq(inValue);
+    const target = { value };
     this.setState(target, () => {
       onChange!({ target });
     });
