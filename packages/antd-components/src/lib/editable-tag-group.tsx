@@ -32,10 +32,6 @@ type Props = {
    */
   max?: number;
   /**
-   * Check use triggers key to quick create tag.
-   */
-  quick?: boolean;
-  /**
    * If set readOnly.
    */
   readOnly?: boolean;
@@ -55,18 +51,9 @@ export class AcEditableTagGroup extends React.Component<Props> {
     value: [],
     min: 0,
     max: 20,
-    quick: false,
     onChange: noop,
-    triggers: [' ', 'Enter']
+    triggers: [' ', 'Enter', 'Tab']
   };
-
-  // static getDerivedStateFromProps(inProps, inState) {
-  //   const { value } = inProps;
-  //   if (value !== inState.value) {
-  //     return { value };
-  //   }
-  //   return null;
-  // }
 
   private input: any;
   private btn: any;
@@ -132,28 +119,27 @@ export class AcEditableTagGroup extends React.Component<Props> {
   };
 
   handleInputBlur = () => {
-    // todo: remove settimout
     let { value } = this.state;
+    const len = value?.length;
     setTimeout(() => {
+      value = _.uniq(value);
       if (document.activeElement !== this.latestInput) {
-        value = value?.filter((item) => item.trim()).filter(Boolean);
+        value = value?.filter(Boolean);
       }
       this.handleChange(value);
-    }, 100);
+      if (value?.length !== len) {
+        setTimeout(() => this.latestInput.focus(), 10);
+      }
+    }, 10);
   };
 
   handleInputKeyDown = (inEvent) => {
-    const { quick, triggers } = this.props;
-    const { value } = this.state;
+    const { triggers } = this.props;
+    console.log('tab:', inEvent.key);
     if (triggers?.includes(inEvent.key)) {
-      !quick && inEvent.preventDefault();
-      // const dom = this.btn.buttonNode || this.btn;
-      // dom.focus();
-      value!.push('');
-      this.handleChange(value);
-      setTimeout(() => {
-        this.latestInput.focus();
-      }, 100);
+      const dom = this.btn.buttonNode || this.btn;
+      dom.click();
+      console.log('triggered!');
     }
   };
 
@@ -162,18 +148,19 @@ export class AcEditableTagGroup extends React.Component<Props> {
     this.handleChange(value);
   };
 
-  handleChange = (inValue) => {
+  handleChange = (inValue, inCallback?) => {
+    const callback = inCallback || noop;
     const { onChange } = this.props;
     const value = inValue.map((item) => item.trim());
     const target = { value };
     this.setState(target, () => {
       onChange!({ target });
+      callback(value);
     });
   };
 
   render() {
-    const { className, value, onChange, min, max, quick, ...props } =
-      this.props;
+    const { className, value, onChange, min, max, ...props } = this.props;
     const _value = this.state.value;
 
     return (
