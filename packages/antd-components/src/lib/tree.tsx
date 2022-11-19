@@ -8,7 +8,7 @@ const CLASS_NAME = 'ac-tree';
 const DEFAULT_TEMPLATE = ({ item }, cb) => {
   const { value, label } = item;
   return (
-    <Tree.TreeNode key={value} value={value} title={label}>
+    <Tree.TreeNode key={value} id={value} title={label}>
       {cb()}
     </Tree.TreeNode>
   );
@@ -16,13 +16,13 @@ const DEFAULT_TEMPLATE = ({ item }, cb) => {
 
 type StdEventTarget = { target: { value: any } };
 type StdCallback = (inEvent: StdEventTarget) => void;
-type TemplateCallback = (item: { item: any; index: number }) => React.ReactNode;
+// type TemplateCallback = (item: { item: any; index: number }) => React.ReactNode;
 
 type Props = {
   className?: string;
   value?: number;
   items?: any[];
-  template?: TemplateCallback;
+  template?: any;
   itemsKey?: string | ((index: number, item: any) => any);
   onChange?: StdCallback;
   directory?: boolean;
@@ -40,7 +40,7 @@ export class AcTree extends React.Component<Props> {
 
   get childView() {
     const { items, template, itemsKey } = this.props;
-    return nxTreeWalk(items, { template, itemsKey });
+    return nxTreeWalk(items!, { template, itemsKey });
   }
 
   render() {
