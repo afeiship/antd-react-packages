@@ -79,8 +79,8 @@
     "react-input-autosize": "^3.0.0"
   },
   "peerDependencies": {
-    "@ant-design/icons": "^4.7.0",
-    "antd": "^4.24.2"
+    "@ant-design/icons": "^4.8.0",
+    "antd": "^5.0.0"
   },
   "resolutions": {
     "@types/react": "^17 || ^18"

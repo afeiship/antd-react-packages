@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Button } from 'antd';
 import * as tpls from '@jswork/antd-tpls';
 import {
   AcSelect,
@@ -189,6 +190,8 @@ export default () => {
           console.log('checked: ', e.target.value);
         }}
       />
+      <hr />
+      <Button>Submit</Button>
     </Container>
   );
 };
