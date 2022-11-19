@@ -49,6 +49,7 @@ export class AcTree extends React.Component<Props> {
       children,
       items,
       template,
+      itemsKey,
       directory,
       prefixCls,
       ...props
