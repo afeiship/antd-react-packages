@@ -171,17 +171,18 @@ export class AcEditableTagGroup extends React.Component<Props> {
     const _value = this.state.value;
 
     return (
-      <div className={cx(CLASS_NAME, className)} ref={this.rootRef} {...props}>
-        <ReactInteractiveList
-          min={min}
-          max={max}
-          items={_value}
-          template={this.template}
-          templateCreate={this.templateCreate}
-          templateDefault={this.templateDefault}
-          onChange={this.handleInterChange}
-        />
-      </div>
+      <ReactInteractiveList
+        className={cx(CLASS_NAME, className)}
+        forwardedRef={this.rootRef}
+        min={min}
+        max={max}
+        items={_value}
+        template={this.template}
+        templateCreate={this.templateCreate}
+        templateDefault={this.templateDefault}
+        onChange={this.handleInterChange}
+        {...props}
+      />
     );
   }
 }
