@@ -21,7 +21,8 @@ import {
   AcCheckableAll,
   AcPreSelect,
   AcBreadcrumb,
-  AcEditableTagGroup
+  AcEditableTagGroup,
+  AcTree
 } from '../../src/main';
 import { Space } from 'antd';
 
@@ -56,8 +57,54 @@ export default () => {
     { value: 's3', label: 'Status3' }
   ];
 
+  const items4 = [
+    {
+      label: '0-0',
+      value: '0-0',
+      children: [
+        {
+          label: '0-0-0',
+          value: '0-0-0',
+          children: [
+            { label: '0-0-0-0', value: '0-0-0-0' },
+            { label: '0-0-0-1', value: '0-0-0-1' },
+            { label: '0-0-0-2', value: '0-0-0-2' }
+          ]
+        },
+        {
+          label: '0-0-1',
+          value: '0-0-1',
+          children: [
+            { label: '0-0-1-0', value: '0-0-1-0' },
+            { label: '0-0-1-1', value: '0-0-1-1' },
+            { label: '0-0-1-2', value: '0-0-1-2' }
+          ]
+        },
+        {
+          label: '0-0-2',
+          value: '0-0-2'
+        }
+      ]
+    },
+    {
+      label: '0-1',
+      value: '0-1',
+      children: [
+        { label: '0-1-0-0', value: '0-1-0-0' },
+        { label: '0-1-0-1', value: '0-1-0-1' },
+        { label: '0-1-0-2', value: '0-1-0-2' }
+      ]
+    },
+    {
+      label: '0-2',
+      value: '0-2'
+    }
+  ];
+
   return (
     <Container>
+      <AcTree items={items4} />
+      <hr />
       <AcEditableTagGroup />
       <hr />
       <AcBreadcrumb items={items3} />

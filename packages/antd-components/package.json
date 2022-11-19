@@ -71,16 +71,18 @@
   },
   "dependencies": {
     "@jswork/antd-tpls": "^1.0.0",
+    "@jswork/next-tree-walk": "^1.0.3",
     "@jswork/noop": "^1.0.0",
     "@jswork/react-interactive-list": "^1.1.4",
     "@jswork/react-list": "^1.1.5",
     "classnames": "^2.2.6",
-    "lodash": "^4.17.21",
     "react-input-autosize": "^3.0.0"
   },
   "peerDependencies": {
     "@ant-design/icons": "^4.8.0",
-    "antd": "^5.0.0"
+    "@jswork/next": "^1.1.5",
+    "antd": "^5.0.0",
+    "lodash": "^4.17.21"
   },
   "resolutions": {
     "@types/react": "^17 || ^18"
