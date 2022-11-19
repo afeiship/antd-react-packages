@@ -52,15 +52,16 @@ export class AcEditableTagGroup extends React.Component<Props> {
     min: 0,
     max: 20,
     onChange: noop,
-    triggers: [' ', 'Enter', 'Tab']
+    triggers: [' ', 'Tab']
   };
 
   private inputRef = createRef<HTMLInputElement>();
   private btnRef = createRef<HTMLElement>();
-  private rootRef = createRef<HTMLDivElement>();
+  private rootForwardedRef = createRef<HTMLDivElement>();
+  private rootRef = createRef<ReactInteractiveList>();
 
   get latestInput(): HTMLInputElement {
-    const root = this.rootRef.current!;
+    const root = this.rootForwardedRef.current!;
     const selector = `.${CLASS_NAME}__input input`;
     const els: NodeListOf<HTMLInputElement> = root.querySelectorAll(selector);
     return els[els.length - 1];
@@ -92,16 +93,13 @@ export class AcEditableTagGroup extends React.Component<Props> {
     );
   };
 
-  templateCreate = (_, cb) => {
-    const create = () => {
-      cb(), setTimeout(() => this.inputRef.current!.focus());
-    };
+  templateCreate = () => {
     return (
       <Button
         ref={this.btnRef}
         size="small"
         type="dashed"
-        onClick={create}
+        onClick={this.actionCreate}
         className={`${CLASS_NAME}__create`}>
         <i className={`${CLASS_NAME}__plus`}></i>
         新增
@@ -109,8 +107,24 @@ export class AcEditableTagGroup extends React.Component<Props> {
     );
   };
 
+  /**
+   * Default item's value.
+   */
   templateDefault = () => {
     return '';
+  };
+
+  /**
+   * Add new default item.
+   */
+  actionCreate = () => {
+    const { value } = this.state;
+    value!.push(this.templateDefault());
+    this.handleChange(value);
+    this.rootRef.current!.notify();
+    setTimeout(() => {
+      this.latestInput.focus();
+    }, 100);
   };
 
   handleInputChange = (inIndex, inEvent) => {
@@ -137,8 +151,8 @@ export class AcEditableTagGroup extends React.Component<Props> {
   handleInputKeyDown = (inEvent) => {
     const { triggers } = this.props;
     if (triggers?.includes(inEvent.key)) {
-      const dom = this.btnRef.current!;
-      dom.click();
+      inEvent.preventDefault();
+      this.actionCreate();
     }
   };
 
@@ -173,7 +187,8 @@ export class AcEditableTagGroup extends React.Component<Props> {
     return (
       <ReactInteractiveList
         className={cx(CLASS_NAME, className)}
-        forwardedRef={this.rootRef}
+        forwardedRef={this.rootForwardedRef}
+        ref={this.rootRef}
         min={min}
         max={max}
         items={_value}
