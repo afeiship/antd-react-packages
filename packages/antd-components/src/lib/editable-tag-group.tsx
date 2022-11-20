@@ -122,9 +122,18 @@ export class AcEditableTagGroup extends React.Component<Props> {
     value!.push(this.templateDefault());
     this.handleChange(value);
     this.rootRef.current!.notify();
+    this.actionFocusLast();
+  };
+
+  /**
+   * Focus latest input element if exists.
+   * @param inDelay
+   */
+  actionFocusLast = (inDelay?: number) => {
+    const delay = inDelay || 100;
     setTimeout(() => {
-      this.latestInput.focus();
-    }, 100);
+      this.latestInput?.focus();
+    }, delay);
   };
 
   handleInputChange = (inIndex, inEvent) => {
@@ -143,7 +152,7 @@ export class AcEditableTagGroup extends React.Component<Props> {
       }
       this.handleChange(value);
       if (value?.length !== len) {
-        setTimeout(() => this.latestInput.focus(), 10);
+        this.actionFocusLast(10);
       }
     }, 10);
   };
