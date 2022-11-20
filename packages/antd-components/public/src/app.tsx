@@ -118,7 +118,11 @@ export default () => {
         }}
       />
       <hr />
-      <AcEditableTagGroup />
+      <AcEditableTagGroup
+        onChange={(e) => {
+          console.log('tag group value: ', e.target.value);
+        }}
+      />
       <hr />
       <AcBreadcrumb items={items3} />
       <hr />
