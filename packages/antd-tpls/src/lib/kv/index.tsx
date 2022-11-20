@@ -1,5 +1,5 @@
 import React from 'react';
-import { Checkbox, Select, Radio } from 'antd';
+import { Checkbox, Select, Radio, Tree, TreeSelect } from 'antd';
 
 interface Options {
   component: React.ComponentType<any>;
@@ -57,4 +57,18 @@ export const radioKv = (args, opts) => {
     component: RadioComponent,
     ...radioProps,
   });
+};
+
+export const treeKv = ({ item }, cb) => {
+  const { value, label, ...itemProps } = item;
+  return (
+    <Tree.TreeNode key={value} title={label} {...itemProps}>
+      {cb()}
+    </Tree.TreeNode>
+  );
+};
+
+export const treeSelectKv = ({ item }, cb) => {
+  const { value, label } = item;
+  return <TreeSelect.TreeNode key={value} value={value} title={label} children={cb()} />;
 };

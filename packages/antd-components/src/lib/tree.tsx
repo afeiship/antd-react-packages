@@ -1,30 +1,16 @@
 import React from 'react';
-import noop from '@jswork/noop';
 import { Tree, TreeProps } from 'antd';
 import cx from 'classnames';
 import nxTreeWalk from '@jswork/next-tree-walk';
+import { treeKv } from '@jswork/antd-tpls';
 
 const CLASS_NAME = 'ac-tree';
-const DEFAULT_TEMPLATE = ({ item }, cb) => {
-  const { value, label } = item;
-  return (
-    <Tree.TreeNode key={value} id={value} title={label}>
-      {cb()}
-    </Tree.TreeNode>
-  );
-};
-
-type StdEventTarget = { target: { value: any } };
-type StdCallback = (inEvent: StdEventTarget) => void;
-// type TemplateCallback = (item: { item: any; index: number }) => React.ReactNode;
 
 type Props = {
   className?: string;
-  value?: number;
   items?: any[];
   template?: any;
   itemsKey?: string | ((index: number, item: any) => any);
-  onChange?: StdCallback;
   directory?: boolean;
 } & TreeProps;
 
@@ -33,9 +19,8 @@ export class AcTree extends React.Component<Props> {
   static defaultProps = {
     directory: false,
     items: [],
-    template: DEFAULT_TEMPLATE,
-    itemsKey: 'children',
-    onChange: noop
+    template: treeKv,
+    itemsKey: 'children'
   };
 
   get childView() {
@@ -51,7 +36,6 @@ export class AcTree extends React.Component<Props> {
       template,
       itemsKey,
       directory,
-      prefixCls,
       ...props
     } = this.props;
 

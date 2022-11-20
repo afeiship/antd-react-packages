@@ -17,4 +17,5 @@ export * from './lib/switch';
 export * from './lib/textarea';
 export * from './lib/transfer';
 export * from './lib/tree';
+export * from './lib/tree-select';
 export * from './lib/upload-dragger';

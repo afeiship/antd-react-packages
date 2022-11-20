@@ -1,37 +1,63 @@
 import React from 'react';
-import noop from '@jswork/noop';
-import { Rate, RateProps } from 'antd';
 import cx from 'classnames';
+import noop from '@jswork/noop';
+import { TreeSelect, TreeSelectProps } from 'antd';
+import nxTreeWalk from '@jswork/next-tree-walk';
+import { treeSelectKv } from '@jswork/antd-tpls';
 
 const CLASS_NAME = 'ac-tree-select';
 type StdEventTarget = { target: { value: any } };
 type StdCallback = (inEvent: StdEventTarget) => void;
 
+// @see: https://github.com/afeiship/react-ant-tree-select
+
 type Props = {
   className?: string;
-  value?: number;
+  items?: any[];
+  template?: any;
+  itemsKey?: string | ((index: number, item: any) => any);
   onChange?: StdCallback;
-} & RateProps;
+} & TreeSelectProps;
 
-export class AcRate extends React.Component<Props> {
+export class AcTreeSelect extends React.Component<Props> {
   static displayName = CLASS_NAME;
   static defaultProps = {
+    items: [],
+    template: treeSelectKv,
+    itemsKey: 'children',
     onChange: noop
   };
 
-  handleChange = (inEvent) => {
+  get childView() {
+    const { items, template, itemsKey } = this.props;
+    return nxTreeWalk(items!, { template, itemsKey });
+  }
+
+  handleChange = (inValue) => {
     const { onChange } = this.props;
-    onChange!({ target: { value: inEvent } });
+    onChange!({ target: { value: inValue } });
   };
 
   render() {
-    const { className, value, onChange, ...props } = this.props;
+    const {
+      className,
+      items,
+      itemsKey,
+      template,
+      treeData,
+      onChange,
+      ...props
+    } = this.props;
+
     return (
-      <Rate
+      <TreeSelect
+        data-component={CLASS_NAME}
         className={cx(CLASS_NAME, className)}
         onChange={this.handleChange}
-        {...props}
-      />
+        treeNodeFilterProp="title"
+        {...props}>
+        {this.childView}
+      </TreeSelect>
     );
   }
 }

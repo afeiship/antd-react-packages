@@ -22,11 +22,10 @@ import {
   AcPreSelect,
   AcBreadcrumb,
   AcEditableTagGroup,
-  AcTree
+  AcTree,
+  AcTreeSelect
 } from '../../src/main';
 import { Space } from 'antd';
-
-console.log('tpls: ', tpls);
 
 const Container = styled.div`
   width: 80%;
@@ -103,7 +102,21 @@ export default () => {
 
   return (
     <Container>
-      <AcTree items={items4} />
+      <AcTreeSelect
+        style={{ width: '100%' }}
+        defaultValue={['0-0-1-0']}
+        items={items4}
+        onChange={(e) => {
+          console.log('e: ', e.target.value);
+        }}
+      />
+      <hr />
+      <AcTree
+        items={items4}
+        onSelect={(e) => {
+          console.log('e: ', e);
+        }}
+      />
       <hr />
       <AcEditableTagGroup />
       <hr />
