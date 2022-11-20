@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { HTMLAttributes } from 'react';
 import ReactList from '@jswork/react-list';
 import noop from '@jswork/noop';
 import { Checkbox } from 'antd';
@@ -18,7 +18,7 @@ export type AcCheckboxGroupProps = {
   onChange?: StdCallback;
   onSearch?: StdCallback;
   template?: TemplateCallback;
-} & typeof Checkbox.Group;
+} & HTMLAttributes<any>;
 
 export class AcCheckboxGroup extends React.Component<AcCheckboxGroupProps> {
   static displayName = CLASS_NAME;
@@ -37,8 +37,15 @@ export class AcCheckboxGroup extends React.Component<AcCheckboxGroupProps> {
   };
 
   render() {
-    const { className, items, template, onChange, onSearch, ...props } =
-      this.props;
+    const {
+      className,
+      items,
+      template,
+      onChange,
+      onSearch,
+      children,
+      ...props
+    } = this.props;
     return (
       <Checkbox.Group
         className={cx(CLASS_NAME, className)}
