@@ -101,11 +101,28 @@ export default () => {
     }
   ];
 
+  const items_pics = [
+    {
+      uid: 1,
+      url: 'https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png',
+      status: 'done'
+    },
+    {
+      uid: 2,
+      url: 'https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png',
+      status: 'done'
+    }
+  ];
+
   return (
     <Container>
       <AcUploadPictureCard
+        value={items_pics}
         action="http://localhost:3200/weibo_api/interface/pic_upload.php"
         name="pic1"
+        onChange={(e) => {
+          console.log('ac upload:', e.target.value);
+        }}
       />
       <AcTreeSelect
         style={{ width: '100%' }}
