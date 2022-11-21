@@ -19,3 +19,4 @@ export * from './lib/transfer';
 export * from './lib/tree';
 export * from './lib/tree-select';
 export * from './lib/upload-dragger';
+export * from './lib/upload-images';

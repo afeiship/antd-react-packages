@@ -23,7 +23,8 @@ import {
   AcBreadcrumb,
   AcEditableTagGroup,
   AcTree,
-  AcTreeSelect
+  AcTreeSelect,
+  AcUploadImages
 } from '../../src/main';
 import { Space } from 'antd';
 
@@ -102,6 +103,7 @@ export default () => {
 
   return (
     <Container>
+      <AcUploadImages />
       <AcTreeSelect
         style={{ width: '100%' }}
         defaultValue={['0-0-1-0']}
