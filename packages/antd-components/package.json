@@ -76,7 +76,8 @@
     "@jswork/react-interactive-list": "^1.1.4",
     "@jswork/react-list": "^1.1.5",
     "classnames": "^2.2.6",
-    "react-input-autosize": "^3.0.0"
+    "react-input-autosize": "^3.0.0",
+    "sortablejs": "^1.15.0"
   },
   "peerDependencies": {
     "@ant-design/icons": "^4.8.0",
