@@ -103,7 +103,10 @@ export default () => {
 
   return (
     <Container>
-      <AcUploadPictureCard />
+      <AcUploadPictureCard
+        action="http://localhost:3200/weibo_api/interface/pic_upload.php"
+        name="pic1"
+      />
       <AcTreeSelect
         style={{ width: '100%' }}
         defaultValue={['0-0-1-0']}

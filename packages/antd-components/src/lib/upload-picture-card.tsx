@@ -15,7 +15,6 @@ type StdCallback = (inEvent: StdEventTarget) => void;
 type Props = {
   className?: string;
   value?: any[];
-  defaultValue?: any[];
   onChange?: StdCallback;
 } & DraggerProps;
 
@@ -49,6 +48,12 @@ export class AcUploadPictureCard extends React.Component<Props, State> {
     this.viewer = new window['Viewer'](el);
   }
 
+  componentDidUpdate(_: Readonly<Props>, prevState: Readonly<State>) {
+    if (prevState?.fileList !== this.state.fileList) {
+      this.viewer?.update();
+    }
+  }
+
   componentWillUnmount() {
     this.sortable?.destroy();
     this.viewer?.destroy();
@@ -78,7 +83,6 @@ export class AcUploadPictureCard extends React.Component<Props, State> {
     const { onChange } = this.props;
     this.setState({ fileList: inValue }, () => {
       onChange!({ target: { value: inValue } });
-      setTimeout(() => this.viewer.update(), 100);
     });
   };
 
@@ -94,17 +98,12 @@ export class AcUploadPictureCard extends React.Component<Props, State> {
     return (
       <div className={cx(CLASS_NAME, className)} ref={this.rootRef}>
         <Upload
-          action="http://localhost:3200/weibo_api/interface/pic_upload.php"
-          name="pic1"
           listType="picture-card"
           className={cx(`${CLASS_NAME}__uploader`, className)}
           multiple
           previewFile={this.previewFile}
           onPreview={this.handlePreview}
           onChange={this.handleChange}
-          itemRender={(originNode) => {
-            return originNode;
-          }}
           {...props}>
           <Space direction="horizontal">
             <UploadOutlined />
