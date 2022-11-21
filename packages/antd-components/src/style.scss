@@ -134,18 +134,19 @@
   }
 }
 
-/**
-  定义 css 变量，可以改变 image-item 的大小
- */
-.ant-upload-list.ant-upload-list-picture-card .ant-upload-list-item-container,
-.ant-upload.ant-upload-select {
-  --ac-upload-images-size: 120px;
-  border-width: 3px !important;
-  width: var(--ac-upload-images-size) !important;
-  height: var(--ac-upload-images-size) !important;
-}
 
 .ac-upload-picture-card {
+  /**
+  定义 css 变量，可以改变 image-item 的大小
+ */
+  .ant-upload-list.ant-upload-list-picture-card .ant-upload-list-item-container,
+  .ant-upload.ant-upload-select {
+    --ac-upload-images-size: 102px;
+    border-width: 2px !important;
+    width: var(--ac-upload-images-size) !important;
+    height: var(--ac-upload-images-size) !important;
+  }
+
   .ant-upload-list-item-container {
     user-select: none;
 
