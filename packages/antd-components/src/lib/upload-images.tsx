@@ -1,6 +1,6 @@
 import React from 'react';
 import noop from '@jswork/noop';
-import { Modal, Upload } from 'antd';
+import { Modal, Space, Upload } from 'antd';
 import cx from 'classnames';
 import { DraggerProps } from 'antd/es/upload';
 import { UploadOutlined } from '@ant-design/icons';
@@ -24,7 +24,7 @@ export class AcUploadImages extends React.Component<Props> {
 
   state = {
     preview: false,
-    previewURL: '007S8ZIlgy1gexw87htqhj305k05k74o'
+    previewURL: null
   };
 
   handlePreview = (inEvent) => {
@@ -51,17 +51,23 @@ export class AcUploadImages extends React.Component<Props> {
             return originNode;
           }}
           {...props}>
-          <>
+          <Space direction="horizontal">
             <UploadOutlined />
             <span>上传</span>
-          </>
+          </Space>
         </Upload>
         <Modal
           className={cx(`${CLASS_NAME}__modal`, className)}
           footer={null}
           open={preview}
           onCancel={this.handleModalCancel}>
-          <img alt="preview image modal" className="is-img" src={previewURL} />
+          {previewURL && (
+            <img
+              alt="preview image modal"
+              className="is-img"
+              src={previewURL}
+            />
+          )}
         </Modal>
       </>
     );
