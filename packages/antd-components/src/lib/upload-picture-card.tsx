@@ -1,6 +1,6 @@
 import React from 'react';
 import noop from '@jswork/noop';
-import { Modal, Space, Upload } from 'antd';
+import { Space, Upload } from 'antd';
 import cx from 'classnames';
 import Sortable from 'sortablejs';
 import { DraggerProps } from 'antd/es/upload';
@@ -25,11 +25,10 @@ export class AcUploadPictureCard extends React.Component<Props> {
 
   private rootRef = React.createRef<HTMLDivElement>();
   private sortable: any = null;
+  private viewer: any = null;
 
   state = {
-    fileList: [],
-    preview: false,
-    previewURL: null
+    fileList: []
   };
 
   componentDidMount() {
@@ -44,15 +43,19 @@ export class AcUploadPictureCard extends React.Component<Props> {
       dragClass: 'sortable-drag',
       onEnd: this.handleSortEnd
     });
+
+    this.viewer = new window['Viewer'](el);
   }
 
   componentWillUnmount() {
     this.sortable?.destroy();
+    this.viewer?.destroy();
   }
 
-  handlePreview = (inEvent) => {
-    const blobURL = URL.createObjectURL(inEvent.originFileObj);
-    this.setState({ preview: true, previewURL: blobURL });
+  handlePreview = (file) => {
+    const { fileList } = this.state;
+    this.viewer.index = fileList.indexOf(file);
+    this.viewer.show();
   };
 
   handleModalCancel = () => {
@@ -77,12 +80,19 @@ export class AcUploadPictureCard extends React.Component<Props> {
     const { onChange } = this.props;
     this.setState({ fileList: inValue }, () => {
       onChange!({ target: { value: inValue } });
+      setTimeout(() => this.viewer.update(), 100);
+    });
+  };
+
+  previewFile = (file): Promise<string> => {
+    const blobURL = window.URL.createObjectURL(file);
+    return new Promise((resolve) => {
+      resolve(blobURL);
     });
   };
 
   render() {
     const { className, value, onChange, ...props } = this.props;
-    const { preview, previewURL } = this.state;
     return (
       <div className={cx(CLASS_NAME, className)} ref={this.rootRef}>
         <Upload
@@ -91,6 +101,7 @@ export class AcUploadPictureCard extends React.Component<Props> {
           listType="picture-card"
           className={cx(`${CLASS_NAME}__uploader`, className)}
           multiple
+          previewFile={this.previewFile}
           onPreview={this.handlePreview}
           onChange={this.handleChange}
           itemRender={(originNode) => {
@@ -102,19 +113,6 @@ export class AcUploadPictureCard extends React.Component<Props> {
             <span>上传</span>
           </Space>
         </Upload>
-        <Modal
-          className={cx(`${CLASS_NAME}__modal`, className)}
-          footer={null}
-          open={preview}
-          onCancel={this.handleModalCancel}>
-          {previewURL && (
-            <img
-              alt="preview image modal"
-              className="is-img"
-              src={previewURL}
-            />
-          )}
-        </Modal>
       </div>
     );
   }
