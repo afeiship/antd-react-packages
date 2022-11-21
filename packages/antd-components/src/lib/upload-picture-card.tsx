@@ -5,6 +5,8 @@ import cx from 'classnames';
 import Sortable from 'sortablejs';
 import { DraggerProps } from 'antd/es/upload';
 import { UploadOutlined } from '@ant-design/icons';
+import { UploadChangeParam } from 'antd/es/upload/interface';
+import { UploadFile } from 'antd';
 
 const CLASS_NAME = 'ac-upload-picture-card';
 type StdEventTarget = { target: { value: any } };
@@ -17,7 +19,11 @@ type Props = {
   onChange?: StdCallback;
 } & DraggerProps;
 
-export class AcUploadPictureCard extends React.Component<Props> {
+type State = {
+  fileList: UploadFile[];
+};
+
+export class AcUploadPictureCard extends React.Component<Props, State> {
   static displayName = CLASS_NAME;
   static defaultProps = {
     onChange: noop
@@ -26,10 +32,6 @@ export class AcUploadPictureCard extends React.Component<Props> {
   private rootRef = React.createRef<HTMLDivElement>();
   private sortable: any = null;
   private viewer: any = null;
-
-  state = {
-    fileList: []
-  };
 
   componentDidMount() {
     const { rootRef } = this;
@@ -52,17 +54,13 @@ export class AcUploadPictureCard extends React.Component<Props> {
     this.viewer?.destroy();
   }
 
-  handlePreview = (file) => {
+  handlePreview = (file: UploadFile<any>) => {
     const { fileList } = this.state;
     this.viewer.index = fileList.indexOf(file);
     this.viewer.show();
   };
 
-  handleModalCancel = () => {
-    this.setState({ preview: false });
-  };
-
-  handleChange = (inEvent) => {
+  handleChange = (inEvent: UploadChangeParam<UploadFile<any>>) => {
     const { fileList } = inEvent;
     const done = fileList.every((file) => file.status === 'done');
     if (done) this.doChange(fileList);
