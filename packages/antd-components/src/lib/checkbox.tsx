@@ -1,8 +1,7 @@
 import React, { HTMLAttributes } from 'react';
 import noop from '@jswork/noop';
-import { Checkbox } from 'antd';
+import { Checkbox, CheckboxProps } from 'antd';
 import cx from 'classnames';
-import type { CheckboxProps } from 'antd/lib/checkbox';
 
 const CLASS_NAME = 'ac-ant-checkbox';
 type StdEventTarget = { target: { value: any } };
