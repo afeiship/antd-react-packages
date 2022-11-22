@@ -76,16 +76,15 @@ export class AcUploadPictureCard extends React.Component<Props, State> {
 
   handlePreview = (file: UploadFile<any>) => {
     const { fileList } = this.state;
+    const idx = fileList.indexOf(file);
     this.viewer?.update();
-    this.viewer.index = fileList.indexOf(file);
-    this.viewer.show();
+    this.viewer.view(idx);
   };
 
   handleChange = (inEvent: UploadChangeParam<UploadFile<any>>) => {
     const { fileList } = inEvent;
-    const done = fileList.every(
-      (file) => !file.status || file.status === 'done'
-    );
+    const isDone = (file) => !file.status || file.status === 'done';
+    const done = fileList.every(isDone);
     if (done) this.doChange(fileList);
   };
 
