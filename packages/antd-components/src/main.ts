@@ -13,6 +13,8 @@ export * from './lib/range-picker';
 export * from './lib/rate';
 export * from './lib/search';
 export * from './lib/select';
+export * from './lib/slider';
+export * from './lib/slider-range';
 export * from './lib/switch';
 export * from './lib/textarea';
 export * from './lib/time-picker';

@@ -25,7 +25,9 @@ import {
   AcTree,
   AcTreeSelect,
   AcUploadPictureCard,
-  AcTimePicker
+  AcTimePicker,
+  AcSlider,
+  AcSliderRange
 } from '../../src/main';
 import { Space } from 'antd';
 
@@ -117,6 +119,20 @@ export default () => {
 
   return (
     <Container>
+      <AcSlider
+        defaultValue={10}
+        onChange={(e) => {
+          console.log('e.target.value: ', e.target.value);
+        }}
+      />
+
+      <AcSliderRange
+        defaultValue={[10, 80]}
+        onChange={(e) => {
+          console.log('e.target.value: ', e.target.value);
+        }}
+      />
+      <hr />
       <AcTimePicker defaultValue="08:22:33" />
       <hr />
       <AcUploadPictureCard
