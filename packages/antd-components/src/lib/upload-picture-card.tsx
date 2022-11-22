@@ -32,6 +32,10 @@ export class AcUploadPictureCard extends React.Component<Props, State> {
   private sortable: any = null;
   private viewer: any = null;
 
+  state = {
+    fileList: this.props.value || []
+  };
+
   componentDidMount() {
     const { rootRef } = this;
     const root = rootRef.current as HTMLDivElement;
@@ -48,12 +52,6 @@ export class AcUploadPictureCard extends React.Component<Props, State> {
     this.viewer = new window['Viewer'](el);
   }
 
-  componentDidUpdate(_: Readonly<Props>, prevState: Readonly<State>) {
-    if (prevState?.fileList !== this.state.fileList) {
-      this.viewer?.update();
-    }
-  }
-
   componentWillUnmount() {
     this.sortable?.destroy();
     this.viewer?.destroy();
@@ -61,6 +59,7 @@ export class AcUploadPictureCard extends React.Component<Props, State> {
 
   handlePreview = (file: UploadFile<any>) => {
     const { fileList } = this.state;
+    this.viewer?.update();
     this.viewer.index = fileList.indexOf(file);
     this.viewer.show();
   };
