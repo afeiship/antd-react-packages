@@ -24,7 +24,8 @@ import {
   AcEditableTagGroup,
   AcTree,
   AcTreeSelect,
-  AcUploadPictureCard
+  AcUploadPictureCard,
+  AcTimePicker
 } from '../../src/main';
 import { Space } from 'antd';
 
@@ -116,6 +117,8 @@ export default () => {
 
   return (
     <Container>
+      <AcTimePicker defaultValue="08:22:33" />
+      <hr />
       <AcUploadPictureCard
         value={items_pics}
         action="http://localhost:3200/weibo_api/interface/pic_upload.php"
@@ -124,6 +127,7 @@ export default () => {
           console.log('ac upload:', e.target.value);
         }}
       />
+      <hr />
       <AcTreeSelect
         style={{ width: '100%' }}
         defaultValue={['0-0-1-0']}

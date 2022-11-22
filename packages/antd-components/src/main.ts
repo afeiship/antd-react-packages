@@ -15,6 +15,7 @@ export * from './lib/search';
 export * from './lib/select';
 export * from './lib/switch';
 export * from './lib/textarea';
+export * from './lib/time-picker';
 export * from './lib/transfer';
 export * from './lib/tree';
 export * from './lib/tree-select';
