@@ -71,6 +71,7 @@
   },
   "dependencies": {
     "@jswork/antd-tpls": "^1.0.0",
+    "@jswork/loadkit": "^1.0.6",
     "@jswork/next-tree-walk": "^1.0.5",
     "@jswork/noop": "^1.0.0",
     "@jswork/react-interactive-list": "^1.1.4",

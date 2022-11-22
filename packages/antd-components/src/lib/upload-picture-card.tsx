@@ -3,12 +3,18 @@ import noop from '@jswork/noop';
 import { Space, Upload } from 'antd';
 import cx from 'classnames';
 import Sortable from 'sortablejs';
+import { loadScript, loadStyle } from '@jswork/loadkit';
 import { DraggerProps } from 'antd/es/upload';
 import { UploadOutlined } from '@ant-design/icons';
 import { UploadChangeParam } from 'antd/es/upload/interface';
 import { UploadFile } from 'antd';
 
 const CLASS_NAME = 'ac-upload-picture-card';
+const styleOpts = { id: 'viewer-style' };
+const scriptOpts = { id: 'viewerjs' };
+const styleURL = 'https://unpkg.com/viewerjs@1.11.1/dist/viewer.min.css';
+const scriptURL = 'https://unpkg.com/viewerjs@1.11.1/dist/viewer.min.js';
+
 type StdEventTarget = { target: { value: any } };
 type StdCallback = (inEvent: StdEventTarget) => void;
 
@@ -36,10 +42,15 @@ export class AcUploadPictureCard extends React.Component<Props, State> {
     fileList: this.props.value || []
   };
 
-  componentDidMount() {
+  async componentDidMount() {
     const { rootRef } = this;
     const root = rootRef.current as HTMLDivElement;
     const el = root.querySelector('.ant-upload-list');
+    this.mountSortable(el);
+    await this.mountViewer(el);
+  }
+
+  mountSortable(el) {
     this.sortable = new Sortable(el, {
       animation: 150,
       draggable: '.ant-upload-list-item-container',
@@ -48,7 +59,13 @@ export class AcUploadPictureCard extends React.Component<Props, State> {
       dragClass: 'sortable-drag',
       onEnd: this.handleSortEnd
     });
+  }
 
+  async mountViewer(el) {
+    await Promise.all([
+      loadStyle(styleURL, styleOpts),
+      loadScript(scriptURL, scriptOpts)
+    ]);
     this.viewer = new window['Viewer'](el);
   }
 
