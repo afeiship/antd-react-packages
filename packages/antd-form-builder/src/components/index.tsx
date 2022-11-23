@@ -40,7 +40,8 @@ export default class AntdFormBuilder extends Component<AntdFormBuilderProps> {
     const fields = meta.fields!;
     meta.fields = fields.map((field) => {
       const matched = field.key && presets![field.key];
-      return !matched ? field : ({ ...presets![field.key], ...field } as FieldType);
+      if (!matched) return field;
+      return { ...presets![field.key], ...field } as FieldType;
     });
     return meta;
   };
