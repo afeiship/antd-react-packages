@@ -1,6 +1,6 @@
 import React from 'react';
 import AntdFormBuilder from '../../src/main';
-import { Form, FormInstance, Button, Row, Col } from 'antd';
+import { Form, FormInstance, Button } from 'antd';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -15,26 +15,30 @@ export default () => {
       username: 'afeiship',
       password: '123123'
     },
-    fields: [
-      { key: 'username', label: 'User Name', widget: 'input' },
-      { key: 'password', label: 'Password', widget: 'password' }
-    ]
+    fields: [{ key: 'username' }, { key: 'password' }]
+  };
+
+  const presets = {
+    username: {
+      label: 'User Name',
+      widget: 'input'
+    },
+    password: {
+      label: 'Password',
+      widget: 'password'
+    }
   };
 
   return (
     <Container>
       <Form
         ref={formRef}
+        layout="vertical"
         onFinish={(e) => {
           console.log('e:', e);
         }}>
-        <AntdFormBuilder form={formRef.current!} meta={meta} />
-        <Row>
-          <Col span={8}></Col>
-          <Col span={16}>
-            <Button htmlType="submit">Submit</Button>
-          </Col>
-        </Row>
+        <AntdFormBuilder presets={presets} form={formRef.current!} meta={meta} />
+        <Button htmlType="submit">Submit</Button>
       </Form>
     </Container>
   );

@@ -5,8 +5,12 @@ import FormBuilder, { Meta, FieldType } from 'antd-form-builder';
 const CLASS_NAME = 'antd-form-builder';
 
 interface Presets {
-  [key: string]: [string, string, any];
+  [key: string]: Omit<FieldType, 'key'>;
 }
+
+type InnerMeta = {
+  fields?: FieldType[];
+} & Omit<Meta, 'fields'>;
 
 export type AntdFormBuilderProps = {
   /**
@@ -24,16 +28,31 @@ export type AntdFormBuilderProps = {
   /**
    * The meta schema of form.
    */
-  meta: Meta | FieldType | FieldType[];
+  meta: InnerMeta;
 };
 
 export default class AntdFormBuilder extends Component<AntdFormBuilderProps> {
   static displayName = CLASS_NAME;
   static defaultProps = {};
 
+  getMeta = () => {
+    const { presets, meta } = this.props;
+    const fields = meta.fields!;
+    meta.fields = fields
+      .map((field) => {
+        if (field.key && presets![field.key]) {
+          return { ...presets![field.key], ...field } as FieldType;
+        }
+        return null;
+      })
+      .filter(Boolean);
+    return meta;
+  };
+
   render() {
     const { className, form, meta, presets, ...props } = this.props;
-
-    return <FormBuilder meta={meta} form={form} {...props} />;
+    const _meta = this.getMeta();
+    console.log(_meta);
+    return <FormBuilder meta={_meta} form={form} {...props} />;
   }
 }
