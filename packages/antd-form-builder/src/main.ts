@@ -1,3 +1,4 @@
-import Component from './components';
+import Component, { useForceUpdate } from './components';
 
 export default Component;
+export { useForceUpdate };

@@ -1,6 +1,6 @@
 import React from 'react';
-import AntdFormBuilder from '../../src/main';
-import { Form, FormInstance, Button, Row, Col } from 'antd';
+import AntdFormBuilder, { useForceUpdate } from '../../src/main';
+import { Form, Button, Row, Col } from 'antd';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -9,7 +9,9 @@ const Container = styled.div`
 `;
 
 export default () => {
-  const formRef = React.createRef<FormInstance>();
+  const [form] = Form.useForm();
+  const forceUpdate = useForceUpdate();
+
   const meta = {
     initialValues: {
       username: 'afeiship',
@@ -40,14 +42,14 @@ export default () => {
     options: ['football', 'basketball', 'swimming']
   };
 
+  // if (form.current) {
+  console.log(form.getFieldValue('show-hobby'));
+  // }
+
   return (
     <Container>
-      <Form
-        ref={formRef}
-        onFinish={(e) => {
-          console.log('e:', e);
-        }}>
-        <AntdFormBuilder presets={presets} form={formRef.current!} meta={meta} />
+      <Form form={form} onValuesChange={forceUpdate} onFinish={(e) => console.log('e:', e)}>
+        <AntdFormBuilder presets={presets} form={form} meta={meta} />
         <Row>
           <Col span={8}></Col>
           <Col span={16}>

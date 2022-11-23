@@ -12,6 +12,11 @@ type InnerMeta = {
   fields?: FieldType[];
 } & Omit<Meta, 'fields'>;
 
+export const useForceUpdate = () => {
+  const [value, setValue] = React.useState(0);
+  return () => setValue(value + 1);
+};
+
 export type AntdFormBuilderProps = {
   /**
    * The extended className for component.
