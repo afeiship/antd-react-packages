@@ -1,6 +1,6 @@
 import React from 'react';
 import AntdFormBuilder from '../../src/main';
-import { Form, FormInstance, Button } from 'antd';
+import { Form, FormInstance, Button, Row, Col } from 'antd';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -15,7 +15,11 @@ export default () => {
       username: 'afeiship',
       password: '123123'
     },
-    fields: [{ key: 'username' }, { key: 'password' }]
+    fields: [
+      { key: 'username' },
+      { key: 'password' },
+      { key: 'show-hobby', widget: 'checkbox', label: 'Show Hobby' }
+    ]
   };
 
   const presets = {
@@ -29,16 +33,27 @@ export default () => {
     }
   };
 
+  const hobbies = {
+    key: 'hobbies',
+    widget: 'checkbox-group',
+    label: 'Hobbies',
+    options: ['football', 'basketball', 'swimming']
+  };
+
   return (
     <Container>
       <Form
         ref={formRef}
-        layout="vertical"
         onFinish={(e) => {
           console.log('e:', e);
         }}>
         <AntdFormBuilder presets={presets} form={formRef.current!} meta={meta} />
-        <Button htmlType="submit">Submit</Button>
+        <Row>
+          <Col span={8}></Col>
+          <Col span={16}>
+            <Button htmlType="submit">Submit</Button>
+          </Col>
+        </Row>
       </Form>
     </Container>
   );

@@ -3,7 +3,6 @@ import { FormInstance } from 'antd';
 import FormBuilder, { Meta, FieldType } from 'antd-form-builder';
 
 const CLASS_NAME = 'antd-form-builder';
-const EMPTY_FIELD = {} as FieldType;
 
 interface Presets {
   [key: string]: Omit<FieldType, 'key'>;
@@ -39,12 +38,10 @@ export default class AntdFormBuilder extends Component<AntdFormBuilderProps> {
   getComputedMeta = () => {
     const { presets, meta } = this.props;
     const fields = meta.fields!;
-    meta.fields = fields
-      .map((field) => {
-        const matched = field.key && presets![field.key];
-        return !matched ? EMPTY_FIELD : ({ ...presets![field.key], ...field } as FieldType);
-      })
-      .filter((item) => item.key);
+    meta.fields = fields.map((field) => {
+      const matched = field.key && presets![field.key];
+      return !matched ? field : ({ ...presets![field.key], ...field } as FieldType);
+    });
     return meta;
   };
 
