@@ -5,7 +5,7 @@ import noop from '@jswork/noop';
 import ppipe from 'p-pipe';
 import { AntdFormBuilderProps } from './antd-form-builder';
 import FormBuilder from 'antd-form-builder';
-import { getComputedMeta } from './helpers';
+import { getComputedMeta, getHelpers } from './helpers';
 
 const CLASS_NAME = 'antd-form-schema';
 
@@ -21,16 +21,21 @@ type AntdFormSchemaProps = {
   pipes?: Promise<any>[] | any[];
 } & AntdFormProps;
 
-export default class AntdFormSchema extends Component<AntdFormSchemaProps> {
+type AntdSchemaState = {
+  meta: any;
+};
+
+export default class AntdFormSchema extends Component<AntdFormSchemaProps, AntdSchemaState> {
   static displayName = CLASS_NAME;
   static defaultProps = {
-    onInit: noop
+    onInit: noop,
+    pipes: []
   };
 
   private formRef = React.createRef<FormInstance>();
 
   state = {
-    meta: getComputedMeta(this.props.presets, this.props.meta)
+    meta: getComputedMeta(this.props.presets!, this.props.meta)
   };
 
   componentDidMount() {
@@ -44,7 +49,8 @@ export default class AntdFormSchema extends Component<AntdFormSchemaProps> {
     if (!pipes?.length) return;
     const form = this.formRef.current;
     const meta = this.state.meta;
-    ppipe(...pipes)({ meta, form }).then((res: any) => {
+    const helpers = getHelpers(meta);
+    ppipe(...pipes)({ meta, form, ...helpers }).then((res: any) => {
       this.setState({ meta: res.meta });
     });
   };
@@ -52,13 +58,10 @@ export default class AntdFormSchema extends Component<AntdFormSchemaProps> {
   render() {
     const { className, meta, presets, pipes, onInit, caption, children, ...props } = this.props;
     const _meta = this.state.meta;
+    const opts = { ref: this.formRef, className: cx(className, CLASS_NAME), ...props };
 
     return (
-      <Form
-        ref={this.formRef}
-        className={cx(className, CLASS_NAME)}
-        onValuesChange={this.handleValuesChange}
-        {...props}>
+      <Form onValuesChange={this.handleValuesChange} {...opts}>
         {caption}
         <FormBuilder meta={_meta} form={this.formRef.current!} />
         {children}
