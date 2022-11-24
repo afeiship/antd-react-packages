@@ -72,7 +72,8 @@
   "dependencies": {
     "@jswork/noop": "^1.0.0",
     "antd-form-builder": "^2.1.4",
-    "classnames": "^2.2.6"
+    "classnames": "^2.2.6",
+    "p-pipe": "3"
   },
   "publishConfig": {
     "access": "public",

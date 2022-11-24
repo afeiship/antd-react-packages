@@ -1,7 +1,7 @@
 import React from 'react';
-import AntdFormBuilder, { useForceUpdate } from '../../src/main';
-import { Form, Button, Row, Col } from 'antd';
+import { AntdFormSchema } from '../../src/main';
 import styled from 'styled-components';
+import { pipes1 } from './pipes';
 
 const Container = styled.div`
   width: 80%;
@@ -9,9 +9,6 @@ const Container = styled.div`
 `;
 
 export default () => {
-  const [form] = Form.useForm();
-  const forceUpdate = useForceUpdate();
-
   const meta = {
     initialValues: {
       username: 'afeiship',
@@ -35,28 +32,16 @@ export default () => {
     }
   };
 
-  const hobbies = {
-    key: 'hobbies',
-    widget: 'checkbox-group',
-    label: 'Hobbies',
-    options: ['football', 'basketball', 'swimming']
-  };
-
-  // if (form.current) {
-  console.log(form.getFieldValue('show-hobby'));
-  // }
-
   return (
     <Container>
-      <Form form={form} onValuesChange={forceUpdate} onFinish={(e) => console.log('e:', e)}>
-        <AntdFormBuilder presets={presets} form={form} meta={meta} />
-        <Row>
-          <Col span={8}></Col>
-          <Col span={16}>
-            <Button htmlType="submit">Submit</Button>
-          </Col>
-        </Row>
-      </Form>
+      <dl>
+        <dt>
+          <h3>Use Form Schema</h3>
+        </dt>
+        <dd>
+          <AntdFormSchema pipes={pipes1} presets={presets} meta={meta} />
+        </dd>
+      </dl>
     </Container>
   );
 };

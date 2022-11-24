@@ -1,4 +1,4 @@
-import Component, { useForceUpdate } from './components';
+import AntdFormBuilder, { useForceUpdate } from './components/antd-form-builder';
+import AntdFormSchema from './components/antd-form-schema';
 
-export default Component;
-export { useForceUpdate };
+export { AntdFormBuilder, AntdFormSchema, useForceUpdate };
