@@ -1,0 +1,40 @@
+---
+id: 03-with-presets
+title: 03-with-presets
+sidebar_label: 03-with-presets
+slug: 03-with-presets
+---
+
+### 功能
+- 基于之前的实现，添加了预设功能
+- 使用 `presets` 添加 field 相关字段的预设值，如 `label`、`placeholder`、`help`、`rules` 等
+
+### 预览
+```jsx live
+<FormBuilder
+  presets={{
+    username: { label: 'User Name', widget: 'input', required: true },
+    password: { label: 'Password', widget: 'password', required: true },
+  }}
+  meta={{
+    initialValues: {
+      username: 'aric',
+      password: '123123',
+    },
+    fields: [
+      { key: 'username' },
+      { key: 'password' },
+      { key: 'show-hobby', widget: 'checkbox', label: 'Show Hobby' },
+    ],
+  }}
+  onFinish={(e) => {
+    console.log('target e: ', e);
+  }}>
+  <Row>
+    <Col span={8}></Col>
+    <Col span={16}>
+      <Button htmlType="submit">Submit</Button>
+    </Col>
+  </Row>
+</FormBuilder>
+```

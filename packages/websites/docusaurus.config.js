@@ -41,11 +41,11 @@ module.exports = {
         title: "Documentation",
         logo: {
           alt: "My Site Logo",
-          src: "src/assets/images/logo.svg",
+          src: "https://tva1.sinaimg.cn/large/008vxvgGgy1h8gc0f5dzuj305k05k74b.jpg",
         },
         items: [
           {
-            href: "https://github.com/facebook/docusaurus",
+            href: "https://github.com/afeiship/antd-react-packages",
             label: "GitHub",
             position: "right",
           },

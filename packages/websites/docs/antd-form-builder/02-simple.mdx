@@ -1,0 +1,37 @@
+---
+id: 02-simple
+title: 02-simple
+sidebar_label: 02-simple
+slug: 02-simple
+---
+
+### 功能
+- 使用 `initValues` 初始化表单
+- 使用 `fields` 定义表单字段
+- 使用 `onFinish` 完成表单提交
+- 自定义 `children` 为表示提交 `UI`
+
+### 预览
+```jsx live
+<FormBuilder
+  meta={{
+    initialValues: {
+      username: 'aric',
+      password: '123123',
+    },
+    fields: [
+      { key: 'username', widget: 'input', label: 'Username' },
+      { key: 'password', widget: 'input', label: 'Password' },
+    ],
+  }}
+  onFinish={(e) => {
+    console.log('target e: ', e);
+  }}>
+  <Row>
+    <Col span={8}></Col>
+    <Col span={16}>
+      <Button htmlType="submit">Submit</Button>
+    </Col>
+  </Row>
+</FormBuilder>
+```

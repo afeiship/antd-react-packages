@@ -1,0 +1,67 @@
+---
+id: 05-use-pipes
+title: 05-use-pipes
+sidebar_label: 05-use-pipes
+slug: 05-use-pipes
+---
+
+### 功能
+- 基于之前的实现，添加了预设功能
+- 使用 `pipes` 为 `meta` 添加一些动态功能，如下面例子中的，当 `show-hobby` 为 `true` 时，显示爱好列表，否则不显示
+- `pipes` 实现原理是: `pipe` 函数，将多个函数组合成一个函数，从左到右执行
+- 注意: 与 `compose` 不同， `compose` 是从右到左执行，每个函数的返回值作为下一个函数的参数
+
+### 预览
+```jsx live
+<FormBuilder
+  pipes={[
+    (ctx) => {
+      const { form, meta } = ctx;
+      const showHobby = form.getFieldValue('show-hobby');
+      const hasHobbies = ctx.find('hobbies');
+      if (showHobby) {
+        if (!hasHobbies) {
+          meta.fields.push({
+            key: 'hobbies',
+            widget: 'checkbox-group',
+            label: 'Hobbies',
+            options: ['football', 'basketball', 'swimming'],
+          });
+        }
+      } else {
+        meta.fields = ctx.where((item) => item.key !== 'hobbies');
+      }
+      return ctx;
+    },
+  ]}
+  presets={{
+    username: { label: 'User Name', widget: 'input', required: true },
+    password: { label: 'Password', widget: 'password', required: true },
+  }}
+  meta={{
+    initialValues: [
+      fetch('https://api.github.com/users/afeiship').then((r) => r.json()),
+      (res) => {
+        return {
+          username: res.login,
+          password: '123123',
+        };
+      },
+    ],
+    fields: [
+      { key: 'username' },
+      { key: 'password' },
+      { key: 'show-hobby', widget: 'checkbox', label: 'Show Hobby' },
+    ],
+  }}
+  onFinish={(e) => {
+    console.log('target e: ', e);
+  }}>
+  <Row>
+    <Col span={8}></Col>
+    <Col span={16}>
+      <Button htmlType="submit">Submit</Button>
+    </Col>
+  </Row>
+</FormBuilder>
+```

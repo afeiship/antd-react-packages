@@ -1,43 +1,27 @@
 import React from "react";
 import clsx from "clsx";
+import Link from "@docusaurus/Link";
+import useBaseUrl from "@docusaurus/useBaseUrl";
 import styles from "./HomepageFeatures.module.css";
 
 const FeatureList = [
   {
-    title: "Easy to Use",
-    Svg: "https://tva1.sinaimg.cn/large/007S8ZIlgy1gexw87htqhj305k05k74o.jpg",
-    description: (
-      <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
-      </>
-    ),
+    title: "antd-components",
+    id: "antd-components",
+    Svg: require("../assets/images/01.png").default,
+    description: <>Antd wrapped components.</>,
   },
   {
-    title: "Focus on What Matters",
-    Svg: "https://tva1.sinaimg.cn/large/007S8ZIlgy1gexw87htqhj305k05k74o.jpg",
-    description: (
-      <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
-      </>
-    ),
-  },
-  {
-    title: "Powered by React",
-    Svg: "https://tva1.sinaimg.cn/large/007S8ZIlgy1gexw87htqhj305k05k74o.jpg",
-    description: (
-      <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
-      </>
-    ),
+    title: "antd-form-builder",
+    id: "antd-form-builder",
+    Svg: require("../assets/images/02.png").default,
+    description: <>A wrapper for antd-form-builder.</>,
   },
 ];
 
-function Feature({ Svg, title, description }) {
+function Feature({ Svg, title, id, description }) {
   return (
-    <div className={clsx("col col--4")}>
+    <div className={clsx("col col--6")}>
       <div className="text--center">
         <img src={Svg} className={styles.featureSvg} alt={title} />
       </div>
@@ -45,6 +29,15 @@ function Feature({ Svg, title, description }) {
         <h3>{title}</h3>
         <p>{description}</p>
       </div>
+
+      <footer className="text--center">
+        <Link
+          className="button button--secondary button--sm"
+          to={useBaseUrl(`docs/${id}/01-get-started`)}
+        >
+          Documentation
+        </Link>
+      </footer>
     </div>
   );
 }
