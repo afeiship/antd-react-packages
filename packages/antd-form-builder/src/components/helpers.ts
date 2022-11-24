@@ -54,6 +54,11 @@ export const generateHelpers = (meta: InnerMeta) => {
   };
 };
 
+/**
+ * Init values when form ready.
+ * @param meta
+ * @param form
+ */
 export const initForm = (meta, form): Promise<void> => {
   const initValues = meta.initialValues;
   const isFromAsync = Array.isArray(initValues);

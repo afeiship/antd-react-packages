@@ -3,7 +3,7 @@ import { Form, FormProps, FormInstance, Spin } from 'antd';
 import cx from 'classnames';
 import noop from '@jswork/noop';
 import compose from 'p-pipe';
-import FormBuilder from 'antd-form-builder';
+import FormBuilder, { FieldType } from 'antd-form-builder';
 import {
   generateHelpers,
   getComputedMeta,
@@ -18,16 +18,23 @@ type StdEventTarget = { target: { value: any } };
 type StdFormTarget = { target: { value: FormInstance } };
 type StdCallback = (inEvent: StdEventTarget) => void;
 type StdFormCallback = (inEvent: StdFormTarget) => void;
+type QueryInput = string | ((item: FieldType) => boolean);
+type ComposeContext = {
+  find: (target: QueryInput) => FieldType | undefined;
+  where: (target: QueryInput) => FieldType[] | undefined;
+  meta: InnerMeta;
+  form: FormInstance;
+};
 
 type AntdFormBuilderProps = {
+  className?: string;
   presets?: Presets;
   meta: InnerMeta;
-  className?: string;
+  pipes?: Promise<any>[] | any[];
   caption?: React.ReactNode;
   children?: React.ReactNode;
   onInit?: StdFormCallback;
   onFinish?: StdCallback;
-  pipes?: Promise<any>[] | any[];
 } & FormProps;
 
 type AntdBuilderState = {
@@ -67,10 +74,11 @@ export default class AntdFormBuilder extends Component<
   handleValuesChange = () => {
     const { pipes } = this.props;
     if (!pipes?.length) return;
-    const form = this.formRef.current;
+    const form = this.formRef.current!;
     const meta = this.state.meta;
     const helpers = generateHelpers(meta);
-    compose(...pipes)({ meta, form, ...helpers }).then((res: any) => {
+    const metaCtx: ComposeContext = { ...helpers, meta, form };
+    compose(...pipes)(metaCtx).then((res: any) => {
       this.setState({ meta: res.meta });
     });
   };
@@ -83,8 +91,8 @@ export default class AntdFormBuilder extends Component<
   render() {
     const {
       className,
-      meta,
       presets,
+      meta,
       pipes,
       caption,
       children,
