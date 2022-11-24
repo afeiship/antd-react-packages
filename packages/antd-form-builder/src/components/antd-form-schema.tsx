@@ -10,14 +10,16 @@ import { generateHelpers, getComputedMeta } from './helpers';
 const CLASS_NAME = 'antd-form-schema';
 
 type StdEventTarget = { target: { value: any } };
+type StdFormTarget = { target: { value: FormInstance } };
 type StdCallback = (inEvent: StdEventTarget) => void;
+type StdFormCallback = (inEvent: StdFormTarget) => void;
 
 type AntdFormProps = FormProps & Omit<AntdFormBuilderProps, 'form'>;
 type AntdFormSchemaProps = {
   className?: string;
   caption?: React.ReactNode;
   children?: React.ReactNode;
-  onInit?: StdCallback;
+  onInit?: StdFormCallback;
   onFinish?: StdCallback;
   pipes?: Promise<any>[] | any[];
 } & AntdFormProps;
@@ -42,8 +44,7 @@ export default class AntdFormSchema extends Component<AntdFormSchemaProps, AntdS
 
   componentDidMount() {
     const { onInit } = this.props;
-    const value = { form: this.formRef.current };
-    onInit!({ target: { value } });
+    onInit!({ target: { value: this.formRef.current! } });
   }
 
   handleValuesChange = () => {
