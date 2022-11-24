@@ -1,0 +1,25 @@
+---
+id: radio-group
+title: radio-group
+sidebar_label: radio-group
+slug: radio-group
+---
+
+### 简介
+- 一个常见的 filter 多选逻辑，本质上是另一个 checkbox-group
+- 添加 `items/template` 接口
+- 统一所有的 `onChagne` 事件
+
+### 预览
+```jsx live
+<AcRadioGroup
+  items={[
+    { value: 'v1', label: 'l1' },
+    { value: 'v2', label: 'l2' },
+    { value: 'v3', label: 'l3' },
+  ]}
+  template={tpls.radioKv}
+  templateOptions={{ isButton: true }}
+  buttonStyle={'solid'}
+/>
+```

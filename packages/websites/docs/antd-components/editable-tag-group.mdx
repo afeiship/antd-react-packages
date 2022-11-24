@@ -1,0 +1,20 @@
+---
+id: editable-tag-group
+title: editable-tag-group
+sidebar_label: editable-tag-group
+slug: editable-tag-group
+---
+
+### 简介
+- 一个常见的 filter 多选逻辑，本质上是另一个 checkbox-group
+- 添加 `items/template` 接口
+- 统一所有的 `onChagne` 事件
+
+### 预览
+```jsx live
+<AcEditableTagGroup
+  onChange={(e) => {
+    console.log('tag group value: ', e.target.value);
+  }}
+/>
+```

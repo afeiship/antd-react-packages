@@ -28,12 +28,14 @@ import {
 } from "@jswork/antd-components";
 import FormBuilder, { useForceUpdate } from "@jswork/antd-form-builder";
 import * as tpls from "@jswork/antd-tpls";
-import { Select, Checkbox, Row, Col, Button } from "antd";
+import { Select, Checkbox, Row, Col, Button, Space } from "antd";
+import * as data from "./data";
 
 const ReactLiveScope = {
   React,
   ...React,
   tpls,
+  data,
 
   AcSelect,
   AcCheckbox,
@@ -70,6 +72,7 @@ const ReactLiveScope = {
   Row,
   Col,
   Button,
+  Space
 };
 
 export default ReactLiveScope;

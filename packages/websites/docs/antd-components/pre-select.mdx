@@ -1,0 +1,40 @@
+---
+id: pre-select
+title: pre-select
+sidebar_label: pre-select
+slug: pre-select
+---
+
+### 简介
+- 一个常见的 filter 多选逻辑，本质上是另一个 checkbox-group
+- 添加 `items/template` 接口
+- 统一所有的 `onChagne` 事件
+
+### 预览
+```jsx live
+<Space direction="vertical" style={{ display: 'flex' }}>
+  <AcPreSelect
+    items={[
+      { value: 'v1', label: 'l1' },
+      { value: 'v2', label: 'l2' },
+      { value: 'v3', label: 'l3' },
+    ]}
+    onChange={(e) => {
+      console.log('evt: ', e.target.value);
+    }}
+  />
+
+  <AcPreSelect
+    searchable
+    inputOptions={{ placeholder: 'search...' }}
+    items={[
+      { value: 'v1', label: 'l1' },
+      { value: 'v2', label: 'l2' },
+      { value: 'v3', label: 'l3' },
+    ]}
+    onChange={(e) => {
+      console.log('evt: ', e.target.value);
+    }}
+  />
+</Space>
+```

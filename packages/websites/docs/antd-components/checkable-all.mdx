@@ -1,0 +1,26 @@
+---
+id: checkable-all
+title: checkable-all
+sidebar_label: checkable-all
+slug: checkable-all
+---
+
+### 简介
+- 一个常见的 filter 多选逻辑，本质上是另一个 checkbox-group
+- 添加 `items/template` 接口
+- 统一所有的 `onChagne` 事件
+
+### 预览
+```jsx live
+<AcCheckableAll
+  items={[
+    { value: 's1', label: 'Status1' },
+    { value: 's2', label: 'Status2' },
+    { value: 's3', label: 'Status3' },
+  ]}
+  lang="en-US"
+  onChange={(e) => {
+    console.log('evt: ', e.target.value);
+  }}
+/>
+```

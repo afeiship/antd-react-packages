@@ -1,0 +1,23 @@
+---
+id: upload-picture-card
+title: upload-picture-card
+sidebar_label: upload-picture-card
+slug: upload-picture-card
+---
+
+### 简介
+- 一个常见的 filter 多选逻辑，本质上是另一个 checkbox-group
+- 添加 `items/template` 接口
+- 统一所有的 `onChagne` 事件
+
+### 预览
+```jsx live
+<AcUploadPictureCard
+  value={data.items_pics}
+  action="http://localhost:3200/weibo_api/interface/pic_upload.php"
+  name="pic1"
+  onChange={(e) => {
+    console.log('ac upload:', e.target.value);
+  }}
+/>
+```

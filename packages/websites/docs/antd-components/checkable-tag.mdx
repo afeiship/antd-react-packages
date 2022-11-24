@@ -1,0 +1,22 @@
+---
+id: checkable-tag
+title: checkable-tag
+sidebar_label: checkable-tag
+slug: checkable-tag
+---
+
+### 简介
+- 一个常见的 filter 多选逻辑，本质上是另一个 checkbox-group
+- 添加 `items/template` 接口
+- 统一所有的 `onChagne` 事件
+
+### 预览
+```jsx live
+<AcCheckableTag
+  value={false}
+  onChange={(e) => {
+    console.log('evt: ', e.target.value);
+  }}>
+  Tag
+</AcCheckableTag>
+```

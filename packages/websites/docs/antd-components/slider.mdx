@@ -1,0 +1,21 @@
+---
+id: slider
+title: slider
+sidebar_label: slider
+slug: slider
+---
+
+### 简介
+- 一个常见的 filter 多选逻辑，本质上是另一个 checkbox-group
+- 添加 `items/template` 接口
+- 统一所有的 `onChagne` 事件
+
+### 预览
+```jsx live
+<AcSlider
+  defaultValue={10}
+  onChange={(e) => {
+    console.log('e.target.value: ', e.target.value);
+  }}
+/>
+```
