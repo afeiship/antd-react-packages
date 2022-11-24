@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { Form, FormProps, FormInstance } from 'antd';
 import cx from 'classnames';
 import noop from '@jswork/noop';
-import ppipe from 'p-pipe';
+import compose from 'p-pipe';
 import { AntdFormBuilderProps } from './antd-form-builder';
 import FormBuilder from 'antd-form-builder';
-import { generateHelpers, getComputedMeta } from './helpers';
+import { generateHelpers, getComputedMeta, toValue } from './helpers';
 
 const CLASS_NAME = 'antd-form-schema';
 
@@ -28,7 +28,10 @@ type AntdSchemaState = {
   meta: any;
 };
 
-export default class AntdFormSchema extends Component<AntdFormSchemaProps, AntdSchemaState> {
+export default class AntdFormSchema extends Component<
+  AntdFormSchemaProps,
+  AntdSchemaState
+> {
   static displayName = CLASS_NAME;
   static defaultProps = {
     onInit: noop,
@@ -44,7 +47,9 @@ export default class AntdFormSchema extends Component<AntdFormSchemaProps, AntdS
 
   componentDidMount() {
     const { onInit } = this.props;
-    onInit!({ target: { value: this.formRef.current! } });
+    const form = this.formRef.current!;
+    onInit!({ target: { value: form } });
+    this.handleInitValues();
   }
 
   handleValuesChange = () => {
@@ -53,7 +58,7 @@ export default class AntdFormSchema extends Component<AntdFormSchemaProps, AntdS
     const form = this.formRef.current;
     const meta = this.state.meta;
     const helpers = generateHelpers(meta);
-    ppipe(...pipes)({ meta, form, ...helpers }).then((res: any) => {
+    compose(...pipes)({ meta, form, ...helpers }).then((res: any) => {
       this.setState({ meta: res.meta });
     });
   };
@@ -63,9 +68,35 @@ export default class AntdFormSchema extends Component<AntdFormSchemaProps, AntdS
     onFinish!({ target: { value: inEvent } });
   };
 
+  handleInitValues = () => {
+    const { meta } = this.props;
+    const form = this.formRef.current!;
+    const initValues = meta.initialValues;
+    const isFromAsync = Array.isArray(initValues);
+    if (isFromAsync) {
+      const [api, transform] = initValues;
+      const _transform = transform || toValue;
+      api.then((res) => {
+        form.setFieldsValue(_transform(res));
+      });
+    } else {
+      form.setFieldsValue(initValues);
+    }
+  };
+
   render() {
-    const { className, meta, presets, pipes, caption, children, onInit, onFinish, ...props } =
-      this.props;
+    const {
+      className,
+      meta,
+      presets,
+      pipes,
+      caption,
+      children,
+      onInit,
+      onFinish,
+      ...props
+    } = this.props;
+
     const _meta = this.state.meta;
 
     return (

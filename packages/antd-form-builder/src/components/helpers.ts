@@ -1,9 +1,15 @@
 import { FieldType, Meta } from 'antd-form-builder';
 import React from 'react';
 
+export const toValue = (value: any) => value;
+
 export type InnerMeta = {
   fields?: FieldType[];
-} & Omit<Meta, 'fields'>;
+  initValues?:
+    | Record<string, any>
+    | [() => Promise<any>]
+    | [() => Promise<any>, (response: any) => Record<string, any>];
+} & Omit<Meta, 'fields' | 'initValues'>;
 
 export interface Presets {
   [key: string]: Omit<FieldType, 'key'>;
