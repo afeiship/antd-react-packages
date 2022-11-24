@@ -15,6 +15,8 @@ type StdCallback = (inEvent: StdEventTarget) => void;
 type AntdFormProps = FormProps & Omit<AntdFormBuilderProps, 'form'>;
 type AntdFormSchemaProps = {
   className?: string;
+  caption?: React.ReactNode;
+  children?: React.ReactNode;
   onInit?: StdCallback;
   pipes?: Promise<any>[] | any[];
 } & AntdFormProps;
@@ -48,7 +50,7 @@ export default class AntdFormSchema extends Component<AntdFormSchemaProps> {
   };
 
   render() {
-    const { className, meta, presets, pipes, onInit, ...props } = this.props;
+    const { className, meta, presets, pipes, onInit, caption, children, ...props } = this.props;
     const _meta = this.state.meta;
 
     return (
@@ -57,7 +59,9 @@ export default class AntdFormSchema extends Component<AntdFormSchemaProps> {
         className={cx(className, CLASS_NAME)}
         onValuesChange={this.handleValuesChange}
         {...props}>
+        {caption}
         <FormBuilder meta={_meta} form={this.formRef.current!} />
+        {children}
       </Form>
     );
   }
