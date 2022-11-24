@@ -5,7 +5,7 @@ import noop from '@jswork/noop';
 import ppipe from 'p-pipe';
 import { AntdFormBuilderProps } from './antd-form-builder';
 import FormBuilder from 'antd-form-builder';
-import { getComputedMeta, getHelpers } from './helpers';
+import { generateHelpers, getComputedMeta } from './helpers';
 
 const CLASS_NAME = 'antd-form-schema';
 
@@ -18,6 +18,7 @@ type AntdFormSchemaProps = {
   caption?: React.ReactNode;
   children?: React.ReactNode;
   onInit?: StdCallback;
+  onFinish?: StdCallback;
   pipes?: Promise<any>[] | any[];
 } & AntdFormProps;
 
@@ -29,6 +30,7 @@ export default class AntdFormSchema extends Component<AntdFormSchemaProps, AntdS
   static displayName = CLASS_NAME;
   static defaultProps = {
     onInit: noop,
+    onFinish: noop,
     pipes: []
   };
 
@@ -49,19 +51,29 @@ export default class AntdFormSchema extends Component<AntdFormSchemaProps, AntdS
     if (!pipes?.length) return;
     const form = this.formRef.current;
     const meta = this.state.meta;
-    const helpers = getHelpers(meta);
+    const helpers = generateHelpers(meta);
     ppipe(...pipes)({ meta, form, ...helpers }).then((res: any) => {
       this.setState({ meta: res.meta });
     });
   };
 
+  handleFinish = (inEvent) => {
+    const { onFinish } = this.props;
+    onFinish!({ target: { value: inEvent } });
+  };
+
   render() {
-    const { className, meta, presets, pipes, onInit, caption, children, ...props } = this.props;
+    const { className, meta, presets, pipes, caption, children, onInit, onFinish, ...props } =
+      this.props;
     const _meta = this.state.meta;
-    const opts = { ref: this.formRef, className: cx(className, CLASS_NAME), ...props };
 
     return (
-      <Form onValuesChange={this.handleValuesChange} {...opts}>
+      <Form
+        ref={this.formRef}
+        className={cx(className, CLASS_NAME)}
+        onValuesChange={this.handleValuesChange}
+        onFinish={this.handleFinish}
+        {...props}>
         {caption}
         <FormBuilder meta={_meta} form={this.formRef.current!} />
         {children}

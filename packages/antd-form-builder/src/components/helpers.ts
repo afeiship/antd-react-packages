@@ -8,8 +8,14 @@ export interface Presets {
   [key: string]: Omit<FieldType, 'key'>;
 }
 
+/**
+ * Smart merge meta fields with presets.
+ * @param presets
+ * @param meta
+ */
 export const getComputedMeta = (presets: Presets, meta: InnerMeta) => {
   const fields = meta.fields!;
+  if (!presets) return meta;
   meta.fields = fields.map((field) => {
     const matched = field.key && presets![field.key];
     if (!matched) return field;
@@ -18,7 +24,11 @@ export const getComputedMeta = (presets: Presets, meta: InnerMeta) => {
   return meta;
 };
 
-export const getHelpers = (meta: InnerMeta) => {
+/**
+ * Generate helper methods for form from meta.fields.
+ * @param meta
+ */
+export const generateHelpers = (meta: InnerMeta) => {
   const find = (key: string) => meta.fields!.find((item) => item.key === key);
   const where = (key: string) => meta.fields!.filter((item) => item.key === key);
   const findBy = (fn: (item: FieldType) => boolean) => meta.fields!.find(fn);
