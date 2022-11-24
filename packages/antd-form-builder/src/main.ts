@@ -1,5 +1,5 @@
-import FormBuilder from './components/antd-form-builder';
-import FormSchema from './components/antd-form-schema';
+import FormBuilder from './components/form-builder';
 import { useForceUpdate } from './components/helpers';
 
-export { FormBuilder, FormSchema, useForceUpdate };
+export default FormBuilder;
+export { useForceUpdate };

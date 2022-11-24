@@ -37,7 +37,8 @@ export const getComputedMeta = (presets: Presets, meta: InnerMeta) => {
  */
 export const generateHelpers = (meta: InnerMeta) => {
   const find = (key: string) => meta.fields!.find((item) => item.key === key);
-  const where = (key: string) => meta.fields!.filter((item) => item.key === key);
+  const where = (key: string) =>
+    meta.fields!.filter((item) => item.key === key);
   const findBy = (fn: (item: FieldType) => boolean) => meta.fields!.find(fn);
   const whereBy = (fn: (item: FieldType) => boolean) => meta.fields!.filter(fn);
 
@@ -51,6 +52,20 @@ export const generateHelpers = (meta: InnerMeta) => {
       return whereBy(target);
     }
   };
+};
+
+export const initForm = (meta, form) => {
+  const initValues = meta.initialValues;
+  const isFromAsync = Array.isArray(initValues);
+  if (isFromAsync) {
+    const [api, transform] = initValues;
+    const _transform = transform || toValue;
+    api.then((res) => {
+      form.setFieldsValue(_transform(res));
+    });
+  } else {
+    form.setFieldsValue(initValues);
+  }
 };
 
 /**

@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormSchema } from '../../src/main';
+import FormBuilder from '../../src/main';
 import styled from 'styled-components';
 import { pipes1 } from './pipes';
 import { Button, Col, Row } from 'antd';
@@ -47,7 +47,7 @@ export default () => {
           <h3>Use Form Schema</h3>
         </dt>
         <dd>
-          <FormSchema
+          <FormBuilder
             pipes={pipes1}
             presets={presets}
             meta={meta}
@@ -61,7 +61,7 @@ export default () => {
                 <Button htmlType="submit">Submit</Button>
               </Col>
             </Row>
-          </FormSchema>
+          </FormBuilder>
         </dd>
       </dl>
     </Container>
