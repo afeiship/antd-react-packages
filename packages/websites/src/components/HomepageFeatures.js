@@ -33,7 +33,7 @@ function Feature({ Svg, title, id, description }) {
       <footer className="text--center">
         <Link
           className="button button--secondary button--sm"
-          to={useBaseUrl(`docs/${id}/01-get-started`)}
+          to={useBaseUrl(`docs/${id}/get-started`)}
         >
           Documentation
         </Link>
