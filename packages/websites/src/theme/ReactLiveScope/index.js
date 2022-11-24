@@ -1,4 +1,8 @@
 import React from "react";
+import * as tpls from "@jswork/antd-tpls";
+import { Select, Checkbox, Row, Col, Button, Space } from "antd";
+import * as data from "./data";
+import FormBuilder, { useForceUpdate } from "@jswork/antd-form-builder";
 import {
   AcSelect,
   AcCheckbox,
@@ -26,10 +30,6 @@ import {
   AcSlider,
   AcSliderRange,
 } from "@jswork/antd-components";
-import FormBuilder, { useForceUpdate } from "@jswork/antd-form-builder";
-import * as tpls from "@jswork/antd-tpls";
-import { Select, Checkbox, Row, Col, Button, Space } from "antd";
-import * as data from "./data";
 
 const ReactLiveScope = {
   React,
