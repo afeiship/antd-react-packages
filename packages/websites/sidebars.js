@@ -14,5 +14,6 @@ const getMenus = (key) =>
 module.exports = {
   mainSidebar: {
     "antd-components": getMenus("antd-components"),
+    "antd-form-builder": getMenus("antd-form-builder"),
   },
 };
