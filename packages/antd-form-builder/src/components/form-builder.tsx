@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, FormProps, FormInstance } from 'antd';
+import { Form, FormProps, FormInstance, Spin } from 'antd';
 import cx from 'classnames';
 import noop from '@jswork/noop';
 import compose from 'p-pipe';
@@ -32,6 +32,7 @@ type AntdFormBuilderProps = {
 
 type AntdBuilderState = {
   meta: any;
+  loading: boolean;
 };
 
 export default class AntdFormBuilder extends Component<
@@ -48,6 +49,7 @@ export default class AntdFormBuilder extends Component<
   private formRef = React.createRef<FormInstance>();
 
   state = {
+    loading: false,
     meta: getComputedMeta(this.props.presets!, this.props.meta)
   };
 
@@ -56,7 +58,10 @@ export default class AntdFormBuilder extends Component<
     const { meta } = this.state;
     const form = this.formRef.current!;
     onInit!({ target: { value: form } });
-    initForm(meta, form);
+    this.setState({ loading: true });
+    initForm(meta, form).then(() => {
+      this.setState({ loading: false });
+    });
   }
 
   handleValuesChange = () => {
@@ -88,7 +93,7 @@ export default class AntdFormBuilder extends Component<
       ...props
     } = this.props;
 
-    const _meta = this.state.meta;
+    const { loading, meta: computedMeta } = this.state;
 
     return (
       <Form
@@ -97,9 +102,11 @@ export default class AntdFormBuilder extends Component<
         onValuesChange={this.handleValuesChange}
         onFinish={this.handleFinish}
         {...props}>
-        {caption}
-        <FormBuilder meta={_meta} form={this.formRef.current!} />
-        {children}
+        <Spin spinning={loading}>
+          {caption}
+          <FormBuilder meta={computedMeta} form={this.formRef.current!} />
+          {children}
+        </Spin>
       </Form>
     );
   }

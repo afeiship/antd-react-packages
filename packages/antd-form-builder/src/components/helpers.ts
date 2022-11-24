@@ -54,18 +54,22 @@ export const generateHelpers = (meta: InnerMeta) => {
   };
 };
 
-export const initForm = (meta, form) => {
+export const initForm = (meta, form): Promise<void> => {
   const initValues = meta.initialValues;
   const isFromAsync = Array.isArray(initValues);
-  if (isFromAsync) {
-    const [api, transform] = initValues;
-    const _transform = transform || toValue;
-    api.then((res) => {
-      form.setFieldsValue(_transform(res));
-    });
-  } else {
-    form.setFieldsValue(initValues);
-  }
+  return new Promise((resolve) => {
+    if (isFromAsync) {
+      const [api, transform] = initValues;
+      const _transform = transform || toValue;
+      api.then((res) => {
+        form.setFieldsValue(_transform(res));
+        resolve();
+      });
+    } else {
+      form.setFieldsValue(initValues);
+      resolve();
+    }
+  });
 };
 
 /**

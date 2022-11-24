@@ -42,28 +42,21 @@ export default () => {
 
   return (
     <Container>
-      <dl>
-        <dt>
-          <h3>Use Form Schema</h3>
-        </dt>
-        <dd>
-          <FormBuilder
-            pipes={pipes1}
-            presets={presets}
-            meta={meta}
-            caption={<h1>Hello FormSchema</h1>}
-            onFinish={(e) => {
-              console.log('target e: ', e);
-            }}>
-            <Row>
-              <Col span={8}></Col>
-              <Col span={16}>
-                <Button htmlType="submit">Submit</Button>
-              </Col>
-            </Row>
-          </FormBuilder>
-        </dd>
-      </dl>
+      <FormBuilder
+        pipes={pipes1}
+        presets={presets}
+        meta={meta}
+        caption={<h1>Hello FormSchema</h1>}
+        onFinish={(e) => {
+          console.log('target e: ', e);
+        }}>
+        <Row>
+          <Col span={8}></Col>
+          <Col span={16}>
+            <Button htmlType="submit">Submit</Button>
+          </Col>
+        </Row>
+      </FormBuilder>
     </Container>
   );
 };
