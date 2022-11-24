@@ -1,4 +1,5 @@
 import { FieldType, Meta } from 'antd-form-builder';
+import React from 'react';
 
 export type InnerMeta = {
   fields?: FieldType[];
@@ -44,4 +45,12 @@ export const generateHelpers = (meta: InnerMeta) => {
       return whereBy(target);
     }
   };
+};
+
+/**
+ * React hook for form builder.
+ */
+export const useForceUpdate = () => {
+  const [value, setValue] = React.useState(0);
+  return () => setValue(value + 1);
 };

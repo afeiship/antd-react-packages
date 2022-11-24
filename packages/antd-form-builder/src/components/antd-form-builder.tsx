@@ -5,11 +5,6 @@ import { getComputedMeta, Presets, InnerMeta } from './helpers';
 
 const CLASS_NAME = 'antd-form-builder';
 
-export const useForceUpdate = () => {
-  const [value, setValue] = React.useState(0);
-  return () => setValue(value + 1);
-};
-
 export type AntdFormBuilderProps = {
   /**
    * Presets of fields.
