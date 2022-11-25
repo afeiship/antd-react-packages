@@ -75,6 +75,7 @@
     "@jswork/loadkit": "^1.0.6",
     "@jswork/next-tree-walk": "^1.0.5",
     "@jswork/noop": "^1.0.0",
+    "@jswork/react-input-autosize": "^1.0.0",
     "@jswork/react-interactive-list": "^1.1.4",
     "@jswork/react-list": "^1.1.5",
     "classnames": "^2.2.6",

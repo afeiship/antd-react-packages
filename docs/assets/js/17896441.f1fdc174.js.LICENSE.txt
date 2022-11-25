@@ -1,0 +1,8 @@
+/*!
+ * name: @jswork/antd-tpls
+ * description: Antd list templates.
+ * homepage: https://js.work
+ * version: 1.0.0
+ * date: 2022-11-21 10:43:02
+ * license: MIT
+ */
