@@ -6,7 +6,7 @@ module.exports = {
   title: "Antd React Packages",
   tagline: "Everything about react and antd.",
   url: "https://your-docusaurus-test-site.com",
-  baseUrl: "/",
+  baseUrl: "/antd-react-packages/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.ico",
@@ -53,6 +53,13 @@ module.exports = {
       },
       prism: {
         darkTheme: darkCodeTheme,
+      },
+      liveCodeBlock: {
+        /**
+         * The position of the live playground, above or under the editor
+         * Possible values: "top" | "bottom"
+         */
+        playgroundPosition: "top",
       },
     }),
 };
