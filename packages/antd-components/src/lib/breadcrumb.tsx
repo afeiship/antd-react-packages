@@ -1,7 +1,8 @@
 import React from 'react';
 import noop from '@jswork/noop';
 import { Breadcrumb, BreadcrumbProps } from 'antd';
-import ReactList from '@jswork/react-list';
+import ReactList, { TemplateArgs } from '@jswork/react-list';
+import { breadcrumbDefault } from '@jswork/antd-tpls';
 import cx from 'classnames';
 
 // hack for react-list
@@ -16,6 +17,7 @@ type StdCallback = (inEvent: StdEventTarget) => void;
 type Props = {
   className?: string;
   items?: any[];
+  template?: (args: TemplateArgs) => React.ReactNode;
   value?: number;
   onChange?: StdCallback;
 } & BreadcrumbProps;
@@ -23,20 +25,15 @@ type Props = {
 export class AcBreadcrumb extends React.Component<Props> {
   static displayName = CLASS_NAME;
   static defaultProps = {
-    onChange: noop
-  };
-
-  template = ({ item, index, items }) => {
-    const last = items?.length - 1 === index;
-    const child = last ? <span>{item.label}</span> : <a href={item.value}>{item.label}</a>;
-    return <Breadcrumb.Item key={index}>{child}</Breadcrumb.Item>;
+    onChange: noop,
+    template: breadcrumbDefault
   };
 
   render() {
-    const { className, value, items, onChange, ...props } = this.props;
+    const { className, value, items, template, onChange, ...props } = this.props;
     return (
       <Breadcrumb className={cx(className, CLASS_NAME)} {...props}>
-        <ReactList items={items} template={(args) => this.template({ ...args, items })} />
+        <ReactList items={items} template={template} />
       </Breadcrumb>
     );
   }
