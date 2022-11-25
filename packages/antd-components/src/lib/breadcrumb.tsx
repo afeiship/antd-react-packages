@@ -26,7 +26,8 @@ export class AcBreadcrumb extends React.Component<Props> {
     onChange: noop
   };
 
-  template = ({ item, index, last }) => {
+  template = ({ item, index, items }) => {
+    const last = items?.length === 1;
     const child = last ? (
       <span>{item.label}</span>
     ) : (
@@ -37,15 +38,11 @@ export class AcBreadcrumb extends React.Component<Props> {
 
   render() {
     const { className, value, items, onChange, ...props } = this.props;
-    const len = items?.length as number;
-
     return (
       <Breadcrumb className={cx(className, CLASS_NAME)} {...props}>
         <ReactList
           items={items}
-          template={(args) =>
-            this.template({ ...args, last: len - 1 === args.index })
-          }
+          template={(args) => this.template({ ...args, items })}
         />
       </Breadcrumb>
     );
