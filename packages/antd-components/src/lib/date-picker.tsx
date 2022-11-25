@@ -2,7 +2,7 @@ import React from 'react';
 import noop from '@jswork/noop';
 import { DatePicker, DatePickerProps } from 'antd';
 import cx from 'classnames';
-import moment from 'moment';
+import moment from 'dayjs';
 
 const CLASS_NAME = 'ac-date-picker';
 const STD_FORMAT = 'YYYY-MM-DD HH:mm:ss';

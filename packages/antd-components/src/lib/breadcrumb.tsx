@@ -26,23 +26,26 @@ export class AcBreadcrumb extends React.Component<Props> {
     onChange: noop
   };
 
+  template = ({ item, index, last }) => {
+    const child = last ? (
+      <span>{item.label}</span>
+    ) : (
+      <a href={item.value}>{item.label}</a>
+    );
+    return <Breadcrumb.Item key={index}>{child}</Breadcrumb.Item>;
+  };
+
   render() {
     const { className, value, items, onChange, ...props } = this.props;
     const len = items?.length as number;
+
     return (
       <Breadcrumb className={cx(className, CLASS_NAME)} {...props}>
         <ReactList
           items={items}
-          template={({ item, index }) => {
-            const isLast = len - 1 === index;
-            const child = isLast ? (
-              <span>{item}</span>
-            ) : (
-              <a href={item.value}>{item.label}</a>
-            );
-
-            return <Breadcrumb.Item key={index}>{child}</Breadcrumb.Item>;
-          }}
+          template={(args) =>
+            this.template({ ...args, last: len - 1 === args.index })
+          }
         />
       </Breadcrumb>
     );

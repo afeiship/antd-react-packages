@@ -2,7 +2,7 @@ import React from 'react';
 import noop from '@jswork/noop';
 import { DatePicker } from 'antd';
 import cx from 'classnames';
-import moment from 'moment';
+import moment from 'dayjs';
 import { RangePickerProps } from 'antd/es/date-picker';
 
 const CLASS_NAME = 'ac-range-picker';

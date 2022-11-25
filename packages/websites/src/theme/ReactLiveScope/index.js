@@ -29,7 +29,7 @@ import {
   AcTimePicker,
   AcSlider,
   AcSliderRange,
-} from "@jswork/antd-components";
+} from "@jswork/antd-components/src/main";
 
 const ReactLiveScope = {
   React,
@@ -72,7 +72,7 @@ const ReactLiveScope = {
   Row,
   Col,
   Button,
-  Space
+  Space,
 };
 
 export default ReactLiveScope;
