@@ -17,6 +17,7 @@ type StdCallback = (inEvent: StdEventTarget) => void;
 type Props = {
   className?: string;
   value?: boolean;
+  disabled?: boolean;
   closable?: boolean;
   onChange?: StdCallback;
   onCloseClick?: StdCallback;
@@ -27,6 +28,7 @@ export class AcCheckableTag extends React.Component<Props> {
   static defaultProps = {
     value: false,
     closable: false,
+    disabled: false,
     onChange: noop,
     onCloseClick: noop
   };
@@ -58,15 +60,7 @@ export class AcCheckableTag extends React.Component<Props> {
   };
 
   render() {
-    const {
-      className,
-      value,
-      onChange,
-      onCloseClick,
-      children,
-      closable,
-      ...props
-    } = this.props;
+    const { className, value, onChange, onCloseClick, children, closable, ...props } = this.props;
     const _value = this.state.value;
 
     return (

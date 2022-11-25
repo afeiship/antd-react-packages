@@ -12,11 +12,10 @@ slug: checkable-tag
 
 ### 预览
 ```jsx live
-<AcCheckableTag
-  value={false}
-  onChange={(e) => {
-    console.log('evt: ', e.target.value);
-  }}>
-  Tag
-</AcCheckableTag>
+<Space direction="vertical">
+  <AcCheckableTag closable>Tag1 + closable</AcCheckableTag>
+  <AcCheckableTag disabled closable>
+    Tag + disabled + closable
+  </AcCheckableTag>
+</Space>
 ```
