@@ -83,10 +83,7 @@ export class AcCheckableAll extends React.Component<Props> {
 
     return (
       <Space direction="horizontal" className={cx(CLASS_NAME, className)}>
-        <Button
-          size="small"
-          onClick={this.handleClearAll}
-          className="ac-is-aside">
+        <Button size="small" onClick={this.handleClearAll} className="ac-is-aside">
           {label}
         </Button>
         <ReactList
