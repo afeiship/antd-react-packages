@@ -28,11 +28,7 @@ export class AcBreadcrumb extends React.Component<Props> {
 
   template = ({ item, index, items }) => {
     const last = items?.length - 1 === index;
-    const child = last ? (
-      <span>{item.label}</span>
-    ) : (
-      <a href={item.value}>{item.label}</a>
-    );
+    const child = last ? <span>{item.label}</span> : <a href={item.value}>{item.label}</a>;
     return <Breadcrumb.Item key={index}>{child}</Breadcrumb.Item>;
   };
 
@@ -40,10 +36,7 @@ export class AcBreadcrumb extends React.Component<Props> {
     const { className, value, items, onChange, ...props } = this.props;
     return (
       <Breadcrumb className={cx(className, CLASS_NAME)} {...props}>
-        <ReactList
-          items={items}
-          template={(args) => this.template({ ...args, items })}
-        />
+        <ReactList items={items} template={(args) => this.template({ ...args, items })} />
       </Breadcrumb>
     );
   }
