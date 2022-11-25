@@ -27,7 +27,7 @@ export class AcBreadcrumb extends React.Component<Props> {
   };
 
   template = ({ item, index, items }) => {
-    const last = items?.length === 1;
+    const last = items?.length - 1 === index;
     const child = last ? (
       <span>{item.label}</span>
     ) : (
