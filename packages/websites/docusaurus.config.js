@@ -1,4 +1,5 @@
 const darkCodeTheme = require("prism-react-renderer/themes/dracula");
+const env = process.env.NODE_ENV;
 
 // With JSDoc @type annotations, IDEs can provide config autocompletion
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
@@ -6,7 +7,7 @@ module.exports = {
   title: "Antd React Packages",
   tagline: "Everything about react and antd.",
   url: "https://your-docusaurus-test-site.com",
-  baseUrl: "/antd-react-packages/",
+  baseUrl: env === "production" ? "/antd-react-packages/" : "/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.ico",
