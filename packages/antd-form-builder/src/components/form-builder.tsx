@@ -101,6 +101,8 @@ export default class AntdFormBuilder extends Component<
       caption,
       children,
       onInit,
+      onValuesChange,
+      onChange,
       onFinish,
       ...props
     } = this.props;
