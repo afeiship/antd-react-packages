@@ -34,6 +34,7 @@ type AntdFormBuilderProps = {
   caption?: React.ReactNode;
   children?: React.ReactNode;
   onInit?: StdFormCallback;
+  onChange?: StdCallback;
   onFinish?: StdCallback;
 } & FormProps;
 
@@ -49,6 +50,7 @@ export default class AntdFormBuilder extends Component<
   static displayName = CLASS_NAME;
   static defaultProps = {
     onInit: noop,
+    onChange: noop,
     onFinish: noop,
     pipes: []
   };
@@ -71,8 +73,9 @@ export default class AntdFormBuilder extends Component<
     });
   }
 
-  handleValuesChange = () => {
-    const { pipes } = this.props;
+  handleValuesChange = (inChangeValues, inValues) => {
+    const { pipes, onChange } = this.props;
+    const value = [inChangeValues, inValues];
     if (!pipes?.length) return;
     const form = this.formRef.current!;
     const meta = this.state.meta;
@@ -80,6 +83,7 @@ export default class AntdFormBuilder extends Component<
     const metaCtx: ComposeContext = { ...helpers, meta, form };
     compose(...pipes)(metaCtx).then((res: any) => {
       this.setState({ meta: res.meta });
+      onChange!({ target: { value } });
     });
   };
 
