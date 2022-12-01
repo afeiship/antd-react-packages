@@ -1,7 +1,7 @@
 {
   "name": "@jswork/antd-form-builder",
   "homepage": "https://js.work",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A wrapper for antd-form-builder.",
   "license": "MIT",
   "main": "dist/index.js",
@@ -73,7 +73,8 @@
     "@jswork/noop": "^1.0.0",
     "antd-form-builder": "^2.1.4",
     "classnames": "^2.2.6",
-    "p-pipe": "3"
+    "p-pipe": "3",
+    "release-it": "^15.5.0"
   },
   "peerDependencies": {
     "antd": "^5.0.1",
