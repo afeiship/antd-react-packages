@@ -3,3 +3,4 @@ node_modules/
 yarn.lock
 websites3
 build-docs
+package-lock.json
