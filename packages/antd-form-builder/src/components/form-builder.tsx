@@ -26,7 +26,7 @@ type ComposeContext = {
   form: FormInstance;
 };
 
-type AntdFormBuilderProps = {
+export type AntdFormBuilderProps = {
   className?: string;
   presets?: Presets;
   meta: InnerMeta;
