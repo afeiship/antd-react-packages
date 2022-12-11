@@ -5,7 +5,10 @@
     "packages/*"
   ],
   "scripts": {
-    "start": "cd packages/websites && npm run start"
+    "start": "cd packages/websites && npm run start",
+    "build": "lerna run build --since master --no-private",
+    "build:all": "lerna run build",
+    "publish": "npm run build && lerna publish --no-private"
   },
   "devDependencies": {
     "lerna": "^6.0.3"
