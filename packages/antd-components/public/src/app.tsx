@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { AcCheckableAll, AcCheckableTag } from '../../src/main';
+import { AcCheckableAll, AcCheckableTag, AcUploadPictureCard } from '../../src/main';
 import { Space } from 'antd';
 
 const Container = styled.div`
@@ -32,6 +32,13 @@ export default () => {
         }}
       />
 
+      <hr />
+      <AcUploadPictureCard
+        maxCount={1}
+        multiple={false}
+        action="http://localhost:3200/weibo_api/interface/pic_upload.php"
+        name="pic1"
+      />
       <hr />
 
       <Space>

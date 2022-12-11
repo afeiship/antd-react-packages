@@ -62,10 +62,7 @@ export class AcUploadPictureCard extends React.Component<Props, State> {
   }
 
   async mountViewer(el) {
-    await Promise.all([
-      loadStyle(styleURL, styleOpts),
-      loadScript(scriptURL, scriptOpts)
-    ]);
+    await Promise.all([loadStyle(styleURL, styleOpts), loadScript(scriptURL, scriptOpts)]);
     this.viewer = new window['Viewer'](el);
   }
 

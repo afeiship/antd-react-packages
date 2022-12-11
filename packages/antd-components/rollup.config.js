@@ -6,8 +6,8 @@ import banner from 'rollup-plugin-banner';
 import { terser } from 'rollup-plugin-terser';
 import replace from '@rollup/plugin-replace';
 import image from '@rollup/plugin-image';
-// import copy from 'rollup-plugin-copy';
-// import scss from 'rollup-plugin-scss';
+import copy from 'rollup-plugin-copy';
+import scss from 'rollup-plugin-scss';
 
 import pkg from './package.json';
 import '@jswork/next-rollup-banner';
@@ -52,8 +52,7 @@ export default [
       banner(nx.rollupBanner()),
       image(),
       typescript({
-        rollupCommonJSResolveHack: true,
-        exclude: ['**/__tests__/**', '**/__stories__/**'],
+        tsconfig: 'tsconfig.build.json',
         clean: true
       }),
       commonjs({
@@ -66,14 +65,14 @@ export default [
       })
     ]
   },
-  // {
-  //   input: 'src/components/style.scss',
-  //   output: null,
-  //   plugins: [
-  //     scss({ output: 'dist/style.css' }),
-  //     copy({
-  //       targets: [{ src: 'src/components/*.scss', dest: 'dist' }]
-  //     })
-  //   ]
-  // }
+  {
+    input: 'src/style.scss',
+    output: null,
+    plugins: [
+      scss({ output: 'dist/style.css' }),
+      copy({
+        targets: [{ src: 'src/style.scss', dest: 'dist' }]
+      })
+    ]
+  }
 ];
