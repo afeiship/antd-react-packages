@@ -4,9 +4,9 @@ import {
   AcCheckableDropdown,
   AcCheckableTagList,
   AcCheckableTag,
-  AcUploadPictureCard
+  AcUploadPicture
 } from '../../src/main';
-import { Space, Button } from 'antd';
+import { Space } from 'antd';
 
 const Container = styled.div`
   width: 80%;
@@ -29,8 +29,7 @@ export default () => {
 
   return (
     <Container>
-      <Button type="primary">Button Primary</Button>
-      <Button disabled>Button Default</Button>
+      <AcUploadPicture action="http://localhost:3200/weibo_api/interface/pic_upload.php" />
       <hr />
       <AcCheckableDropdown items={items3} onChange={(e) => console.log(e.target.value)} />
       <hr />
@@ -42,13 +41,6 @@ export default () => {
         }}
       />
 
-      <hr />
-      <AcUploadPictureCard
-        maxCount={1}
-        multiple={false}
-        action="http://localhost:3200/weibo_api/interface/pic_upload.php"
-        name="pic1"
-      />
       <hr />
 
       <Space>
