@@ -2,6 +2,8 @@ import React from 'react';
 import noop from '@jswork/noop';
 import { Checkbox, Dropdown, Button, MenuProps } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
+import nx from '@jswork/next';
+import '@jswork/next-dom-event';
 
 const CLASS_NAME = 'ac-checkable-dropdown';
 const locales = { 'zh-CN': { selectAll: '全部' }, 'en-US': { selectAll: 'All' } };
@@ -28,18 +30,19 @@ export class AcCheckableDropdown extends React.Component<Props> {
     width: 180
   };
 
+  private readonly overlayClass = `${CLASS_NAME}-overlay--${AcCheckableDropdown.id++}`;
+
   state = {
     visible: false,
     value: this.props.value
   };
 
+  private overlayRes: any;
+  private winBlankRes: any;
+
   get indeterminate() {
     const { value } = this.state;
     return !!value?.length && value?.length < this.props.items!.length;
-  }
-
-  get overlayClass() {
-    return `${CLASS_NAME}-overlay--${AcCheckableDropdown.id++}`;
   }
 
   get menuItems() {
@@ -95,6 +98,35 @@ export class AcCheckableDropdown extends React.Component<Props> {
     this.setState(target);
     onChange!({ target });
   };
+
+  componentDidMount() {
+    // click blank, close overlay
+    this.winBlankRes = nx.DomEvent.on(window, 'click', (e) => {
+      const target = e.target as HTMLElement;
+      const overlay = document.querySelector(`.${this.overlayClass}`) as HTMLDivElement;
+      if (overlay && !overlay.contains(target)) {
+        this.setState({ visible: false });
+      }
+    });
+  }
+
+  componentDidUpdate() {
+    const { visible } = this.state;
+    if (visible) {
+      const overlay = document.querySelector(`.${this.overlayClass}`) as HTMLDivElement;
+      if (overlay) {
+        this.overlayRes = nx.DomEvent.on(overlay, 'mouseleave', () => {
+          this.setState({ visible: false });
+          this.overlayRes?.destroy();
+        });
+      }
+    }
+  }
+
+  componentWillUnmount() {
+    this.winBlankRes?.destroy();
+    this.overlayRes?.destroy();
+  }
 
   render() {
     const { width } = this.props;
