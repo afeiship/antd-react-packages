@@ -4,6 +4,7 @@ import { Checkbox, Dropdown, Button, MenuProps } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 import nx from '@jswork/next';
 import '@jswork/next-dom-event';
+import { SizeType } from 'antd/es/config-provider/SizeContext';
 
 const CLASS_NAME = 'ac-checkable-dropdown';
 const locales = { 'zh-CN': { selectAll: '全部' }, 'en-US': { selectAll: 'All' } };
@@ -16,6 +17,8 @@ type Props = {
   items?: any[];
   value?: any[];
   width?: number;
+  size?: SizeType;
+  disabled?: boolean;
   onChange?: StdCallback;
 };
 
@@ -27,7 +30,7 @@ export class AcCheckableDropdown extends React.Component<Props> {
     onChange: noop,
     items: [],
     value: [],
-    width: 180
+    width: 140
   };
 
   private readonly overlayClass = `${CLASS_NAME}-overlay--${AcCheckableDropdown.id++}`;
@@ -43,6 +46,14 @@ export class AcCheckableDropdown extends React.Component<Props> {
   get indeterminate() {
     const { value } = this.state;
     return !!value?.length && value?.length < this.props.items!.length;
+  }
+
+  get label() {
+    const { value } = this.state;
+    const { items } = this.props;
+    const labels = value?.map((val) => items?.find((item) => item.value === val).label);
+    const isAll = value?.length === 0 || value?.length === items?.length;
+    return isAll ? this.t('selectAll') : labels?.join(',');
   }
 
   get menuItems() {
@@ -77,8 +88,7 @@ export class AcCheckableDropdown extends React.Component<Props> {
                 const val = checked ? [...filtered!, opt.value] : filtered;
                 this.doChange(val);
               }}
-              checked={shouldChecked}
-              data-value={opt.value}>
+              checked={shouldChecked}>
               {opt.label}
             </Checkbox>
           )
@@ -101,7 +111,7 @@ export class AcCheckableDropdown extends React.Component<Props> {
 
   componentDidMount() {
     // click blank, close overlay
-    this.winBlankRes = nx.DomEvent.on(window, 'click', (e) => {
+    this.winBlankRes = nx.DomEvent.on(window as any, 'click', (e) => {
       const target = e.target as HTMLElement;
       const overlay = document.querySelector(`.${this.overlayClass}`) as HTMLDivElement;
       if (overlay && !overlay.contains(target)) {
@@ -128,22 +138,31 @@ export class AcCheckableDropdown extends React.Component<Props> {
     this.overlayRes?.destroy();
   }
 
+  /**
+   * todo: 有朝一日，找出原因
+   * 这里的 button disabled 不能生效，除非在 dropdown 内层套一个 Fragment。
+   */
   render() {
-    const { width } = this.props;
+    const { width, disabled, size } = this.props;
     const { visible } = this.state;
 
     return (
       <Dropdown
+        disabled={disabled}
         overlayClassName={this.overlayClass}
         open={visible}
         menu={{ items: this.menuItems }}>
-        <Button
-          className={`${CLASS_NAME}__btn`}
-          style={{ width }}
-          onMouseEnter={() => this.setState({ visible: true })}>
-          <span className="is-label">{this.t('selectAll')}</span>
-          <DownOutlined />
-        </Button>
+        <>
+          <Button
+            className={`${CLASS_NAME}__btn`}
+            style={{ width }}
+            size={size}
+            disabled={disabled}
+            onMouseEnter={() => this.setState({ visible: true })}>
+            <span className="is-label">{this.label}</span>
+            <DownOutlined />
+          </Button>
+        </>
       </Dropdown>
     );
   }

@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import {
   AcCheckableDropdown,
-  AcCheckableAll,
+  AcCheckableTagList,
   AcCheckableTag,
   AcUploadPictureCard
 } from '../../src/main';
-import { Space } from 'antd';
+import { Space, Button } from 'antd';
 
 const Container = styled.div`
   width: 80%;
@@ -29,9 +29,12 @@ export default () => {
 
   return (
     <Container>
+      <Button type="primary">Button Primary</Button>
+      <Button disabled>Button Default</Button>
+      <hr />
       <AcCheckableDropdown items={items3} onChange={(e) => console.log(e.target.value)} />
       <hr />
-      <AcCheckableAll
+      <AcCheckableTagList
         items={items3}
         value={val}
         onChange={(e) => {

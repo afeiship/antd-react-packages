@@ -5,7 +5,7 @@ import ReactList from '@jswork/react-list';
 import { Space, Button, Tag } from 'antd';
 import { CloseOutlined } from '@ant-design/icons';
 
-const CLASS_NAME = 'ac-checkable-all';
+const CLASS_NAME = 'ac-checkable-tag-list';
 const locales = {
   'zh-CN': { selectAll: '全部' },
   'en-US': { selectAll: 'All' }
@@ -35,7 +35,7 @@ type Props = {
   onChange?: StdCallback;
 };
 
-export class AcCheckableAll extends React.Component<Props> {
+export class AcCheckableTagList extends React.Component<Props> {
   static displayName = CLASS_NAME;
   static defaultProps = {
     lang: 'zh-CN',
