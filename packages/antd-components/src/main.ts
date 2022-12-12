@@ -1,4 +1,5 @@
 export * from './lib/breadcrumb';
+export * from './lib/checkable-dropdown';
 export * from './lib/checkable-all';
 export * from './lib/checkable-tag';
 export * from './lib/checkbox';
