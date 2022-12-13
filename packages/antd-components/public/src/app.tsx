@@ -29,10 +29,7 @@ export default () => {
 
   return (
     <Container>
-      <AcUploadPicture
-        value="https://tva1.sinaimg.cn/large/007S8ZIlgy1gexw87htqhj305k05k74o.jpg"
-        action="http://localhost:3200/weibo_api/interface/pic_upload.php"
-      />
+      <AcUploadPicture action="http://localhost:3200/weibo_api/interface/pic_upload.php" />
       <hr />
       <AcCheckableDropdown items={items3} onChange={(e) => console.log(e.target.value)} />
       <hr />

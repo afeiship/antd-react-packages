@@ -20,6 +20,7 @@ type Props = {
   disabled?: boolean;
   closeable?: boolean;
   toggleable?: boolean;
+  propagation?: boolean;
   onChange?: StdCallback;
   onCloseClick?: StdCallback;
 } & Omit<CheckableTagProps, 'checked'>;
@@ -31,6 +32,7 @@ export class AcCheckableTag extends React.Component<Props> {
     closeable: false,
     disabled: false,
     toggleable: false,
+    propagation: false,
     onChange: noop,
     onCloseClick: noop
   };
@@ -65,14 +67,23 @@ export class AcCheckableTag extends React.Component<Props> {
   };
 
   handleCloseClick = (inEvent) => {
-    const { onCloseClick } = this.props;
-    inEvent.stopPropagation();
+    const { propagation, onCloseClick } = this.props;
+    !propagation && inEvent.stopPropagation();
     onCloseClick!(inEvent);
   };
 
   render() {
-    const { className, value, onChange, onCloseClick, children, closeable, toggleable, ...props } =
-      this.props;
+    const {
+      className,
+      value,
+      onChange,
+      onCloseClick,
+      children,
+      closeable,
+      toggleable,
+      propagation,
+      ...props
+    } = this.props;
     const _value = this.state.value;
 
     return (

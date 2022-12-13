@@ -104,6 +104,7 @@ export class AcCheckableTagList extends React.Component<Props> {
                 className="ac-is-item"
                 toggleable
                 closeable
+                propagation
                 disabled={disabled}
                 value={isChecked}
                 onChange={(inEvent) => {

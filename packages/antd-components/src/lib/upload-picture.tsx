@@ -19,7 +19,8 @@ type Props = {
 export class AcUploadPicture extends React.Component<Props> {
   static displayName = CLASS_NAME;
   static defaultProps = {
-    onChange: noop
+    onChange: noop,
+    value: 'https://jdc.jd.com/img/200x200'
   };
 
   state = {
