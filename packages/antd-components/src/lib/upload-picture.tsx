@@ -6,13 +6,14 @@ import cx from 'classnames';
 import { DraggerProps } from 'antd/es/upload';
 
 const CLASS_NAME = 'ac-upload-picture';
+const DEFAULT_IMG = 'https://jdc.jd.com/img/200x200';
+
 type StdEventTarget = { target: { value: any } };
 type StdCallback = (inEvent: StdEventTarget) => void;
 
 type Props = {
   className?: string;
   value?: string;
-  defaultValue?: any[];
   onChange?: StdCallback;
 } & DraggerProps;
 
@@ -20,7 +21,7 @@ export class AcUploadPicture extends React.Component<Props> {
   static displayName = CLASS_NAME;
   static defaultProps = {
     onChange: noop,
-    value: 'https://jdc.jd.com/img/200x200'
+    value: DEFAULT_IMG
   };
 
   state = {
@@ -40,8 +41,12 @@ export class AcUploadPicture extends React.Component<Props> {
   };
 
   handleChange = (inEvent) => {
-    const { fileList } = inEvent;
+    const { onChange } = this.props;
+    const { file, fileList } = inEvent;
+    const isDone = file.status === 'done';
     this.setState({ fileList });
+    if (!isDone) return;
+    onChange!({ target: { value: file.response } });
   };
 
   render() {
@@ -51,6 +56,7 @@ export class AcUploadPicture extends React.Component<Props> {
       <Upload
         className={cx(CLASS_NAME, className)}
         accept="images/*"
+        name="pic1"
         itemRender={this.handleTemplate}
         maxCount={1}
         multiple={false}

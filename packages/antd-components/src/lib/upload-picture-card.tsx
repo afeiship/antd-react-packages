@@ -96,7 +96,7 @@ export class AcUploadPictureCard extends React.Component<Props, State> {
   doChange = (inValue) => {
     const { onChange } = this.props;
     this.setState({ fileList: inValue }, () => {
-      onChange!({ target: { value: inValue } });
+      onChange!({ target: { value: inValue.map((item) => item.response) } });
     });
   };
 
@@ -112,9 +112,10 @@ export class AcUploadPictureCard extends React.Component<Props, State> {
     return (
       <div className={cx(CLASS_NAME, className)} ref={this.rootRef}>
         <Upload
+          className={cx(`${CLASS_NAME}__uploader`, className)}
           defaultFileList={value}
           listType="picture-card"
-          className={cx(`${CLASS_NAME}__uploader`, className)}
+          name="pic1"
           multiple
           previewFile={this.previewFile}
           onPreview={this.handlePreview}

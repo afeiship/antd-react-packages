@@ -23,8 +23,8 @@
 }
 
 .ac-checkable-tag-list {
-  --ac-checkable-all-active-bg: #1677ff;
-  --ac-checkable-all-inactive-bg: #ededed;
+  --ac-checkable-tag-list-active-bg: #1677ff;
+  --ac-checkable-tag-list-inactive-bg: #ededed;
 
   .ac-is-aside {
     border-radius: 3px;
@@ -32,10 +32,10 @@
 
   .ac-is-item {
     padding: 1px 7px;
-    background: var(--ac-checkable-all-inactive-bg);
+    background: var(--ac-checkable-tag-list-inactive-bg);
 
     &.ant-tag-checkable-checked {
-      background: var(--ac-checkable-all-active-bg)
+      background: var(--ac-checkable-tag-list-active-bg)
     }
   }
 }
@@ -181,13 +181,15 @@
 }
 
 .ac-upload-picture {
+  --ac-upload-picture-height: 120px;
   display: flex;
   align-items: center;
   gap: 10px;
+  height: var(--ac-upload-picture-height);
 
   .is-preview-image {
     border: 1px solid #ccc;
-    width: 120px;
+    width: var(--ac-upload-picture-height);
     height: 120px;
     overflow: hidden;
     border-radius: 100px;
