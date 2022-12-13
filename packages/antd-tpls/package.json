@@ -49,6 +49,6 @@
   "homepage": "https://js.work",
   "dependencies": {
     "@jswork/antd-form-builder": "^1.1.0",
-    "@jswork/react-list": "^1.1.5"
+    "@jswork/react-list": "^1.1.6"
   }
 }
