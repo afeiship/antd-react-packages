@@ -187,6 +187,10 @@
   gap: 10px;
   height: var(--ac-upload-picture-height);
 
+  &.is-empty {
+    height: auto;
+  }
+
   .is-preview-image {
     border: 1px solid #ccc;
     width: var(--ac-upload-picture-height);

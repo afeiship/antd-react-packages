@@ -25,14 +25,7 @@ export class AcUploadPicture extends React.Component<Props> {
   };
 
   state = {
-    fileList: [
-      {
-        uid: -1,
-        name: 'THE_ONLY_ONE',
-        status: 'done',
-        url: this.props.value
-      }
-    ] as any[]
+    fileList: [] as any[]
   };
 
   handleTemplate = (_, inFile) => {
@@ -54,7 +47,7 @@ export class AcUploadPicture extends React.Component<Props> {
     const { fileList } = this.state;
     return (
       <Upload
-        className={cx(CLASS_NAME, className)}
+        className={cx(CLASS_NAME, className, { 'is-empty': !fileList.length })}
         accept="images/*"
         name="pic1"
         itemRender={this.handleTemplate}
