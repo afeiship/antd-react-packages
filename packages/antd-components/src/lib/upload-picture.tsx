@@ -11,7 +11,7 @@ type StdCallback = (inEvent: StdEventTarget) => void;
 
 type Props = {
   className?: string;
-  value?: any[];
+  value?: string;
   defaultValue?: any[];
   onChange?: StdCallback;
 } & DraggerProps;

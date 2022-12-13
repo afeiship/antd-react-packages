@@ -71,7 +71,7 @@ export class AcCheckableDropdown extends React.Component<Props> {
               const val = checked ? items?.map((item) => item.value) : [];
               this.doChange(val);
             }}>
-            ALL
+            {this.t('selectAll')}
           </Checkbox>
         )
       },

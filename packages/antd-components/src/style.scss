@@ -182,14 +182,15 @@
 
 .ac-upload-picture {
   display: flex;
+  align-items: center;
   gap: 10px;
 
   .is-preview-image {
     border: 1px solid #ccc;
     width: 120px;
-    height: 90px;
+    height: 120px;
     overflow: hidden;
-    border-radius: 3px;
+    border-radius: 100px;
     position: relative;
     vertical-align: middle;
 
