@@ -33,6 +33,11 @@ type Props = {
    * The event handler for `change`.
    */
   onChange?: StdCallback;
+  /**
+   * The disabled state.
+   * todo: disabled for checkable.tag
+   */
+  disabled?: boolean;
 };
 
 export class AcCheckableTagList extends React.Component<Props> {
@@ -78,12 +83,16 @@ export class AcCheckableTagList extends React.Component<Props> {
   };
 
   render() {
-    const { className, items, value, onChange, ...props } = this.props;
+    const { className, items, value, onChange, disabled, ...props } = this.props;
     const label = this.t('selectAll');
 
     return (
       <Space direction="horizontal" className={cx(CLASS_NAME, className)}>
-        <Button size="small" onClick={this.handleClearAll} className="ac-is-aside">
+        <Button
+          disabled={disabled}
+          size="small"
+          onClick={this.handleClearAll}
+          className="ac-is-aside">
           {label}
         </Button>
         <ReactList

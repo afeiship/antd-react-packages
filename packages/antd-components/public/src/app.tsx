@@ -37,7 +37,7 @@ export default () => {
         items={items3}
         value={val}
         onChange={(e) => {
-          console.log('e: ', e.target.value);
+          console.log('AcCheckableTagList e: ', e.target.value);
         }}
       />
 

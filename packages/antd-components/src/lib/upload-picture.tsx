@@ -22,14 +22,18 @@ export class AcUploadPicture extends React.Component<Props> {
     onChange: noop
   };
 
-  handleTemplate = (_, file) => {
-    const originalFile = file.originFileObj;
-    const blobURL = URL.createObjectURL(originalFile);
+  handleTemplate = (_, inFile) => {
+    const file = inFile.originFileObj;
+    const blobURL = URL.createObjectURL(file);
     return <Image rootClassName="is-preview-image" src={blobURL} />;
   };
 
+  handleChange = (inEvent) => {
+    console.log('event:', inEvent);
+  };
+
   render() {
-    const { className, value, ...props } = this.props;
+    const { className, value, onChange, ...props } = this.props;
     return (
       <Upload
         className={cx(CLASS_NAME, className)}
@@ -37,6 +41,7 @@ export class AcUploadPicture extends React.Component<Props> {
         itemRender={this.handleTemplate}
         maxCount={1}
         multiple={false}
+        onChange={this.handleChange}
         {...props}>
         <Button icon={<UploadOutlined />}>上传</Button>
       </Upload>
