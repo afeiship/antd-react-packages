@@ -2,8 +2,8 @@ import React from 'react';
 import noop from '@jswork/noop';
 import cx from 'classnames';
 import ReactList from '@jswork/react-list';
-import { Space, Button, Tag } from 'antd';
-import { CloseOutlined } from '@ant-design/icons';
+import { Space, Button } from 'antd';
+import { AcCheckableTag } from './checkable-tag';
 
 const CLASS_NAME = 'ac-checkable-tag-list';
 const locales = {
@@ -35,7 +35,6 @@ type Props = {
   onChange?: StdCallback;
   /**
    * The disabled state.
-   * todo: disabled for checkable.tag
    */
   disabled?: boolean;
 };
@@ -101,10 +100,14 @@ export class AcCheckableTagList extends React.Component<Props> {
             const _value = this.state.value as any[];
             const isChecked = _value?.includes(item.value);
             return (
-              <Tag.CheckableTag
+              <AcCheckableTag
                 className="ac-is-item"
-                checked={isChecked}
-                onChange={(checked) => {
+                toggleable
+                closeable
+                disabled={disabled}
+                value={isChecked}
+                onChange={(inEvent) => {
+                  const checked = inEvent.target.value;
                   const curSet = new Set([..._value]);
                   const method = checked ? 'add' : 'delete';
                   curSet[method](item.value);
@@ -113,8 +116,7 @@ export class AcCheckableTagList extends React.Component<Props> {
                 }}
                 key={index}>
                 {item.label}
-                {isChecked && <CloseOutlined />}
-              </Tag.CheckableTag>
+              </AcCheckableTag>
             );
           }}
           {...props}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import noop from '@jswork/noop';
 import { Tag } from 'antd';
 import cx from 'classnames';
@@ -18,7 +18,8 @@ type Props = {
   className?: string;
   value?: boolean;
   disabled?: boolean;
-  closable?: boolean;
+  closeable?: boolean;
+  toggleable?: boolean;
   onChange?: StdCallback;
   onCloseClick?: StdCallback;
 } & Omit<CheckableTagProps, 'checked'>;
@@ -27,8 +28,9 @@ export class AcCheckableTag extends React.Component<Props> {
   static displayName = CLASS_NAME;
   static defaultProps = {
     value: false,
-    closable: false,
+    closeable: false,
     disabled: false,
+    toggleable: false,
     onChange: noop,
     onCloseClick: noop
   };
@@ -36,6 +38,15 @@ export class AcCheckableTag extends React.Component<Props> {
   state = {
     value: Boolean(this.props.value)
   };
+
+  get closeIcon() {
+    const { closeable, toggleable } = this.props;
+    const { value } = this.state;
+    let view: ReactNode = null;
+    if (closeable) view = <CloseOutlined onClick={this.handleCloseClick} />;
+    if (toggleable) view = value ? view : null;
+    return view;
+  }
 
   shouldComponentUpdate(nextProps: Readonly<Props>): boolean {
     const { value } = nextProps;
@@ -60,7 +71,8 @@ export class AcCheckableTag extends React.Component<Props> {
   };
 
   render() {
-    const { className, value, onChange, onCloseClick, children, closable, ...props } = this.props;
+    const { className, value, onChange, onCloseClick, children, closeable, toggleable, ...props } =
+      this.props;
     const _value = this.state.value;
 
     return (
@@ -70,7 +82,7 @@ export class AcCheckableTag extends React.Component<Props> {
         checked={_value}
         {...props}>
         {children}
-        {closable && <CloseOutlined onClick={this.handleCloseClick} />}
+        {this.closeIcon}
       </CheckableTag>
     );
   }

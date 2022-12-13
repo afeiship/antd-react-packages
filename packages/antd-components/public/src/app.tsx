@@ -44,8 +44,11 @@ export default () => {
       <hr />
 
       <Space>
-        <AcCheckableTag closable>Tag1 + closable</AcCheckableTag>
-        <AcCheckableTag disabled closable>
+        <AcCheckableTag closeable>Tag1 + closeable</AcCheckableTag>
+        <AcCheckableTag closeable toggleable>
+          Tag1 + closeable + toggle
+        </AcCheckableTag>
+        <AcCheckableTag disabled closeable>
           Tag + disabled + closable
         </AcCheckableTag>
       </Space>
