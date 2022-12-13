@@ -17,6 +17,7 @@ type Props = {
 
 export class AcTextarea extends React.Component<Props> {
   static displayName = CLASS_NAME;
+  static formSchema = CLASS_NAME;
   static defaultProps = {
     onChange: noop
   };

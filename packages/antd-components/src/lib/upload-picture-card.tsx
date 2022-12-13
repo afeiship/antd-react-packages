@@ -30,6 +30,7 @@ type State = {
 
 export class AcUploadPictureCard extends React.Component<Props, State> {
   static displayName = CLASS_NAME;
+  static formSchema = CLASS_NAME;
   static defaultProps = {
     onChange: noop
   };

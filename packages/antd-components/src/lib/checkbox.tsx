@@ -3,7 +3,7 @@ import noop from '@jswork/noop';
 import { Checkbox, CheckboxProps } from 'antd';
 import cx from 'classnames';
 
-const CLASS_NAME = 'ac-ant-checkbox';
+const CLASS_NAME = 'ac-checkbox';
 type StdEventTarget = { target: { value: any } };
 type StdCallback = (inEvent: StdEventTarget) => void;
 
@@ -16,6 +16,7 @@ type Props = {
 
 export class AcCheckbox extends React.Component<Props> {
   static displayName = CLASS_NAME;
+  static formSchema = CLASS_NAME;
   static defaultProps = {
     onChange: noop
   };

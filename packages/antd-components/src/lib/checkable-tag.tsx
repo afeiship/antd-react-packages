@@ -27,6 +27,7 @@ type Props = {
 
 export class AcCheckableTag extends React.Component<Props> {
   static displayName = CLASS_NAME;
+  static formSchema = CLASS_NAME;
   static defaultProps = {
     value: false,
     closeable: false,

@@ -21,6 +21,7 @@ type Props = {
 
 export class AcTreeSelect extends React.Component<Props> {
   static displayName = CLASS_NAME;
+  static formSchema = CLASS_NAME;
   static defaultProps = {
     items: [],
     template: treeSelectKv,

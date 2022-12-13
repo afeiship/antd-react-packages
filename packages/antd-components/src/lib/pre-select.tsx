@@ -50,6 +50,7 @@ export type AcPreSelectProps = {
 
 export class AcPreSelect extends React.Component<AcPreSelectProps> {
   static displayName = CLASS_NAME;
+  static formSchema = CLASS_NAME;
   static version = '__VERSION__';
   static defaultProps = {
     onChange: noop,

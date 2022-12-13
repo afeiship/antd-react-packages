@@ -19,6 +19,7 @@ type Props = {
 
 export class AcUploadPicture extends React.Component<Props> {
   static displayName = CLASS_NAME;
+  static formSchema = CLASS_NAME;
   static defaultProps = {
     onChange: noop,
     value: DEFAULT_IMG

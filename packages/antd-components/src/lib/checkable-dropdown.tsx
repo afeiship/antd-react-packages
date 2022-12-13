@@ -24,6 +24,7 @@ type Props = {
 
 export class AcCheckableDropdown extends React.Component<Props> {
   static displayName = CLASS_NAME;
+  static formSchema = CLASS_NAME;
   static id = 1;
   static defaultProps = {
     lang: 'zh-CN',

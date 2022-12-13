@@ -5,7 +5,7 @@ import { Checkbox } from 'antd';
 import cx from 'classnames';
 import { checkboxKv } from '@jswork/antd-tpls';
 
-const CLASS_NAME = 'ac-ant-checkbox';
+const CLASS_NAME = 'ac-checkbox-group';
 type StdEventTarget = { target: { value: any } };
 type StdCallback = (inEvent: StdEventTarget) => void;
 type TemplateCallback = (item: { item: any; index: number }) => React.ReactNode;
@@ -22,6 +22,7 @@ export type AcCheckboxGroupProps = {
 
 export class AcCheckboxGroup extends React.Component<AcCheckboxGroupProps> {
   static displayName = CLASS_NAME;
+  static formSchema = CLASS_NAME;
   static defaultProps = {
     items: [],
     template: checkboxKv,

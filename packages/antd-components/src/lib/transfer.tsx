@@ -20,6 +20,7 @@ type Props = {
 
 export class AcTransfer extends React.Component<Props> {
   static displayName = CLASS_NAME;
+  static formSchema = CLASS_NAME;
   static defaultProps = {
     items: [],
     template: transferLabel,
