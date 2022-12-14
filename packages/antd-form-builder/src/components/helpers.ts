@@ -1,5 +1,5 @@
-import { FieldType, Meta } from 'antd-form-builder';
-import React from 'react';
+import FormBuilder, { FieldType, Meta } from 'antd-form-builder';
+import React, { ReactComponentElement } from 'react';
 import nx from '@jswork/next';
 
 export const toValue = (value: any) => value;
@@ -46,9 +46,8 @@ export const getComputedMeta = (presets: Presets, meta: InnerMeta) => {
  * @param meta
  */
 export const generateHelpers = (meta: InnerMeta) => {
-  const find = (key: string) => meta.fields!.find((item) => item.key === key);
-  const where = (key: string) =>
-    meta.fields!.filter((item) => item.key === key);
+  const find = (key) => meta.fields!.find((item) => item.key === key);
+  const where = (key) => meta.fields!.filter((item) => item.key === key);
   const findBy = (fn: (item: FieldType) => boolean) => meta.fields!.find(fn);
   const whereBy = (fn: (item: FieldType) => boolean) => meta.fields!.filter(fn);
 
@@ -93,4 +92,16 @@ export const initForm = (meta, form): Promise<void> => {
 export const useForceUpdate = () => {
   const [value, setValue] = React.useState(0);
   return () => setValue(value + 1);
+};
+
+export const installWidgets = (inComponents: ReactComponentElement<any>[]) => {
+  Object.keys(inComponents).forEach((item) => {
+    const Comp = inComponents[item];
+    const formSchema = Comp.formSchema;
+    if (formSchema) {
+      const prefix = formSchema.split('-')[0];
+      const key = formSchema.replace(prefix, prefix + ':');
+      FormBuilder.defineWidget(key, Comp);
+    }
+  });
 };

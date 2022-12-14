@@ -42,6 +42,29 @@ export default () => {
     }
   };
 
+  const items3 = [
+    { value: 's1', label: 'Status1' },
+    { value: 's2', label: 'Status2' },
+    { value: 's3', label: 'Status3' }
+  ];
+
+  const meta2 = {
+    fields: [
+      { key: 'login', label: 'LOGIN as' },
+      { key: 'username', label: 'Username' },
+      {
+        key: 'c1',
+        label: 'checkable-dropdown',
+        widget: 'ac:checkable-dropdown',
+        widgetProps: { items: items3 }
+      },
+      { key: 'avatar' },
+      { key: 'photos' }
+    ]
+  };
+
+  console.log('meta2', meta2);
+
   return (
     <Container>
       <FormBuilder
@@ -50,7 +73,7 @@ export default () => {
         meta={meta}
         caption={<h1>Hello FormSchema</h1>}
         onFinish={(e) => {
-          console.log('target e: ', e);
+          console.log('target e: ', e.target.value);
         }}>
         <Row>
           <Col span={8}></Col>
@@ -59,6 +82,16 @@ export default () => {
           </Col>
         </Row>
       </FormBuilder>
+
+      <hr />
+      {/*<FormBuilder meta={meta2} onFinish={(e) => console.log(e.target.value)}>*/}
+      {/*  <Row>*/}
+      {/*    <Col span={8}></Col>*/}
+      {/*    <Col span={16}>*/}
+      {/*      <Button htmlType="submit">Submit</Button>*/}
+      {/*    </Col>*/}
+      {/*  </Row>*/}
+      {/*</FormBuilder>*/}
     </Container>
   );
 };

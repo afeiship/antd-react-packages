@@ -1,5 +1,5 @@
-import FormBuilder, { AntdFormBuilderProps } from './components/form-builder';
-import { useForceUpdate } from './components/helpers';
+import FormBuilder from './components/form-builder';
+import { useForceUpdate, installWidgets } from './components/helpers';
 
 export default FormBuilder;
-export { useForceUpdate, AntdFormBuilderProps };
+export { useForceUpdate, installWidgets };
