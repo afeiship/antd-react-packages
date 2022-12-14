@@ -4,7 +4,10 @@ import FormBuilder from '@jswork/antd-form-builder/src/components/form-builder';
 import styled from 'styled-components';
 import { Button, Col, Row } from 'antd';
 import '@jswork/antd-components/src/style.scss';
-import '../../src/main';
+import install from '../../src/main';
+
+// install all widgets
+install();
 
 const Container = styled.div`
   width: 80%;
