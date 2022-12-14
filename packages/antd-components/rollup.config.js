@@ -71,7 +71,10 @@ export default [
     plugins: [
       scss({ output: 'dist/style.css' }),
       copy({
-        targets: [{ src: 'src/style.scss', dest: 'dist' }]
+        targets: [
+          { src: 'src/style.scss', dest: 'dist' },
+          { src: 'src/styles', dest: 'dist' }
+        ]
       })
     ]
   }
