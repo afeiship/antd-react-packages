@@ -30,10 +30,13 @@ export const getComputedMeta = (presets: Presets, meta: InnerMeta) => {
   const fields = meta.fields!;
   if (!presets) return meta;
   meta.fields = fields.map((field) => {
-    const matchedWidget = nx.get(presets, `widgets.${field.widget}`);
+    // process fields
     const matchedField = nx.get(presets, `fields.${field.key}`);
-    if (!matchedWidget && !matchedField) return field;
-    return { ...matchedWidget, ...matchedField, ...field };
+    if (matchedField) field = nx.mix(null, matchedField, field);
+    // process widgets
+    const matchedWidget = nx.get(presets, `widgets.${field.widget}`);
+    if (matchedWidget) field = nx.mix(null, matchedWidget, field);
+    return field;
   });
   return meta;
 };
