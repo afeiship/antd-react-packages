@@ -30,13 +30,15 @@ export default () => {
   };
 
   const presets = {
-    username: {
-      label: 'User Name',
-      widget: 'input'
-    },
-    password: {
-      label: 'Password',
-      widget: 'password'
+    fields: {
+      username: {
+        label: 'User Name',
+        widget: 'input'
+      },
+      password: {
+        label: 'Password',
+        widget: 'password'
+      }
     }
   };
 
