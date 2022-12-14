@@ -1,5 +1,6 @@
 import { FieldType, Meta } from 'antd-form-builder';
 import React from 'react';
+import nx from '@jswork/next';
 
 export const toValue = (value: any) => value;
 
@@ -13,7 +14,7 @@ export type InnerMeta = {
 
 export interface Presets {
   widgets?: {
-    [key: string]: Omit<FieldType, 'key'>;
+    [key: string]: Omit<FieldType, 'widget'>;
   };
   fields?: {
     [key: string]: Omit<FieldType, 'key'>;
@@ -29,8 +30,8 @@ export const getComputedMeta = (presets: Presets, meta: InnerMeta) => {
   const fields = meta.fields!;
   if (!presets) return meta;
   meta.fields = fields.map((field) => {
-    const matchedWidget = field.widget && presets.widgets![field.widget];
-    const matchedField = field.key && presets.fields![field.key];
+    const matchedWidget = nx.get(presets, `widgets.${field.widget}`);
+    const matchedField = nx.get(presets, `fields.${field.key}`);
     if (!matchedWidget && !matchedField) return field;
     return { ...matchedWidget, ...matchedField, ...field };
   });

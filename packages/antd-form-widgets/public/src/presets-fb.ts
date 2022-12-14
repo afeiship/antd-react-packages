@@ -12,6 +12,16 @@ FormBuilder.defaultProps['presets'] = {
         action: 'http://localhost:3200/weibo_api/interface/pic_upload.php'
       }
     }
+  },
+  fields: {
+    avatar: {
+      label: 'Avatar',
+      widget: 'ac:upload-picture'
+    },
+    photos: {
+      label: 'Photos',
+      widget: 'ac:upload-picture-card'
+    }
   }
 };
 
