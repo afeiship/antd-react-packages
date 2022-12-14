@@ -1,22 +1,16 @@
 import FormBuilder from '@jswork/antd-form-builder/src/components/form-builder';
 
 FormBuilder.defaultProps['presets'] = {
-  // todo: 对 `fields` 进行预设置
-  // fields: {},
-  // todo: 对 `widgets` 进行预设置
-  // widgets: {},
-  avatar: {
-    label: 'Avatar',
-    widget: 'ac:upload-picture',
-    widgetProps: {
-      action: 'http://localhost:3200/weibo_api/interface/pic_upload.php'
-    }
-  },
-  photos: {
-    label: 'Photos',
-    widget: 'ac:upload-picture-card',
-    widgetProps: {
-      action: 'http://localhost:3200/weibo_api/interface/pic_upload.php'
+  widgets: {
+    'ac:upload-picture': {
+      widgetProps: {
+        action: 'http://localhost:3200/weibo_api/interface/pic_upload.php'
+      }
+    },
+    'ac:upload-picture-card': {
+      widgetProps: {
+        action: 'http://localhost:3200/weibo_api/interface/pic_upload.php'
+      }
     }
   }
 };

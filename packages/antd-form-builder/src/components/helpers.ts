@@ -12,7 +12,12 @@ export type InnerMeta = {
 } & Omit<Meta, 'fields' | 'initValues'>;
 
 export interface Presets {
-  [key: string]: Omit<FieldType, 'key'>;
+  widgets?: {
+    [key: string]: Omit<FieldType, 'key'>;
+  };
+  fields?: {
+    [key: string]: Omit<FieldType, 'key'>;
+  };
 }
 
 /**
@@ -24,9 +29,10 @@ export const getComputedMeta = (presets: Presets, meta: InnerMeta) => {
   const fields = meta.fields!;
   if (!presets) return meta;
   meta.fields = fields.map((field) => {
-    const matched = field.key && presets![field.key];
-    if (!matched) return field;
-    return { ...presets![field.key], ...field } as FieldType;
+    const matchedWidget = field.widget && presets.widgets![field.widget];
+    const matchedField = field.key && presets.fields![field.key];
+    if (!matchedWidget && !matchedField) return field;
+    return { ...matchedWidget, ...matchedField, ...field };
   });
   return meta;
 };
