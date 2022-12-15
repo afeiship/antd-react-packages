@@ -21,13 +21,29 @@ import { AcCheckboxGroup } from '@jswork/antd-components';
 
 ### preview
 ```jsx live
-<AcCheckboxGroup
-    value={['a']}
-    items={[
-        { value: 'a', label: 'A' },
-        { value: 'b', label: 'B' },
-        { value: 'c', label: 'C' },
-        { value: 'd', label: 'D' }
-    ]}
-/>
+<Space direction="vertical">
+    <blockquote>
+        <h4>默认 `template/value-label`</h4>
+        <AcCheckboxGroup
+            value={['a']}
+            onChange={e=>console.log('evt1: ',e.target.value)}
+            items={[
+                { value: 'a', label: 'A' },
+                { value: 'b', label: 'B' },
+                { value: 'c', label: 'C' },
+                { value: 'd', label: 'D' }
+            ]}
+        />
+    </blockquote>
+
+    <blockquote>
+        <h4>利用 `template` 来切换数据风格</h4>
+        <AcCheckboxGroup
+            value={['a']}
+            onChange={e=>console.log('evt2: ',e.target.value)}
+            items={['a','aaa','abc','xyz']}
+            template={tpls.checkboxRaw}
+        />
+    </blockquote>
+</Space>
 ```

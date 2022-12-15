@@ -11,10 +11,19 @@ slug: range-picker
 - 统一所有的 `onChagne` 事件
 
 ### 预览
+
+> 显示日期和时间。
+
 ```jsx live
 <AcRangePicker
   onChange={(e) => {
     console.log('range evt: ', e.target.value);
   }}
 />
+```
+
+> 仅显示日期
+
+```jsx live
+<AcRangePicker style={{ width: '100%'}} showTime={false} format="YYYY-MM-DD" />
 ```

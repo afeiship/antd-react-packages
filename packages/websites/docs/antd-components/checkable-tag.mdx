@@ -16,13 +16,15 @@ slug: checkable-tag
 ### 预览
 ```jsx live
 <Space direction="vertical">
-  <AcCheckableTag value={true} closable>显示右边 close icon</AcCheckableTag>
-  <AcCheckableTag closeable toggleable>显示close icon，并且点击可切换 close 的有与无</AcCheckableTag>
-  <AcCheckableTag disabled>
-    Disabled 状态
-  </AcCheckableTag>
-  <AcCheckableTag onChange={e=>console.log('evt: ', e.target.value)}>
-    可以有 onChange 事件
-  </AcCheckableTag>
+  <ul>
+    <li><AcCheckableTag value={true} closeable>显示右边 close icon</AcCheckableTag></li>
+    <li><AcCheckableTag closeable toggleable>显示close icon，并且点击可切换 close 的有与无</AcCheckableTag></li>
+    <li><AcCheckableTag disabled> Disabled 状态 </AcCheckableTag></li>
+    <li>
+        <AcCheckableTag onChange={e=>console.log('evt: ', e.target.value)}>
+        可以有 onChange 事件
+        </AcCheckableTag>
+    </li>
+</ul>
 </Space>
 ```

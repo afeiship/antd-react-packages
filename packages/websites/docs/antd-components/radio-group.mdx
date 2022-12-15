@@ -12,14 +12,25 @@ slug: radio-group
 
 ### 预览
 ```jsx live
-<AcRadioGroup
-  items={[
-    { value: 'v1', label: 'l1' },
-    { value: 'v2', label: 'l2' },
-    { value: 'v3', label: 'l3' },
-  ]}
-  template={tpls.radioKv}
-  templateOptions={{ isButton: true }}
-  buttonStyle={'solid'}
-/>
+<Space direction="vertical">
+    <blockquote>
+        <h4>Default style</h4>
+        <AcRadioGroup items={data.items1} />
+    </blockquote>
+
+    <blockquote>
+        <h4>Default style with Raw template</h4>
+        <AcRadioGroup items={['opt1','opt2','opt3']} template={tpls.radioRaw} />
+    </blockquote>
+
+    <blockquote>
+        <h4>Button style</h4>
+        <AcRadioGroup
+          items={data.items1}
+          template={tpls.radioKv}
+          templateOptions={{ isButton: true }}
+          buttonStyle={'solid'}
+        />
+    </blockquote>
+</Space>
 ```

@@ -12,12 +12,22 @@ slug: date-picker
 
 ### 预览
 ```jsx live
-<AcDatePicker
-  style={{ width: '100%' }}
-  showTime
-  defaultValue="2022-11-14 18:00:25"
-  onChange={(e) => {
-    console.log('e: ', e.target.value);
-  }}
-/>
+<Space>
+    <AcDatePicker
+      style={{ width: '100%' }}
+      showTime
+      defaultValue="2022-11-14 18:00:25"
+      onChange={(e) => {
+        console.log('e: ', e.target.value);
+      }}
+    />
+    <AcDatePicker
+      style={{ width: '100%' }}
+      defaultValue="2022-12-15"
+      format="YYYY-MM-DD"
+      onChange={(e) => {
+        console.log('e: ', e.target.value);
+      }}
+    />
+</Space>
 ```

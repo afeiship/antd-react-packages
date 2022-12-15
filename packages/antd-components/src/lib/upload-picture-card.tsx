@@ -97,7 +97,8 @@ export class AcUploadPictureCard extends React.Component<Props, State> {
   doChange = (inValue) => {
     const { onChange } = this.props;
     this.setState({ fileList: inValue }, () => {
-      onChange!({ target: { value: inValue.map((item) => item.response) } });
+      const value = inValue.map((item) => item.response ?? item);
+      onChange!({ target: { value } });
     });
   };
 

@@ -5,6 +5,8 @@
  */
 
 /* You can override the default Infima variables here. */
+@import "@jswork/antd-components/dist/style.css";
+
 :root {
   --ifm-color-primary: #25c2a0;
   --ifm-color-primary-dark: rgb(33, 175, 144);
@@ -30,4 +32,6 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
 .markdown li + li {
   margin-top: 0;
 }
+
+
 /*@import "antd/dist/antd.css";*/

@@ -12,10 +12,12 @@ slug: checkbox
 
 ### 预览
 ```jsx live
-<AcCheckbox
-  onChange={(e) => {
-    console.log('e checked: ', e);
-  }}>
-  I Agree
-</AcCheckbox>
+<Space>
+    <AcCheckbox value={true} onChange={(e) => { console.log('evt1 : ', e.target.value) }}>
+      I Agree
+    </AcCheckbox>
+    <AcCheckbox onChange={(e) => { console.log('evt2 : ', e.target.value) }}>
+      I Don't Agree
+    </AcCheckbox>
+</Space>
 ```
