@@ -6,16 +6,23 @@ slug: checkable-tag
 ---
 
 ### 简介
-- 一个常见的 filter 多选逻辑，本质上是另一个 checkbox-group
+- 一个常见的 `filter` 多选逻辑，本质上是另一个 `checkbox-group`
 - 添加 `items/template` 接口
 - 统一所有的 `onChagne` 事件
+- 增加 `disabled` 属性
+- 增加 `toggleable` 属性
+- 增加 `closeable` 属性，右侧显示小的 `close icon`
 
 ### 预览
 ```jsx live
 <Space direction="vertical">
-  <AcCheckableTag closable>Tag1 + closable</AcCheckableTag>
-  <AcCheckableTag disabled closable>
-    Tag + disabled + closable
+  <AcCheckableTag value={true} closable>显示右边 close icon</AcCheckableTag>
+  <AcCheckableTag closeable toggleable>显示close icon，并且点击可切换 close 的有与无</AcCheckableTag>
+  <AcCheckableTag disabled>
+    Disabled 状态
+  </AcCheckableTag>
+  <AcCheckableTag onChange={e=>console.log('evt: ', e.target.value)}>
+    可以有 onChange 事件
   </AcCheckableTag>
 </Space>
 ```

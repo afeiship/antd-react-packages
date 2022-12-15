@@ -71,13 +71,6 @@ export class AcCheckableTagList extends React.Component<Props> {
     });
   };
 
-  handleSelectAll = (inEvent) => {
-    const checked = inEvent.target.checked;
-    const { items } = this.props;
-    const values = items!.map((item) => item.value);
-    this.handleChange(checked ? values : []);
-  };
-
   handleClearAll = () => {
     this.handleChange([]);
   };

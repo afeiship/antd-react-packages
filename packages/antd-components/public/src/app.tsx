@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import {
+  AcCheckboxGroup,
   AcCheckableDropdown,
   AcCheckableTagList,
   AcCheckableTag,
@@ -15,21 +16,31 @@ const Container = styled.div`
 `;
 
 export default () => {
-  const [val, setVal] = useState<string[]>([]);
+  const [val, setVal] = useState<string[]>(['s1']);
   const items3 = [
     { value: 's1', label: 'Status1' },
     { value: 's2', label: 'Status2' },
-    { value: 's3', label: 'Status3' }
+    { value: 's3', label: 'Status3' },
+    { value: 's4', label: 'Status4' },
+    { value: 's5', label: 'Status5' }
   ];
 
   useEffect(() => {
     setTimeout(() => {
-      setVal(['s1']);
+      setVal(['s1', 's3']);
     }, 1000);
   }, []);
 
   return (
     <Container>
+      <AcCheckboxGroup
+        value={val}
+        items={items3}
+        onChange={(e) => {
+          console.log('AcCheckboxGroup e: ', e.target.value);
+        }}
+      />
+      <hr />
       <AcUploadPicture
         onChange={(e) => console.log(e.target.value)}
         action="http://localhost:3200/weibo_api/interface/pic_upload.php"

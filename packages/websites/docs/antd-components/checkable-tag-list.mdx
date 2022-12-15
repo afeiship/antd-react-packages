@@ -1,8 +1,8 @@
 ---
-id: checkable-all
-title: checkable-all
-sidebar_label: checkable-all
-slug: checkable-all
+id: checkable-tag-list
+title: checkable-tag-list
+sidebar_label: checkable-tag-list
+slug: checkable-tag-list
 ---
 
 ### 简介
@@ -12,13 +12,29 @@ slug: checkable-all
 
 ### 预览
 ```jsx live
-<AcCheckableAll
+<AcCheckableTagList
   items={[
     { value: 's1', label: 'Status1' },
     { value: 's2', label: 'Status2' },
     { value: 's3', label: 'Status3' },
   ]}
   lang="en-US"
+  onChange={(e) => {
+    console.log('evt: ', e.target.value);
+  }}
+/>
+```
+
+> 全中文的情况
+
+```jsx live
+<AcCheckableTagList
+  items={[
+    { value: 's1', label: '状态1' },
+    { value: 's2', label: '状态2' },
+    { value: 's3', label: '状态3' },
+  ]}
+  lang="zh-CN"
   onChange={(e) => {
     console.log('evt: ', e.target.value);
   }}
