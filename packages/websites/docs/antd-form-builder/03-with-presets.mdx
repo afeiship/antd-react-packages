@@ -10,11 +10,16 @@ slug: with-presets
 - 使用 `presets` 添加 field 相关字段的预设值，如 `label`、`placeholder`、`help`、`rules` 等
 
 ### 预览
+
+> fields 的 presets 预设。
+
 ```jsx live
 <FormBuilder
   presets={{
-    username: { label: 'User Name', widget: 'input', required: true },
-    password: { label: 'Password', widget: 'password', required: true },
+    fields:{
+        username: { label: 'User Name', widget: 'input', required: true },
+        password: { label: 'Password', widget: 'password', required: true },
+    }
   }}
   meta={{
     initialValues: {
@@ -28,7 +33,48 @@ slug: with-presets
     ],
   }}
   onFinish={(e) => {
-    console.log('target e: ', e);
+    console.log('evt1: ', e.target.value);
+  }}>
+  <Row>
+    <Col span={8}></Col>
+    <Col span={16}>
+      <Button htmlType="submit">Submit</Button>
+    </Col>
+  </Row>
+</FormBuilder>
+```
+
+> widgets 的 presets 预设。
+
+```jsx live
+<FormBuilder
+  presets={{
+    widgets:{
+        'checkbox-group': {
+            label: 'Show Hobby',
+            widgetProps:{
+                options: [
+                    { label: 'Football', value: 'football' },
+                    { label: 'Basketball', value: 'basketball' },
+                ]
+            }
+        },
+        'password': { label: 'Password', widget: 'password', required: true },
+    }
+  }}
+  meta={{
+    initialValues: {
+      username: 'aric',
+      password: '123123',
+    },
+    fields: [
+      { key: 'username', label:'Username' },
+      { key: 'password', widget:'password' },
+      { key: 'show-hobby', widget:'checkbox-group' },
+    ],
+  }}
+  onFinish={(e) => {
+    console.log('evt2: ', e.target.value);
   }}>
   <Row>
     <Col span={8}></Col>
