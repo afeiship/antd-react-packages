@@ -37,8 +37,8 @@ export class AcCheckboxGroup extends React.Component<AcCheckboxGroupProps> {
 
   shouldComponentUpdate(nextProps: Readonly<AcCheckboxGroupProps>): boolean {
     const { value } = nextProps;
-    const isNotSameValue = nextProps.value !== this.props.value;
-    if (isNotSameValue && this.state.value !== value) {
+    const isNewValue = nextProps.value !== this.props.value;
+    if (isNewValue && this.state.value !== value) {
       this.setState({ value });
     }
     return true;
@@ -55,7 +55,8 @@ export class AcCheckboxGroup extends React.Component<AcCheckboxGroupProps> {
   };
 
   render() {
-    const { className, items, template, onChange, onSearch, children, value, ...props } = this.props;
+    const { className, items, template, onChange, onSearch, children, value, ...props } =
+      this.props;
     const { value: stateValue } = this.state;
 
     return (
