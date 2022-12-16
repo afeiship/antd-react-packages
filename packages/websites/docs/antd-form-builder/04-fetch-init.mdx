@@ -15,8 +15,10 @@ slug: fetch-init
 ```jsx live
 <FormBuilder
   presets={{
-    username: { label: 'User Name', widget: 'input', required: true },
-    password: { label: 'Password', widget: 'password', required: true },
+    fields:{
+      username: { label: 'User Name', widget: 'input', required: true },
+      password: { label: 'Password', widget: 'password', required: true },
+    }
   }}
   meta={{
     initialValues: [

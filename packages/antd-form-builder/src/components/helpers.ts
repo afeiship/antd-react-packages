@@ -1,8 +1,6 @@
 import FormBuilder, { FieldType, Meta } from 'antd-form-builder';
-import React, { ReactComponentElement } from 'react';
+import React from 'react';
 import nx from '@jswork/next';
-
-export const toValue = (value: any) => value;
 
 export type InnerMeta = {
   fields?: FieldType[];
@@ -74,7 +72,7 @@ export const initForm = (meta, form): Promise<void> => {
   return new Promise((resolve) => {
     if (isFromAsync) {
       const [api, transform] = initValues;
-      const _transform = transform || toValue;
+      const _transform = transform || nx.stubValue;
       api.then((res) => {
         form.setFieldsValue(_transform(res));
         resolve();
@@ -94,13 +92,13 @@ export const useForceUpdate = () => {
   return () => setValue(value + 1);
 };
 
-export const installWidgets = (inComponents: ReactComponentElement<any>[]) => {
+export const installWidgets = (inComponents) => {
   Object.keys(inComponents).forEach((item) => {
     const Comp = inComponents[item];
     const formSchema = Comp.formSchema;
     if (formSchema) {
       const prefix = formSchema.split('-')[0];
-      const key = formSchema.replace(prefix, prefix + ':');
+      const key = formSchema.replace(prefix + '-', prefix + ':');
       FormBuilder.defineWidget(key, Comp);
     }
   });

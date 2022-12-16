@@ -42,8 +42,10 @@ export const pipes1 = [
 <FormBuilder
   pipes={data.pipes1}
   presets={{
-    username: { label: 'User Name', widget: 'input', required: true },
-    password: { label: 'Password', widget: 'password', required: true },
+    fields:{
+      username: { label: 'User Name', widget: 'input', required: true },
+      password: { label: 'Password', widget: 'password', required: true },
+    }
   }}
   meta={{
     initialValues: [

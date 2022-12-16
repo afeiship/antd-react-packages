@@ -1,8 +1,8 @@
 ---
-id: 03-with-presets
-title: with-presets
-sidebar_label: with-presets
-slug: with-presets
+id: 03-presets
+title: presets
+sidebar_label: presets
+slug: presets
 ---
 
 ### 功能
@@ -16,10 +16,10 @@ slug: with-presets
 ```jsx live
 <FormBuilder
   presets={{
-    fields:{
-        username: { label: 'User Name', widget: 'input', required: true },
-        password: { label: 'Password', widget: 'password', required: true },
-    }
+    fields: {
+      username: { label: 'User Name', widget: 'input', required: true },
+      password: { label: 'Password', widget: 'password', required: true },
+    },
   }}
   meta={{
     initialValues: {
@@ -49,18 +49,18 @@ slug: with-presets
 ```jsx live
 <FormBuilder
   presets={{
-    widgets:{
-        'checkbox-group': {
-            label: 'Show Hobby',
-            widgetProps:{
-                options: [
-                    { label: 'Football', value: 'football' },
-                    { label: 'Basketball', value: 'basketball' },
-                ]
-            }
+    widgets: {
+      'checkbox-group': {
+        label: 'Show Hobby',
+        widgetProps: {
+          options: [
+            { label: 'Football', value: 'football' },
+            { label: 'Basketball', value: 'basketball' },
+          ],
         },
-        'password': { label: 'Password', widget: 'password', required: true },
-    }
+      },
+      'password': { label: 'Password', widget: 'password', required: true },
+    },
   }}
   meta={{
     initialValues: {
@@ -68,9 +68,9 @@ slug: with-presets
       password: '123123',
     },
     fields: [
-      { key: 'username', label:'Username' },
-      { key: 'password', widget:'password' },
-      { key: 'show-hobby', widget:'checkbox-group' },
+      { key: 'username', label: 'Username' },
+      { key: 'password', widget: 'password' },
+      { key: 'show-hobby', widget: 'checkbox-group' },
     ],
   }}
   onFinish={(e) => {

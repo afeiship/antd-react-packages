@@ -1,0 +1,34 @@
+---
+id: 06-customize-widgets
+title: customize-widgets
+sidebar_label: customize-widgets
+slug: customize-widgets
+---
+
+### 功能
+- 基于之前的实现，添加了预设功能
+- 使用 `pipes` 为 `meta` 添加一些动态功能，如下面例子中的，当 `show-hobby` 为 `true` 时，显示爱好列表，否则不显示
+- `pipes` 实现原理是: `pipe` 函数，将多个函数组合成一个函数，从左到右执行
+- 注意: 与 `compose` 不同， `compose` 是从右到左执行，每个函数的返回值作为下一个函数的参数
+
+
+```jsx live
+<FormBuilder
+  meta={{
+    fields: [
+      { key: 'username', widget: 'input', label: 'Username' },
+      { key: 'password', widget: 'input', label: 'Password' },
+      { key: 'avatar', widget: 'ac:upload-picture', label: 'Avatar' },
+    ],
+  }}
+  onFinish={(e) => {
+    console.log('target e: ', e);
+  }}>
+  <Row>
+    <Col span={8}></Col>
+    <Col span={16}>
+      <Button htmlType="submit">Submit</Button>
+    </Col>
+  </Row>
+</FormBuilder>
+```

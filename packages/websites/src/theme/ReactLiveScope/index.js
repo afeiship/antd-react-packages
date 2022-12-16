@@ -2,38 +2,10 @@ import React from "react";
 import * as tpls from "@jswork/antd-tpls";
 import { Select, Checkbox, Row, Col, Button, Space } from "antd";
 import * as data from "./data";
-import FormBuilder, { useForceUpdate } from "@jswork/antd-form-builder/src/main";
-import {
-  AcSelect,
-  AcCheckableDropdown,
-  AcCheckableTag,
-  AcCheckableTagList,
-  AcCheckbox,
-  AcCheckboxGroup,
-  AcDatePicker,
-  AcInput,
-  AcInputNumber,
-  AcRadioGroup,
-  AcRate,
-  AcSwitch,
-  AcTextarea,
-  AcTransfer,
-  AcRangePicker,
-  AcSearch,
-  AcUploadDragger,
-  AcPreSelect,
-  AcBreadcrumb,
-  AcEditableTagGroup,
-  AcTree,
-  AcTreeSelect,
-  AcUploadPictureCard,
-  AcUploadPicture,
-  AcTimePicker,
-  AcSlider,
-  AcSliderRange,
-} from "@jswork/antd-components/src/main";
-
-// import "@jswork/antd-components/src/style.scss";
+import FormBuilder, {
+  installWidgets,
+} from "@jswork/antd-form-builder/src/main";
+import * as AcComponents from "@jswork/antd-components/src/main";
 
 const ReactLiveScope = {
   React,
@@ -41,36 +13,8 @@ const ReactLiveScope = {
   tpls,
   data,
 
-  AcSelect,
-  AcCheckableDropdown,
-  AcCheckableTag,
-  AcCheckableTagList,
-  AcCheckbox,
-  AcCheckboxGroup,
-  AcDatePicker,
-  AcInput,
-  AcInputNumber,
-  AcRadioGroup,
-  AcRate,
-  AcSwitch,
-  AcTextarea,
-  AcTransfer,
-  AcRangePicker,
-  AcSearch,
-  AcUploadDragger,
-  AcPreSelect,
-  AcBreadcrumb,
-  AcEditableTagGroup,
-  AcTree,
-  AcTreeSelect,
-  AcUploadPictureCard,
-  AcUploadPicture,
-  AcTimePicker,
-  AcSlider,
-  AcSliderRange,
-
+  ...AcComponents,
   FormBuilder,
-  useForceUpdate,
 
   // antd
   Select,
@@ -80,5 +24,7 @@ const ReactLiveScope = {
   Button,
   Space,
 };
+
+installWidgets(AcComponents);
 
 export default ReactLiveScope;
