@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import {
   AcSelect,
+  AcTransfer,
   AcCheckboxGroup,
   AcCheckableDropdown,
   AcCheckableTagList,
@@ -29,11 +30,13 @@ export default () => {
   useEffect(() => {
     setTimeout(() => {
       setVal(['s1', 's3']);
-    }, 1000);
+    }, 1800);
   }, []);
 
   return (
     <Container>
+      <AcTransfer value={val} items={items3} onChange={(e) => console.log('AcTransfer', e.target.value)} />
+      <hr />
       <AcSelect items={items3} value={'s1'} onChange={(e) => console.log(e.target.value)} />
       <AcSelect
         items={items3}

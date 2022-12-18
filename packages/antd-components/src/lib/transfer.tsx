@@ -14,7 +14,6 @@ type Props = {
   items?: any[];
   template: TemplateCallback;
   value?: any[];
-  defaultValue?: any[];
   onChange?: StdCallback;
 } & TransferProps<any>;
 
@@ -34,8 +33,17 @@ export class AcTransfer extends React.Component<Props> {
   }
 
   state = {
-    value: this.props.defaultValue
+    value: this.props.value
   };
+
+  shouldComponentUpdate(nextProps: Readonly<Props>): boolean {
+    const { value } = nextProps;
+    const isNewValue = this.props.value !== value;
+    if (isNewValue && value !== this.state.value) {
+      this.setState({ value });
+    }
+    return true;
+  }
 
   handleChange = (inEvent) => {
     const { onChange } = this.props;
@@ -46,7 +54,6 @@ export class AcTransfer extends React.Component<Props> {
   render() {
     const {
       className,
-      defaultValue,
       value,
       onChange,
       items,
