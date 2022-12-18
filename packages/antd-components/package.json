@@ -78,7 +78,7 @@
     "@jswork/noop": "^1.0.0",
     "@jswork/react-input-autosize": "^1.0.0",
     "@jswork/react-interactive-list": "^1.2.0",
-    "@jswork/react-list": "^1.1.6",
+    "@jswork/react-list": "^1.2.1",
     "classnames": "^2.2.6",
     "react-input-autosize": "^3.0.0",
     "sortablejs": "^1.15.0"

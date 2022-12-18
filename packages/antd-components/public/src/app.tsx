@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import {
+  AcSelect,
   AcCheckboxGroup,
   AcCheckableDropdown,
   AcCheckableTagList,
@@ -33,6 +34,14 @@ export default () => {
 
   return (
     <Container>
+      <AcSelect items={items3} value={'s1'} onChange={(e) => console.log(e.target.value)} />
+      <AcSelect
+        items={items3}
+        mode="multiple"
+        value={['s1', 's3']}
+        onChange={(e) => console.log(e.target.value)}
+      />
+      <hr />
       <AcCheckboxGroup
         value={val}
         items={items3}
