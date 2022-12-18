@@ -23,7 +23,6 @@ export class AcTransfer extends React.Component<Props> {
   static defaultProps = {
     items: [],
     template: transferLabel,
-    defaultValue: [],
     onChange: noop
   };
 
@@ -52,14 +51,7 @@ export class AcTransfer extends React.Component<Props> {
   };
 
   render() {
-    const {
-      className,
-      value,
-      onChange,
-      items,
-      template,
-      ...props
-    } = this.props;
+    const { className, value, onChange, items, template, ...props } = this.props;
 
     const _value = this.state.value;
 
