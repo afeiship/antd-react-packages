@@ -19,6 +19,7 @@ const Container = styled.div`
 
 export default () => {
   const [val, setVal] = useState<string[]>(['s1']);
+  const [pval, setPval] = useState<any>([]);
   const items3 = [
     { value: 's1', label: 'Status1' },
     { value: 's2', label: 'Status2' },
@@ -33,9 +34,19 @@ export default () => {
     }, 1800);
   }, []);
 
+  useEffect(() => {
+    setTimeout(() => {
+      setPval(['https://tva1.js.work/large/da432263ly1hasqfsqfmmj20ei0bcweo.jpg']);
+    }, 1800);
+  }, []);
+
   return (
     <Container>
-      <AcTransfer value={val} items={items3} onChange={(e) => console.log('AcTransfer', e.target.value)} />
+      <AcTransfer
+        value={val}
+        items={items3}
+        onChange={(e) => console.log('AcTransfer', e.target.value)}
+      />
       <hr />
       <AcSelect items={items3} value={'s1'} onChange={(e) => console.log(e.target.value)} />
       <AcSelect
@@ -59,6 +70,8 @@ export default () => {
       />
       <hr />
       <AcUploadPictureCard
+        value={pval}
+        slim
         onChange={(e) => console.log(e.target.value)}
         action="http://localhost:3200/weibo_api/interface/pic_upload.php"
       />

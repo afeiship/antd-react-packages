@@ -14,6 +14,10 @@ const styleOpts = { id: 'viewer-style' };
 const scriptOpts = { id: 'viewerjs' };
 const styleURL = 'https://unpkg.com/viewerjs@1.11.1/dist/viewer.min.css';
 const scriptURL = 'https://unpkg.com/viewerjs@1.11.1/dist/viewer.min.js';
+const gpid = (url) => {
+  const filename = url.substring(url.lastIndexOf('/') + 1);
+  return filename.split('.')[0];
+};
 
 type StdEventTarget = { target: { value: any } };
 type StdCallback = (inEvent: StdEventTarget) => void;
@@ -22,6 +26,7 @@ type Props = {
   className?: string;
   value?: any[];
   onChange?: StdCallback;
+  slim?: (item) => string;
 } & DraggerProps;
 
 type State = {
@@ -32,7 +37,8 @@ export class AcUploadPictureCard extends React.Component<Props, State> {
   static displayName = CLASS_NAME;
   static formSchema = CLASS_NAME;
   static defaultProps = {
-    onChange: noop
+    onChange: noop,
+    slim: (item) => item.url || `https://tva1.js.work/large/${item.pid}.jpg`
   };
 
   private rootRef = React.createRef<HTMLDivElement>();
@@ -43,12 +49,35 @@ export class AcUploadPictureCard extends React.Component<Props, State> {
     fileList: this.props.value || []
   };
 
+  toFileList = (inUrls: any[]) => {
+    return inUrls.map((item) => {
+      if (typeof item !== 'string') return item;
+      return { uid: gpid(item), url: item };
+    });
+  };
+
+  toResponse = (inFileList) => {
+    const { slim } = this.props;
+    if (!slim) return inFileList;
+    return inFileList.map((item) => {
+      return typeof item === 'string' ? item : slim(item);
+    });
+  };
+
   async componentDidMount() {
     const { rootRef } = this;
     const root = rootRef.current as HTMLDivElement;
     const el = root.querySelector('.ant-upload-list');
     this.mountSortable(el);
     await this.mountViewer(el);
+  }
+
+  shouldComponentUpdate(nextProps: Readonly<Props>): boolean {
+    const { value } = nextProps;
+    if (value !== this.props.value) {
+      this.setState({ fileList: value as any[] });
+    }
+    return true;
   }
 
   mountSortable(el) {
@@ -84,6 +113,7 @@ export class AcUploadPictureCard extends React.Component<Props, State> {
     const isDone = (file) => !file.status || file.status === 'done';
     const done = fileList.every(isDone);
     if (done) this.doChange(fileList);
+    this.doChange(fileList);
   };
 
   handleSortEnd = (inEvent) => {
@@ -97,7 +127,8 @@ export class AcUploadPictureCard extends React.Component<Props, State> {
   doChange = (inValue) => {
     const { onChange } = this.props;
     this.setState({ fileList: inValue }, () => {
-      const value = inValue.map((item) => item.response ?? item);
+      const _value = inValue.map((item) => item.response ?? item);
+      const value = this.toResponse(_value);
       onChange!({ target: { value } });
     });
   };
@@ -111,11 +142,15 @@ export class AcUploadPictureCard extends React.Component<Props, State> {
 
   render() {
     const { className, value, onChange, ...props } = this.props;
+    const { fileList } = this.state;
+
+    console.log('fileList:', fileList, this.toFileList(fileList));
+
     return (
       <div className={cx(CLASS_NAME, className)} ref={this.rootRef}>
         <Upload
           className={cx(`${CLASS_NAME}__uploader`, className)}
-          defaultFileList={value}
+          fileList={this.toFileList(fileList)}
           listType="picture-card"
           name="pic1"
           multiple
