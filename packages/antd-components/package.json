@@ -76,7 +76,6 @@
     "@jswork/next-dom-event": "^1.0.4",
     "@jswork/next-tree-walk": "^1.0.5",
     "@jswork/noop": "^1.0.0",
-    "@jswork/react-input-autosize": "^1.0.0",
     "@jswork/react-interactive-list": "^1.2.0",
     "@jswork/react-list": "^1.2.1",
     "classnames": "^2.2.6",
