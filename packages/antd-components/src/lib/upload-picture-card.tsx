@@ -110,9 +110,6 @@ export class AcUploadPictureCard extends React.Component<Props, State> {
 
   handleChange = (inEvent: UploadChangeParam<UploadFile<any>>) => {
     const { fileList } = inEvent;
-    const isDone = (file) => !file.status || file.status === 'done';
-    const done = fileList.every(isDone);
-    if (done) this.doChange(fileList);
     this.doChange(fileList);
   };
 
@@ -143,8 +140,6 @@ export class AcUploadPictureCard extends React.Component<Props, State> {
   render() {
     const { className, value, onChange, ...props } = this.props;
     const { fileList } = this.state;
-
-    console.log('fileList:', fileList, this.toFileList(fileList));
 
     return (
       <div className={cx(CLASS_NAME, className)} ref={this.rootRef}>

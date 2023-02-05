@@ -71,7 +71,6 @@ export default () => {
       <hr />
       <AcUploadPictureCard
         value={pval}
-        slim
         onChange={(e) => console.log(e.target.value)}
         action="http://localhost:3200/weibo_api/interface/pic_upload.php"
       />
