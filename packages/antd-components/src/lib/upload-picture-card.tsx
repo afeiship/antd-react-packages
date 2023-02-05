@@ -26,6 +26,7 @@ type Props = {
   className?: string;
   value?: any[];
   onChange?: StdCallback;
+  baseURL?: string;
   slim?: (item) => string;
 } & DraggerProps;
 
