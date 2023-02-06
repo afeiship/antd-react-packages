@@ -99,5 +99,6 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/afeiship/boilerplate-react-ts-component.git"
-  }
+  },
+  "gitHead": "24578827e1bcc2e6fe213fe2103ac623e1e89a62"
 }
