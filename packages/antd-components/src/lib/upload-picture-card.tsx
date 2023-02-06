@@ -82,7 +82,7 @@ export class AcUploadPictureCard extends React.Component<Props, State> {
 
   mountSortable(el) {
     this.sortable = new Sortable(el, {
-      animation: 160,
+      animation: 150,
       draggable: '.ant-upload-list-item-container',
       ghostClass: 'sortable-ghost',
       chosenClass: 'sortable-chosen',
