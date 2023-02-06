@@ -110,7 +110,10 @@ export class AcUploadPictureCard extends React.Component<Props, State> {
 
   handleChange = (inEvent: UploadChangeParam<UploadFile<any>>) => {
     const { fileList } = inEvent;
-    this.doChange(fileList);
+    const isDone = (file) => !file.status || file.status === 'done';
+    const done = fileList.every(isDone);
+    this.setState({ fileList });
+    if (done) this.doChange(fileList);
   };
 
   handleSortEnd = (inEvent) => {
