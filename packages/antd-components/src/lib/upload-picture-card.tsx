@@ -58,7 +58,9 @@ export class AcUploadPictureCard extends React.Component<Props, State> {
   toChangedValue = (inFileList: any[]) => {
     const { baseURL } = this.props;
     return inFileList.map((item) => {
-      return typeof item === 'string' ? item : item.url || `${baseURL}/large/${item.pid}.jpg`;
+      return typeof item === 'string'
+        ? item
+        : item.thumbUrl || item.url || `${baseURL}/large/${item.pid}.jpg`;
     });
   };
 
