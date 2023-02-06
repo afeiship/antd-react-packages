@@ -9,15 +9,14 @@ import { UploadOutlined } from '@ant-design/icons';
 import { UploadChangeParam } from 'antd/es/upload/interface';
 import { UploadFile } from 'antd';
 
+import nx from '@jswork/next';
+import '@jswork/next-gpid';
+
 const CLASS_NAME = 'ac-upload-picture-card';
 const styleOpts = { id: 'viewer-style' };
 const scriptOpts = { id: 'viewerjs' };
 const styleURL = 'https://unpkg.com/viewerjs@1.11.1/dist/viewer.min.css';
 const scriptURL = 'https://unpkg.com/viewerjs@1.11.1/dist/viewer.min.js';
-const gpid = (url) => {
-  const filename = url.substring(url.lastIndexOf('/') + 1);
-  return filename.split('.')[0];
-};
 
 type StdEventTarget = { target: { value: any } };
 type StdCallback = (inEvent: StdEventTarget) => void;
@@ -27,11 +26,10 @@ type Props = {
   value?: any[];
   onChange?: StdCallback;
   baseURL?: string;
-  slim?: (item) => string;
 } & DraggerProps;
 
 type State = {
-  fileList: UploadFile[];
+  fileList: UploadFile[] | string[];
 };
 
 export class AcUploadPictureCard extends React.Component<Props, State> {
@@ -39,7 +37,7 @@ export class AcUploadPictureCard extends React.Component<Props, State> {
   static formSchema = CLASS_NAME;
   static defaultProps = {
     onChange: noop,
-    slim: (item) => item.url || `https://tva1.js.work/large/${item.pid}.jpg`
+    baseURL: 'https://tva1.js.work'
   };
 
   private rootRef = React.createRef<HTMLDivElement>();
@@ -53,15 +51,14 @@ export class AcUploadPictureCard extends React.Component<Props, State> {
   toFileList = (inUrls: any[]) => {
     return inUrls.map((item) => {
       if (typeof item !== 'string') return item;
-      return { uid: gpid(item), url: item };
+      return { uid: nx.gpid(item), url: item };
     });
   };
 
-  toResponse = (inFileList) => {
-    const { slim } = this.props;
-    if (!slim) return inFileList;
+  toChangedValue = (inFileList: any[]) => {
+    const { baseURL } = this.props;
     return inFileList.map((item) => {
-      return typeof item === 'string' ? item : slim(item);
+      return typeof item === 'string' ? item : item.url || `${baseURL}/large/${item.pid}.jpg`;
     });
   };
 
@@ -126,7 +123,7 @@ export class AcUploadPictureCard extends React.Component<Props, State> {
     const { onChange } = this.props;
     this.setState({ fileList: inValue }, () => {
       const _value = inValue.map((item) => item.response ?? item);
-      const value = this.toResponse(_value);
+      const value = this.toChangedValue(_value);
       onChange!({ target: { value } });
     });
   };
