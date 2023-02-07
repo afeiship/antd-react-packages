@@ -19,7 +19,7 @@ const Container = styled.div`
 
 export default () => {
   const [val, setVal] = useState<string[]>(['s1']);
-  const [pval, setPval] = useState<any>([]);
+  const [pval, setPval] = useState<any>(['https://tva1.sinaimg.cn/large/007S8ZIlgy1gexw87htqhj305k05k74o.jpg']);
   const items3 = [
     { value: 's1', label: 'Status1' },
     { value: 's2', label: 'Status2' },

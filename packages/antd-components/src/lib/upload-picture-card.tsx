@@ -29,7 +29,7 @@ type Props = {
 } & DraggerProps;
 
 type State = {
-  fileList: UploadFile[] | string[];
+  fileList: UploadFile[];
 };
 
 export class AcUploadPictureCard extends React.Component<Props, State> {
@@ -37,16 +37,13 @@ export class AcUploadPictureCard extends React.Component<Props, State> {
   static formSchema = CLASS_NAME;
   static defaultProps = {
     onChange: noop,
+    value: [],
     baseURL: 'https://tva1.js.work'
   };
 
   private rootRef = React.createRef<HTMLDivElement>();
   private sortable: any = null;
   private viewer: any = null;
-
-  state = {
-    fileList: this.props.value || []
-  };
 
   toFileList = (inUrls: any[]) => {
     return inUrls.map((item) => {
@@ -64,6 +61,13 @@ export class AcUploadPictureCard extends React.Component<Props, State> {
     });
   };
 
+  constructor(inProps) {
+    super(inProps);
+    this.state = {
+      fileList: this.toFileList(inProps.value)
+    };
+  }
+
   async componentDidMount() {
     const { rootRef } = this;
     const root = rootRef.current as HTMLDivElement;
@@ -75,7 +79,7 @@ export class AcUploadPictureCard extends React.Component<Props, State> {
   shouldComponentUpdate(nextProps: Readonly<Props>): boolean {
     const { value } = nextProps;
     if (value !== this.props.value) {
-      this.setState({ fileList: value as any[] });
+      this.setState({ fileList: this.toFileList(value as any[]) });
     }
     return true;
   }
@@ -148,7 +152,7 @@ export class AcUploadPictureCard extends React.Component<Props, State> {
       <div className={cx(CLASS_NAME, className)} ref={this.rootRef}>
         <Upload
           className={cx(`${CLASS_NAME}__uploader`, className)}
-          fileList={this.toFileList(fileList)}
+          fileList={fileList}
           listType="picture-card"
           name="pic1"
           multiple
