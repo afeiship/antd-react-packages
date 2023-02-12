@@ -8,6 +8,8 @@ import { DraggerProps } from 'antd/es/upload';
 const CLASS_NAME = 'ac-upload-picture';
 const DEFAULT_IMG = 'https://jdc.jd.com/img/200x200';
 
+// todo: has value initial
+
 type StdEventTarget = { target: { value: any } };
 type StdCallback = (inEvent: StdEventTarget) => void;
 
