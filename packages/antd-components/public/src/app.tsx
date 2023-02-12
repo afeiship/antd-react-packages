@@ -36,7 +36,7 @@ export default () => {
 
   useEffect(() => {
     setTimeout(() => {
-      setPval(['https://tva1.js.work/large/da432263ly1hasqfsqfmmj20ei0bcweo.jpg']);
+      setPval('https://tva1.js.work/large/da432263ly1hasqfsqfmmj20ei0bcweo.jpg');
     }, 1800);
   }, []);
 
@@ -71,6 +71,8 @@ export default () => {
       <hr />
       <AcUploadPictureCard
         value={pval}
+        multiple={false}
+        maxCount={1}
         onChange={(e) => console.log(e.target.value)}
         action="http://localhost:3200/weibo_api/interface/pic_upload.php"
       />

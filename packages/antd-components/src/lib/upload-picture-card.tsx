@@ -23,7 +23,7 @@ type StdCallback = (inEvent: StdEventTarget) => void;
 
 type Props = {
   className?: string;
-  value?: any[];
+  value?: any[] | [];
   onChange?: StdCallback;
   baseURL?: string;
 } & DraggerProps;
@@ -45,8 +45,9 @@ export class AcUploadPictureCard extends React.Component<Props, State> {
   private sortable: any = null;
   private viewer: any = null;
 
-  toFileList = (inUrls: any[]) => {
-    return inUrls.map((item) => {
+  toFileList = (inUrls: any[] | any) => {
+    const urls = Array.isArray(inUrls) ? inUrls : [inUrls].filter(Boolean);
+    return urls.map((item) => {
       if (typeof item !== 'string') return item;
       return { uid: nx.gpid(item), url: item };
     });
