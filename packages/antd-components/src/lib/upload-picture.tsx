@@ -91,6 +91,13 @@ export class AcUploadPicture extends React.Component<Props, State> {
     this.viewer.view(idx);
   };
 
+  previewFile = (file): Promise<string> => {
+    const blobURL = window.URL.createObjectURL(file);
+    return new Promise((resolve) => {
+      resolve(blobURL);
+    });
+  };
+
   render() {
     const { className, value, onChange, ...props } = this.props;
     const { fileList } = this.state;
@@ -104,6 +111,7 @@ export class AcUploadPicture extends React.Component<Props, State> {
           multiple={false}
           onChange={this.handleChange}
           onPreview={this.handlePreview}
+          previewFile={this.previewFile}
           fileList={fileList}
           {...props}>
           <Button icon={<UploadOutlined />}>上传({fileList.length})</Button>
