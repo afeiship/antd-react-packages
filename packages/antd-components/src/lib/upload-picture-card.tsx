@@ -25,7 +25,7 @@ type Props = {
   className?: string;
   value?: any[] | [];
   onChange?: StdCallback;
-  baseURL?: string;
+  transformResponse?: (inResponse: any) => any;
 } & DraggerProps;
 
 type State = {
@@ -38,7 +38,11 @@ export class AcUploadPictureCard extends React.Component<Props, State> {
   static defaultProps = {
     onChange: noop,
     value: [],
-    baseURL: 'https://tva1.js.work'
+    transformResponse: (inFileList: any) => {
+      return inFileList.map((item) => {
+        return item.uid || item.pid || nx.gpid(item.url);
+      });
+    }
   };
 
   private rootRef = React.createRef<HTMLDivElement>();
@@ -50,15 +54,6 @@ export class AcUploadPictureCard extends React.Component<Props, State> {
     return urls.map((item) => {
       if (typeof item !== 'string') return item;
       return { uid: nx.gpid(item), url: item };
-    });
-  };
-
-  toChangedValue = (inFileList: any[]) => {
-    const { baseURL } = this.props;
-    return inFileList.map((item) => {
-      return typeof item === 'string'
-        ? item
-        : item.thumbUrl || item.url || `${baseURL}/large/${item.pid}.jpg`;
     });
   };
 
@@ -130,11 +125,10 @@ export class AcUploadPictureCard extends React.Component<Props, State> {
   };
 
   doChange = (inValue) => {
-    const { onChange } = this.props;
+    const { onChange, transformResponse } = this.props;
     this.setState({ fileList: inValue }, () => {
-      const _value = inValue.map((item) => item.response ?? item);
-      const value = this.toChangedValue(_value);
-      onChange!({ target: { value } });
+      const value = inValue.map((item) => item.response ?? item);
+      onChange!({ target: { value: transformResponse!(value) } });
     });
   };
 

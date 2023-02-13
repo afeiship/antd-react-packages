@@ -19,7 +19,9 @@ const Container = styled.div`
 
 export default () => {
   const [val, setVal] = useState<string[]>(['s1']);
-  const [pval, setPval] = useState<any>(['https://tva1.sinaimg.cn/large/007S8ZIlgy1gexw87htqhj305k05k74o.jpg']);
+  const [pval, setPval] = useState<any>([
+    'https://tva1.sinaimg.cn/large/007S8ZIlgy1gexw87htqhj305k05k74o.jpg'
+  ]);
   const items3 = [
     { value: 's1', label: 'Status1' },
     { value: 's2', label: 'Status2' },
@@ -65,14 +67,14 @@ export default () => {
       />
       <hr />
       <AcUploadPicture
+        value={pval}
+        transformResponse={(v) => v.pid}
         onChange={(e) => console.log(e.target.value)}
         action="http://localhost:3200/weibo_api/interface/pic_upload.php"
       />
       <hr />
       <AcUploadPictureCard
         value={pval}
-        multiple={false}
-        maxCount={1}
         onChange={(e) => console.log(e.target.value)}
         action="http://localhost:3200/weibo_api/interface/pic_upload.php"
       />
