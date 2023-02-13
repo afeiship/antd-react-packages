@@ -6,6 +6,7 @@ import cx from 'classnames';
 import { DraggerProps } from 'antd/es/upload';
 import nx from '@jswork/next';
 import { loadScript, loadStyle } from '@jswork/loadkit';
+import { flushSync } from 'react-dom';
 
 const CLASS_NAME = 'ac-upload-picture';
 const styleOpts = { id: 'viewer-style' };
@@ -79,7 +80,7 @@ export class AcUploadPicture extends React.Component<Props, State> {
     const { onChange, transformResponse } = this.props;
     const { file, fileList } = inEvent;
     const isDone = file.status === 'done';
-    this.setState({ fileList });
+    flushSync(() => this.setState({ fileList }));
     if (!isDone) return;
     onChange!({ target: { value: transformResponse!(file.response) } });
   };

@@ -8,6 +8,7 @@ import { DraggerProps } from 'antd/es/upload';
 import { UploadOutlined } from '@ant-design/icons';
 import { UploadChangeParam } from 'antd/es/upload/interface';
 import { UploadFile } from 'antd';
+import { flushSync } from 'react-dom';
 
 import nx from '@jswork/next';
 import '@jswork/next-gpid';
@@ -112,7 +113,7 @@ export class AcUploadPictureCard extends React.Component<Props, State> {
     const { fileList } = inEvent;
     const isDone = (file) => !file.status || file.status === 'done';
     const done = fileList.every(isDone);
-    this.setState({ fileList });
+    flushSync(() => this.setState({ fileList }));
     if (done) this.doChange(fileList);
   };
 
@@ -126,10 +127,8 @@ export class AcUploadPictureCard extends React.Component<Props, State> {
 
   doChange = (inValue) => {
     const { onChange, transformResponse } = this.props;
-    this.setState({ fileList: inValue }, () => {
-      const value = inValue.map((item) => item.response ?? item);
-      onChange!({ target: { value: transformResponse!(value) } });
-    });
+    const value = inValue.map((item) => item.response ?? item);
+    onChange!({ target: { value: transformResponse!(value) } });
   };
 
   previewFile = (file): Promise<string> => {
