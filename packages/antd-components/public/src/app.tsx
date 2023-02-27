@@ -68,7 +68,7 @@ export default () => {
       <hr />
       <AcUploadPicture
         value={pval}
-        transformResponse={(v) => v.map((item) => item.pid)}
+        // transformResponse={(v) => v.map((item) => item.pid)}
         onChange={(e) => console.log(e.target.value)}
         action="http://localhost:3200/weibo_api/interface/pic_upload.php"
       />

@@ -22,6 +22,7 @@ type Props = {
   value?: any[] | [];
   onChange?: StdCallback;
   transformResponse?: (inResponse: any) => any;
+  transformURL?: (inPid) => string;
 } & DraggerProps;
 
 type State = {
@@ -34,10 +35,11 @@ export class AcAbstractUpload extends React.Component<Props, State> {
   protected viewer: any = null;
 
   toFileList = (inUrls: any[] | any) => {
+    const { transformURL } = this.props;
     const urls = Array.isArray(inUrls) ? inUrls : [inUrls].filter(Boolean);
     return urls.map((item) => {
       if (typeof item !== 'string') return item;
-      return { uid: nx.gpid(item), url: item };
+      return { uid: nx.gpid(item), url: transformURL!(item) };
     });
   };
 

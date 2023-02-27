@@ -16,6 +16,7 @@ export class AcUploadPictureCard extends AcAbstractUpload {
   static defaultProps = {
     onChange: noop,
     value: [],
+    transformURL: (pid) => (pid.includes('://') ? pid : `https://tva1.js.work/large/${pid}.jpg`),
     transformResponse: (inFileList: any) => {
       return inFileList.map((item) => {
         return item.uid || item.pid || nx.gpid(item.url);
