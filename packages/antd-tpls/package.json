@@ -1,6 +1,6 @@
 {
   "name": "@jswork/antd-tpls",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Antd list templates.",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -48,7 +48,7 @@
   "boilerplate": "generator-typescript-package",
   "homepage": "https://js.work",
   "dependencies": {
-    "@jswork/antd-form-builder": "^1.1.5",
+    "@jswork/antd-form-builder": "^1.1.6",
     "@jswork/react-list": "^1.1.6"
   }
 }
