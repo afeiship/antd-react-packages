@@ -1,4 +1,4 @@
-import FormBuilder, { FieldType, Meta } from 'antd-form-builder';
+import FormBuilder, { FieldType, Meta } from '@jswork/antd-afb-dist';
 import React from 'react';
 import nx from '@jswork/next';
 

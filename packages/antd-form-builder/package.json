@@ -70,11 +70,10 @@
     "vite-plugin-pwa": "^0.7.3"
   },
   "dependencies": {
+    "@jswork/antd-afb-dist": "^2.1.4",
     "@jswork/noop": "^1.0.0",
-    "antd-form-builder": "^2.1.4",
     "classnames": "^2.2.6",
-    "p-pipe": "3",
-    "release-it": "^15.5.0"
+    "p-pipe": "3"
   },
   "peerDependencies": {
     "antd": "^5.0.1",
