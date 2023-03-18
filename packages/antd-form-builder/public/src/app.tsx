@@ -1,5 +1,5 @@
 import React from 'react';
-import FormBuilder from '../../src/main';
+import { FormBuilder } from '../../src/main';
 import styled from 'styled-components';
 import { pipes1 } from './pipes';
 import { Button, Col, Row } from 'antd';
