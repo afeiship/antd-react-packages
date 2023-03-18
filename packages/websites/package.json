@@ -18,6 +18,7 @@
     "@docusaurus/preset-classic": "^2.2.0",
     "@docusaurus/remark-plugin-npm2yarn": "^2.2.0",
     "@docusaurus/theme-live-codeblock": "^2.2.0",
+    "@jswork/antd-afb-dist": "^2.1.6",
     "@jswork/antd-components": "^1.0.0",
     "@jswork/antd-form-builder": "^1.1.0",
     "@jswork/antd-tpls": "^1.0.0",

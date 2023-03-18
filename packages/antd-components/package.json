@@ -70,6 +70,7 @@
     "vite-plugin-pwa": "^0.7.3"
   },
   "dependencies": {
+    "@jswork/antd-afb-dist": "^2.1.6",
     "@jswork/antd-form-builder": "^1.1.9",
     "@jswork/antd-tpls": "^1.0.6",
     "@jswork/loadkit": "^1.0.6",
