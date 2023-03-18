@@ -1,6 +1,6 @@
 {
   "name": "@jswork/antd-afb-dist",
-  "version": "2.1.5",
+  "version": "2.1.6",
   "description": "Form builder for ant.design.",
   "author": "aric.zheng",
   "license": "MIT",
@@ -17,8 +17,5 @@
   "files": [
     "dist",
     "index.d.ts"
-  ],
-  "dependencies": {
-    "eslint-plugin-react-hooks": "^4.0.6"
-  }
+  ]
 }
