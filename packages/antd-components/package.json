@@ -5,6 +5,7 @@
   "description": "Antd wrapped components.",
   "license": "MIT",
   "main": "dist/index.js",
+  "module": "dist/index.esm.js",
   "typings": "dist/main.d.ts",
   "files": [
     "dist"
@@ -67,7 +68,11 @@
     "ts-jest": "^27.1.1",
     "typescript": "^4.1.3",
     "vite": "^2.3.4",
-    "vite-plugin-pwa": "^0.7.3"
+    "vite-plugin-pwa": "^0.7.3",
+    "@ant-design/icons": "^4.8.0",
+    "@jswork/next": "^1.1.5",
+    "antd": "^5.2.0",
+    "lodash": "^4.17.21"
   },
   "dependencies": {
     "@jswork/antd-form-builder": "^1.1.4",
@@ -82,12 +87,6 @@
     "classnames": "^2.2.6",
     "react-input-autosize": "^3.0.0",
     "sortablejs": "^1.15.0"
-  },
-  "peerDependencies": {
-    "@ant-design/icons": "^4.8.0",
-    "@jswork/next": "^1.1.5",
-    "antd": "^5.2.0",
-    "lodash": "^4.17.21"
   },
   "resolutions": {
     "@types/react": "^17 || ^18"
