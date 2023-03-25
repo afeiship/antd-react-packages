@@ -1,7 +1,7 @@
 {
   "name": "@jswork/antd-components",
   "homepage": "https://js.work",
-  "version": "1.0.18",
+  "version": "1.0.27",
   "description": "Antd wrapped components.",
   "license": "MIT",
   "main": "dist/index.js",
@@ -75,8 +75,9 @@
     "lodash": "^4.17.21"
   },
   "dependencies": {
-    "@jswork/antd-form-builder": "^1.1.4",
-    "@jswork/antd-tpls": "^1.0.1",
+    "@jswork/antd-afb-dist": "^2.1.7",
+    "@jswork/antd-form-builder": "^1.1.10",
+    "@jswork/antd-tpls": "^1.0.7",
     "@jswork/loadkit": "^1.0.6",
     "@jswork/next-dom-event": "^1.0.4",
     "@jswork/next-gpid": "^1.0.2",
@@ -99,5 +100,5 @@
     "type": "git",
     "url": "https://github.com/afeiship/boilerplate-react-ts-component.git"
   },
-  "gitHead": "24578827e1bcc2e6fe213fe2103ac623e1e89a62"
+  "gitHead": "62a0f002c61f946093a6105a7bbd978af7e7a72e"
 }

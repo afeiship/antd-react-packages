@@ -1,0 +1,21 @@
+{
+  "name": "@jswork/antd-afb-dist",
+  "version": "2.1.7",
+  "description": "Form builder for ant.design.",
+  "author": "aric.zheng",
+  "license": "MIT",
+  "repository": "afeiship/antd-react-packages",
+  "main": "dist/index.js",
+  "engines": {
+    "node": ">=8",
+    "npm": ">=5"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "files": [
+    "dist",
+    "index.d.ts"
+  ]
+}

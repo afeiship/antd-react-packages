@@ -18,7 +18,7 @@ export default [
       file: pkg.main,
       format: 'umd',
       exports: 'named',
-      sourcemap: false,
+      sourcemap: true,
       name: 'AntdFormBuilderComponent',
       globals: {
         '@jswork/noop': 'noop',
