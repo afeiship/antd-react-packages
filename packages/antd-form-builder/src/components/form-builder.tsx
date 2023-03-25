@@ -3,7 +3,7 @@ import { Form, FormProps, FormInstance, Spin } from 'antd';
 import cx from 'classnames';
 import noop from '@jswork/noop';
 import compose from 'p-pipe';
-import FormBuilder, { FieldType } from '@jswork/antd-afb-dist';
+import FormBuilder, { FieldType } from 'antd-form-builder';
 import {
   generateHelpers,
   getComputedMeta,

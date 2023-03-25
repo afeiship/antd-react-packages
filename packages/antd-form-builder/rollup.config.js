@@ -14,20 +14,36 @@ import '@jswork/next-rollup-banner';
 export default [
   {
     input: 'src/main.ts',
-    output: {
-      file: pkg.main,
-      format: 'umd',
-      exports: 'named',
-      sourcemap: true,
-      name: 'AntdFormBuilderComponent',
-      globals: {
-        '@jswork/noop': 'noop',
-        'prop-types': 'PropTypes',
-        'classnames': 'classNames',
-        'react': 'React',
-        'react-dom': 'ReactDOM'
+    output: [
+      {
+        file: pkg.main,
+        format: 'umd',
+        exports: 'named',
+        sourcemap: true,
+        name: 'AntdFormBuilderComponent',
+        globals: {
+          '@jswork/noop': 'noop',
+          'prop-types': 'PropTypes',
+          'classnames': 'classNames',
+          'react': 'React',
+          'react-dom': 'ReactDOM'
+        }
+      },
+      {
+        file: pkg.module,
+        format: 'esm',
+        exports: 'named',
+        sourcemap: true,
+        name: 'AntdFormBuilderComponent',
+        globals: {
+          '@jswork/noop': 'noop',
+          'prop-types': 'PropTypes',
+          'classnames': 'classNames',
+          'react': 'React',
+          'react-dom': 'ReactDOM'
+        }
       }
-    },
+    ],
     plugins: [
       // external(),
       externals({
