@@ -8,7 +8,8 @@ import {
   AcCheckableTagList,
   AcCheckableTag,
   AcUploadPicture,
-  AcUploadPictureCard
+  AcUploadPictureCard,
+  AcInputToken
 } from '../../src/main';
 import { Space } from 'antd';
 
@@ -44,6 +45,12 @@ export default () => {
 
   return (
     <Container>
+      <AcInputToken
+        value={'abc'}
+        onChange={(e) => {
+          console.log('e.value:', e.target.value);
+        }}
+      />
       <AcTransfer
         value={val}
         items={items3}

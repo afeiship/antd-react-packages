@@ -183,3 +183,10 @@
 .ac-upload-picture {
   --ac-upload-picture-height: 120px;
 }
+
+.ac-input-token{
+  &__token{
+    user-select: none;
+    cursor: pointer;
+  }
+}
