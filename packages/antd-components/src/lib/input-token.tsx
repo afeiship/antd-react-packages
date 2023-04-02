@@ -13,6 +13,7 @@ type Props = {
   value?: string;
   onChange?: StdCallback;
   autoComplete?: boolean;
+  label?: string;
 } & InputProps;
 
 export class AcInputToken extends React.Component<Props> {
@@ -20,7 +21,8 @@ export class AcInputToken extends React.Component<Props> {
   static formSchema = CLASS_NAME;
   static defaultProps = {
     onChange: noop,
-    autoComplete: false
+    autoComplete: false,
+    label: '生成Token'
   };
 
   private rootRef = React.createRef<any>();
@@ -34,6 +36,15 @@ export class AcInputToken extends React.Component<Props> {
 
   get complete() {
     return this.props.autoComplete ? 'on' : 'off';
+  }
+
+  get tokenView() {
+    const { label } = this.props;
+    return (
+      <span className={`${CLASS_NAME}__token`} onClick={this.handleToken}>
+        {label}
+      </span>
+    );
   }
 
   handleToken = () => {
@@ -55,17 +66,13 @@ export class AcInputToken extends React.Component<Props> {
   };
 
   render() {
-    const { className, value, autoComplete, onChange, ...props } = this.props;
+    const { className, value, autoComplete, onChange, label, ...props } = this.props;
     return (
       <Input
         ref={this.rootRef}
         value={this.state.value}
         onChange={this.handleChange}
-        addonAfter={
-          <span className={`${CLASS_NAME}__token`} onClick={this.handleToken}>
-            Token
-          </span>
-        }
+        addonAfter={this.tokenView}
         className={cx(CLASS_NAME, className)}
         autoComplete={this.complete}
         {...props}
