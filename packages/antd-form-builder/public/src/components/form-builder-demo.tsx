@@ -1,5 +1,5 @@
 import { Button, Col, Form, Row } from 'antd';
-import { AntdFormBuilder, useForceUpdate } from '../../../src/main';
+import { FormBuilder, useForceUpdate } from '../../../src/main';
 import React from 'react';
 
 export default () => {
@@ -19,13 +19,15 @@ export default () => {
   };
 
   const presets = {
-    username: {
-      label: 'User Name',
-      widget: 'input'
-    },
-    password: {
-      label: 'Password',
-      widget: 'password'
+    fields: {
+      username: {
+        label: 'User Name',
+        widget: 'input'
+      },
+      password: {
+        label: 'Password',
+        widget: 'password'
+      }
     }
   };
 
@@ -44,8 +46,11 @@ export default () => {
         <h3>Use Form builder</h3>
       </dt>
       <dd>
-        <Form form={form} onValuesChange={forceUpdate} onFinish={(e) => console.log('e:', e)}>
-          <AntdFormBuilder presets={presets} form={form} meta={meta} />
+        <Form
+          form={form}
+          onValuesChange={forceUpdate}
+          onFinish={(e) => console.log('e:', e)}>
+          <FormBuilder presets={presets} form={form} meta={meta} />
           <Row>
             <Col span={8}></Col>
             <Col span={16}>
