@@ -1,4 +1,4 @@
-import FormBuilder from '../../../src/main';
+import { FormBuilder } from '../../../src/main';
 
 FormBuilder.defaultProps['presets'] = {
   widgets: {
