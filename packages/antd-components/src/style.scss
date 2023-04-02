@@ -1,17 +1,15 @@
 @import "./styles/override";
+@import "@jswork/react-codeflask/dist/style.scss";
+
 
 .ac-checkable-tag {
   user-select: none;
+  background: #ededed;
 
   &[disabled] {
     pointer-events: none;
     opacity: 0.7;
   }
-}
-
-.ac-checkable-tag {
-  user-select: none;
-  background: #ededed;
 
   &.ant-tag-checkable-checked {
     background: #1677ff;
@@ -184,8 +182,8 @@
   --ac-upload-picture-height: 120px;
 }
 
-.ac-input-token{
-  &__token{
+.ac-input-token {
+  &__token {
     user-select: none;
     cursor: pointer;
   }
