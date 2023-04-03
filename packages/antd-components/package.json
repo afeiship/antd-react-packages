@@ -81,7 +81,7 @@
     "@jswork/next-gpid": "^1.0.2",
     "@jswork/next-tree-walk": "^1.0.5",
     "@jswork/noop": "^1.0.0",
-    "@jswork/react-codeflask": "^1.0.8",
+    "@jswork/react-codeflask": "^1.0.9",
     "@jswork/react-interactive-list": "^1.2.0",
     "@jswork/react-list": "^1.2.1",
     "classnames": "^2.2.6",

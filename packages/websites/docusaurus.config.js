@@ -13,11 +13,12 @@ module.exports = {
   onBrokenMarkdownLinks: "warn",
   organizationName: "facebook", // Usually your GitHub org/user name.
   projectName: "docusaurus", // Usually your repo name.
+  // plugins:['@docusaurus/theme-live-codeblock'],
   i18n: {
     defaultLocale: 'en',
     locales: ['en'],
   },
-  // themes: ["@docusaurus/theme-live-codeblock"],
+  themes: ["@docusaurus/theme-live-codeblock"],
   presets: [
     [
       "classic",
@@ -46,7 +47,7 @@ module.exports = {
         title: "Documentation",
         logo: {
           alt: "My Site Logo",
-          src: "https://tva1.sinaimg.cn/large/008vxvgGgy1h8gc0f5dzuj305k05k74b.jpg",
+          src: "https://tva1.js.work/large/008vxvgGgy1h8gc0f5dzuj305k05k74b.jpg",
         },
         items: [
           {
