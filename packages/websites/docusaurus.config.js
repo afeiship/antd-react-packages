@@ -6,17 +6,21 @@ const env = process.env.NODE_ENV;
 module.exports = {
   title: "Antd React Packages",
   tagline: "Everything about react and antd.",
+  favicon: "img/favicon.ico",
   url: "https://your-docusaurus-test-site.com",
   baseUrl: env === "production" ? "/antd-react-packages/" : "/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
-  favicon: "img/favicon.ico",
   organizationName: "facebook", // Usually your GitHub org/user name.
   projectName: "docusaurus", // Usually your repo name.
-  themes: ["@docusaurus/theme-live-codeblock"],
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en'],
+  },
+  // themes: ["@docusaurus/theme-live-codeblock"],
   presets: [
     [
-      "@docusaurus/preset-classic",
+      "classic",
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {

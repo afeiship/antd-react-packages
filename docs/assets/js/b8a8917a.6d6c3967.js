@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdocumentation=self.webpackChunkdocumentation||[]).push([[130],{9200:e=>{e.exports=JSON.parse('{"title":"antd-form-builder","slug":"/category/antd-form-builder","permalink":"/antd-react-packages/docs/category/antd-form-builder","navigation":{"next":{"title":"get-started","permalink":"/antd-react-packages/docs/antd-form-builder/"}}}')}}]);
