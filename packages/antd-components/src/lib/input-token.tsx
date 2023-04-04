@@ -1,6 +1,7 @@
 import React from 'react';
 import noop from '@jswork/noop';
-import { Input, InputProps } from 'antd';
+import { Button, Input, InputProps } from 'antd';
+import { UnlockOutlined, LockOutlined } from '@ant-design/icons';
 import { nanoid } from 'nanoid';
 import cx from 'classnames';
 
@@ -13,7 +14,8 @@ type Props = {
   value?: string;
   onChange?: StdCallback;
   autoComplete?: boolean;
-  label?: string;
+  labelCreate?: string;
+  labelRemove?: string;
 } & InputProps;
 
 export class AcInputToken extends React.Component<Props> {
@@ -22,7 +24,8 @@ export class AcInputToken extends React.Component<Props> {
   static defaultProps = {
     onChange: noop,
     autoComplete: false,
-    label: '生成Token'
+    labelCreate: '生成Token',
+    labelRemove: '去掉Token'
   };
 
   private rootRef = React.createRef<any>();
@@ -39,23 +42,39 @@ export class AcInputToken extends React.Component<Props> {
   }
 
   get tokenView() {
-    const { label } = this.props;
+    const { labelCreate, labelRemove } = this.props;
     return (
-      <span className={`${CLASS_NAME}__token`} onClick={this.handleToken}>
-        {label}
-      </span>
+      <Button.Group>
+        <Button
+          size="small"
+          icon={<LockOutlined />}
+          className={`${CLASS_NAME}__action`}
+          onClick={this.handleTokenCreate}>
+          {labelCreate}
+        </Button>
+        <Button
+          size="small"
+          icon={<UnlockOutlined />}
+          className={`${CLASS_NAME}__action`}
+          onClick={this.handleTokenRemove}>
+          {labelRemove}
+        </Button>
+      </Button.Group>
     );
   }
 
-  handleToken = () => {
-    const value = nanoid();
-    this.doChange(value);
-    this.rootRef.current.input.focus();
+  handleTokenCreate = () => {
+    this.doChange(nanoid());
+  };
+
+  handleTokenRemove = () => {
+    this.doChange('');
   };
 
   handleChange = (inEvent) => {
     const { value } = inEvent.target;
     this.doChange(value);
+    this.rootRef.current.input.focus();
   };
 
   doChange = (inValue) => {
@@ -66,7 +85,8 @@ export class AcInputToken extends React.Component<Props> {
   };
 
   render() {
-    const { className, value, autoComplete, onChange, label, ...props } = this.props;
+    const { className, value, autoComplete, onChange, labelCreate, labelRemove, ...props } =
+      this.props;
     return (
       <Input
         ref={this.rootRef}
