@@ -69,6 +69,7 @@ export const generateHelpers = (meta: InnerMeta) => {
 export const initForm = (meta, form): Promise<void> => {
   const initValues = meta.initialValues;
   const isFromAsync = typeof initValues === 'function';
+
   return new Promise((resolve) => {
     if (isFromAsync) {
       initValues()
