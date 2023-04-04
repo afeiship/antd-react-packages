@@ -68,15 +68,18 @@ export const generateHelpers = (meta: InnerMeta) => {
  */
 export const initForm = (meta, form): Promise<void> => {
   const initValues = meta.initialValues;
-  const isFromAsync = Array.isArray(initValues);
+  const isFromAsync = typeof initValues === 'function';
   return new Promise((resolve) => {
     if (isFromAsync) {
-      const [api, transform] = initValues;
-      const _transform = transform || nx.stubValue;
-      api.then((res) => {
-        form.setFieldsValue(_transform(res));
-        resolve();
-      });
+      initValues()
+        .then((res) => {
+          form.setFieldsValue(res);
+          resolve();
+        })
+        .catch((err) => {
+          console.error(err);
+          resolve();
+        });
     } else {
       form.setFieldsValue(initValues);
       resolve();
