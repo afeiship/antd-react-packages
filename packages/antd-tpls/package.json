@@ -48,7 +48,6 @@
   "boilerplate": "generator-typescript-package",
   "homepage": "https://js.work",
   "dependencies": {
-    "@jswork/antd-form-builder": "^1.1.15",
     "@jswork/react-list": "^1.1.6"
   }
 }
