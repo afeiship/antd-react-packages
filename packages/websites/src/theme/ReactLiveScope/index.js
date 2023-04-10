@@ -2,8 +2,8 @@ import React from "react";
 import * as tpls from "@jswork/antd-tpls";
 import { Select, Checkbox, Row, Col, Button, Space } from "antd";
 import * as data from "./data";
-import { FormBuilder, installWidgets } from "@jswork/antd-form-builder";
-import * as AcComponents from "@jswork/antd-components";
+import { FormBuilder, installWidgets } from "@jswork/antd-form-builder/src/main";
+import * as AcComponents from "@jswork/antd-components/src/main";
 
 const ReactLiveScope = {
   React,

@@ -20,15 +20,29 @@ export class AcSwitch extends React.Component<Props> {
     onChange: noop
   };
 
-  handleChange = (inEvent) => {
+  state = {
+    value: this.props.value
+  };
+
+  shouldComponentUpdate(nextProps: Readonly<Props>): boolean {
+    const { value } = nextProps;
+    if (value !== this.props.value) this.setState({ value });
+    return true;
+  }
+
+  handleChange = (value) => {
     const { onChange } = this.props;
-    onChange!({ target: { value: inEvent } });
+    const target = { value };
+    this.setState(target, () => onChange!({ target }));
   };
 
   render() {
     const { className, value, onChange, ...props } = this.props;
+    const _value = this.state.value;
+
     return (
       <Switch
+        checked={_value}
         className={cx(CLASS_NAME, className)}
         onChange={this.handleChange}
         {...props}

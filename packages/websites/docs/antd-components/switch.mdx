@@ -12,5 +12,14 @@ slug: switch
 
 ### 预览
 ```jsx live
-<AcSwitch />
+<Space direction="verticle">
+    <label>
+        <strong>Default to true</strong>
+        <AcSwitch value={true} onChange={e=>console.log('value: ',e.target.value)} />
+    </label>
+    <label>
+        <strong>No default</strong>
+        <AcSwitch />
+    </label>
+</Space>
 ```
