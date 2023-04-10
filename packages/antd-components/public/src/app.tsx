@@ -10,7 +10,8 @@ import {
   AcUploadPicture,
   AcUploadPictureCard,
   AcInputToken,
-  AcCodeFlask
+  AcCodeFlask,
+  AcInputHidden
 } from '../../src/main';
 import { Space } from 'antd';
 
@@ -46,6 +47,8 @@ export default () => {
 
   return (
     <Container>
+      <AcInputHidden />
+      <hr />
       <AcCodeFlask />
       <AcInputToken
         value={'abc'}
