@@ -1,7 +1,7 @@
 {
   "name": "@jswork/antd-form-builder",
   "homepage": "https://js.work",
-  "version": "1.1.15",
+  "version": "1.1.16",
   "description": "A wrapper for antd-form-builder.",
   "license": "MIT",
   "main": "dist/index.js",
