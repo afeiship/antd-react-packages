@@ -25,6 +25,7 @@ export class AcTree extends React.Component<Props> {
   static defaultProps = {
     directory: false,
     items: [],
+    kv: DEFAULT_KV,
     template: treeKv,
     itemsKey: 'children'
   };
