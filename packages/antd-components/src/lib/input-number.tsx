@@ -9,7 +9,7 @@ type StdCallback = (inEvent: StdEventTarget) => void;
 
 type Props = {
   className?: string;
-  value?: boolean;
+  value?: number;
   onChange?: StdCallback;
 } & InputNumberProps;
 
@@ -20,17 +20,33 @@ export class AcInputNumber extends React.Component<Props> {
     onChange: noop
   };
 
+  state = {
+    value: this.props.value
+  };
+
+  shouldComponentUpdate(inProps: Readonly<Props>): boolean {
+    const { value } = inProps;
+    if (value !== this.props.value) this.setState({ value });
+    return true;
+  }
+
   handleChange = (inEvent) => {
     const { onChange } = this.props;
-    onChange!({
-      target: { value: inEvent }
-    });
+    const target = { value: inEvent };
+    this.setState(target);
+    onChange!({ target });
   };
 
   render() {
     const { className, value, onChange, ...props } = this.props;
+    const { value: stateValue } = this.state;
     return (
-      <InputNumber className={cx(CLASS_NAME, className)} onChange={this.handleChange} {...props} />
+      <InputNumber
+        className={cx(CLASS_NAME, className)}
+        value={stateValue}
+        onChange={this.handleChange}
+        {...props}
+      />
     );
   }
 }

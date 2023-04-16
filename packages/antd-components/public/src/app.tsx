@@ -10,7 +10,9 @@ import {
   AcUploadPicture,
   AcUploadPictureCard,
   AcInputToken,
-  AcCodeFlask
+  AcCodeFlask,
+  AcInputHidden,
+  AcInputNumber
 } from '../../src/main';
 import { Space } from 'antd';
 
@@ -20,6 +22,7 @@ const Container = styled.div`
 `;
 
 export default () => {
+  const [nvalue, setNvalue] = useState<number>(1);
   const [val, setVal] = useState<string[]>(['s1']);
   const [pval, setPval] = useState<any>([
     'https://tva1.sinaimg.cn/large/007S8ZIlgy1gexw87htqhj305k05k74o.jpg'
@@ -44,8 +47,22 @@ export default () => {
     }, 1800);
   }, []);
 
+  useEffect(() => {
+    setTimeout(() => {
+      setNvalue(20);
+    }, 1800);
+  }, []);
+
   return (
     <Container>
+      <AcInputNumber
+        value={nvalue}
+        onChange={(e) => {
+          console.log('e: ', e.target.value);
+        }}
+      />
+      <AcInputHidden />
+      <hr />
       <AcCodeFlask />
       <AcInputToken
         value={'abc'}

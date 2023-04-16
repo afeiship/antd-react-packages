@@ -8,6 +8,7 @@ export * from './lib/codeflask';
 export * from './lib/date-picker';
 export * from './lib/editable-tag-group';
 export * from './lib/input';
+export * from './lib/input-hidden';
 export * from './lib/input-number';
 export * from './lib/input-token';
 export * from './lib/pre-select';

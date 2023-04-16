@@ -21,7 +21,7 @@ export class AcSwitch extends React.Component<Props> {
   };
 
   state = {
-    value: this.props.value
+    value: Boolean(this.props.value)
   };
 
   shouldComponentUpdate(nextProps: Readonly<Props>): boolean {
