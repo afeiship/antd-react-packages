@@ -94,6 +94,7 @@ export default class AntdFormBuilder extends Component<
 
   render() {
     const {
+      form,
       className,
       presets,
       meta,
@@ -108,7 +109,7 @@ export default class AntdFormBuilder extends Component<
     } = this.props;
 
     const { loading, meta: computedMeta } = this.state;
-
+    if (form) return <FormBuilder meta={computedMeta} form={form} />;
     return (
       <Form
         ref={this.formRef}
