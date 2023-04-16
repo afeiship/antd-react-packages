@@ -23,18 +23,26 @@ export class AcInput extends React.Component<Props> {
 
   state = { value: this.props.value };
 
-  shouldComponentUpdate(nextProps: Readonly<Props>): boolean {
-    const { value } = nextProps;
+  shouldComponentUpdate(inProps: Readonly<Props>): boolean {
+    const { value } = inProps;
     if (value !== this.props.value) this.setState({ value });
     return true;
   }
+
+  handleChange = (inEvent) => {
+    const { onChange } = this.props;
+    const { value } = inEvent.target;
+    const target = { value };
+    this.setState(target);
+    onChange!({ target });
+  };
 
   get complete() {
     return this.props.autoComplete ? 'on' : 'off';
   }
 
   render() {
-    const { className, value, autoComplete, ...props } = this.props;
+    const { className, value, autoComplete, onChange, ...props } = this.props;
     const { value: stateValue } = this.state;
 
     return (
@@ -42,6 +50,7 @@ export class AcInput extends React.Component<Props> {
         className={cx(CLASS_NAME, className)}
         autoComplete={this.complete}
         value={stateValue}
+        onChange={this.handleChange}
         {...props}
       />
     );

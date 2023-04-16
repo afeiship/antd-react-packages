@@ -12,7 +12,8 @@ import {
   AcInputToken,
   AcCodeFlask,
   AcInputHidden,
-  AcInputNumber
+  AcInputNumber,
+  AcInput
 } from '../../src/main';
 import { Space } from 'antd';
 
@@ -23,6 +24,7 @@ const Container = styled.div`
 
 export default () => {
   const [nvalue, setNvalue] = useState<number>(1);
+  const [v2, setV2] = useState<string>('str1');
   const [val, setVal] = useState<string[]>(['s1']);
   const [pval, setPval] = useState<any>([
     'https://tva1.sinaimg.cn/large/007S8ZIlgy1gexw87htqhj305k05k74o.jpg'
@@ -55,6 +57,13 @@ export default () => {
 
   return (
     <Container>
+      <AcInput
+        value={v2}
+        onChange={(e) => {
+          console.log('evt:', e.target.value);
+        }}
+      />
+      <hr />
       <AcInputNumber
         value={nvalue}
         onChange={(e) => {
