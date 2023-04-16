@@ -52,6 +52,7 @@ export default () => {
   useEffect(() => {
     setTimeout(() => {
       setNvalue(20);
+      setV2('str111');
     }, 1800);
   }, []);
 
