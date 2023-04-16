@@ -37,6 +37,13 @@ export default () => {
     { value: 's5', label: 'Status5' }
   ];
 
+  const items4 = [
+    { id: 10001001, name: '用户-查' },
+    { id: 10001002, name: '用户-增' },
+    { id: 10001003, name: '用户-改' },
+    { id: 10001004, name: '用户-删' }
+  ];
+
   useEffect(() => {
     setTimeout(() => {
       setVal(['s1', 's3']);
@@ -58,6 +65,7 @@ export default () => {
 
   return (
     <Container>
+      <AcSelect items={items4} kv={{ value: 'id', label: 'name' }} />
       <AcInput
         value={v2}
         onChange={(e) => {
