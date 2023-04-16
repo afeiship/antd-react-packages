@@ -22,12 +22,29 @@ export class AcInput extends React.Component<Props> {
     autoComplete: false
   };
 
+  state = { value: this.props.value };
+
+  shouldComponentUpdate(nextProps: Readonly<Props>): boolean {
+    const { value } = nextProps;
+    if (value !== this.props.value) this.setState({ value });
+    return true;
+  }
+
   get complete() {
     return this.props.autoComplete ? 'on' : 'off';
   }
 
   render() {
     const { className, value, autoComplete, ...props } = this.props;
-    return <Input className={cx(CLASS_NAME, className)} autoComplete={this.complete} {...props} />;
+    const { value: stateValue } = this.state;
+
+    return (
+      <Input
+        className={cx(CLASS_NAME, className)}
+        autoComplete={this.complete}
+        value={stateValue}
+        {...props}
+      />
+    );
   }
 }
