@@ -2,13 +2,18 @@ import React from 'react';
 import { Tree, TreeProps } from 'antd';
 import cx from 'classnames';
 import nxTreeWalk from '@jswork/next-tree-walk';
-import { treeKv } from '@jswork/antd-tpls';
+import { treeKv, kv as KvTmpl } from '@jswork/antd-tpls';
 
 const CLASS_NAME = 'ac-tree';
+const DEFAULT_KV = {
+  label: 'label',
+  value: 'value'
+};
 
 type Props = {
   className?: string;
   items?: any[];
+  kv?: Record<string, string>;
   template?: any;
   itemsKey?: string | ((index: number, item: any) => any);
   directory?: boolean;
@@ -25,20 +30,21 @@ export class AcTree extends React.Component<Props> {
   };
 
   get childView() {
-    const { items, template, itemsKey } = this.props;
-    return nxTreeWalk(items!, { template, itemsKey });
+    const { items, itemsKey } = this.props;
+    return nxTreeWalk(items!, { template: this.template, itemsKey });
   }
 
+  template = (args) => {
+    const { template, kv } = this.props;
+    if (kv === DEFAULT_KV) return template!(args);
+    return KvTmpl(args, {
+      component: Tree.TreeNode,
+      ...kv
+    });
+  };
+
   render() {
-    const {
-      className,
-      children,
-      items,
-      template,
-      itemsKey,
-      directory,
-      ...props
-    } = this.props;
+    const { className, children, items, template, itemsKey, directory, ...props } = this.props;
 
     const RootComp: any = directory ? Tree.DirectoryTree : Tree;
 
