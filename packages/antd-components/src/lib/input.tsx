@@ -9,7 +9,7 @@ type StdCallback = (inEvent: StdEventTarget) => void;
 
 type Props = {
   className?: string;
-  value?: boolean;
+  value?: any;
   onChange?: StdCallback;
   autoComplete?: boolean;
 } & InputProps;
