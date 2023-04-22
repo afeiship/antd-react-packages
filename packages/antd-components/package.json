@@ -85,6 +85,7 @@
     "@jswork/react-interactive-list": "^1.2.0",
     "@jswork/react-list": "^1.2.1",
     "classnames": "^2.2.6",
+    "fast-deep-equal": "^3.1.3",
     "nanoid": "^4.0.2",
     "react-input-autosize": "^3.0.0",
     "sortablejs": "^1.15.0"

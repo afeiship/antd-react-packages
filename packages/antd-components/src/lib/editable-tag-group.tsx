@@ -4,6 +4,7 @@ import noop from '@jswork/noop';
 import ReactInteractiveList from '@jswork/react-interactive-list';
 import AutosizeInput from 'react-input-autosize';
 import { Button, Tag } from 'antd';
+import deepEqual from 'fast-deep-equal';
 import _ from 'lodash';
 
 const CLASS_NAME = 'ac-editable-tag-group';
@@ -51,7 +52,7 @@ export class AcEditableTagGroup extends React.Component<Props> {
   static defaultProps = {
     value: [],
     min: 0,
-    max: 20,
+    max: 10,
     onChange: noop,
     triggers: [' ', 'Tab']
   };
@@ -74,7 +75,7 @@ export class AcEditableTagGroup extends React.Component<Props> {
 
   template = ({ item, index }, cb) => {
     // TODO: tag.cloable will create ant-tag-hidden?
-    const { disabled, readOnly } = this.props;
+    const { readOnly } = this.props;
     return (
       <Tag key={index}>
         <AutosizeInput
@@ -82,19 +83,21 @@ export class AcEditableTagGroup extends React.Component<Props> {
           type="text"
           size="small"
           value={item}
-          disabled={disabled}
+          disabled={readOnly}
           readOnly={readOnly}
           className={`${CLASS_NAME}__input`}
           onChange={this.handleInputChange.bind(this, index)}
           onBlur={this.handleInputBlur.bind(this, index)}
           onKeyDown={this.handleInputKeyDown}
         />
-        <i className={`${CLASS_NAME}__close`} onClick={cb}></i>
+        {!readOnly && <i className={`${CLASS_NAME}__close`} onClick={cb}></i>}
       </Tag>
     );
   };
 
   templateCreate = () => {
+    const { readOnly } = this.props;
+    if (readOnly) return null;
     return (
       <Button
         ref={this.btnRef}
@@ -184,8 +187,8 @@ export class AcEditableTagGroup extends React.Component<Props> {
 
   shouldComponentUpdate(nextProps: Readonly<Props>): boolean {
     const { value } = nextProps;
-    if (value! == this.state.value) {
-      this.setState({ value });
+    if (!deepEqual(value, this.props.value)) {
+      this.setState({ value: value!.slice() });
     }
     return true;
   }

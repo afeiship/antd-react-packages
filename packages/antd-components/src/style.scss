@@ -43,8 +43,10 @@
 
   .ant-tag {
     margin-bottom: 5px;
-    padding-right: 15px;
     position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
   }
 
   .ant-btn {
@@ -53,6 +55,7 @@
   }
 
   &__input {
+    flex: 1;
     input {
       border-color: transparent;
       background: none;
@@ -97,10 +100,8 @@
   }
 
   &__close {
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
+    position: relative;
+    margin-left: 3px;
     width: 10px;
     height: 10px;
     opacity: 0.3;

@@ -13,7 +13,8 @@ import {
   AcCodeFlask,
   AcInputHidden,
   AcInputNumber,
-  AcInput
+  AcInput,
+  AcEditableTagGroup
 } from '../../src/main';
 import { Space } from 'antd';
 
@@ -65,6 +66,8 @@ export default () => {
 
   return (
     <Container>
+      <AcEditableTagGroup readOnly value={val} />
+      <hr />
       <AcSelect items={items4} kv={{ value: 'id', label: 'name' }} />
       <AcInput
         value={v2}
