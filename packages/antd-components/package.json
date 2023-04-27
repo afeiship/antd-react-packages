@@ -24,7 +24,7 @@
   "devDependencies": {
     "@ant-design/icons": "^4.8.0",
     "@babel/core": "^7.12.10",
-    "@jswork/next": "^1.1.5",
+    "@jswork/next": "^1.1.7",
     "@jswork/next-replace-in-file": "^1.0.0",
     "@jswork/next-rollup-banner": "^1.0.2",
     "@jswork/react-markdown-props": "^1.0.1",
@@ -77,7 +77,7 @@
     "@jswork/antd-form-builder": "^1.1.17",
     "@jswork/antd-tpls": "^1.0.15",
     "@jswork/loadkit": "^1.0.6",
-    "@jswork/next-dom-event": "^1.0.4",
+    "@jswork/next-dom-event": "^1.0.7",
     "@jswork/next-gpid": "^1.0.2",
     "@jswork/next-tree-walk": "^1.0.5",
     "@jswork/noop": "^1.0.0",

@@ -66,7 +66,7 @@ export default () => {
 
   return (
     <Container>
-      <AcEditableTagGroup readOnly value={val} />
+      <AcEditableTagGroup value={val} />
       <hr />
       <AcSelect items={items4} kv={{ value: 'id', label: 'name' }} />
       <AcInput

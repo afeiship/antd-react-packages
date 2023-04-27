@@ -5,7 +5,9 @@ import ReactInteractiveList from '@jswork/react-interactive-list';
 import AutosizeInput from 'react-input-autosize';
 import { Button, Tag } from 'antd';
 import deepEqual from 'fast-deep-equal';
+import nx from '@jswork/next';
 import _ from 'lodash';
+import '@jswork/next-dom-event';
 
 const CLASS_NAME = 'ac-editable-tag-group';
 type StdEventTarget = { target: { value: any } };
@@ -61,6 +63,8 @@ export class AcEditableTagGroup extends React.Component<Props> {
   private btnRef = createRef<HTMLElement>();
   private rootForwardedRef = createRef<HTMLDivElement>();
   private rootRef = createRef<ReactInteractiveList>();
+  private imeStartRes;
+  private imeEndRes;
 
   get latestInput(): HTMLInputElement {
     const root = this.rootForwardedRef.current!;
@@ -70,7 +74,8 @@ export class AcEditableTagGroup extends React.Component<Props> {
   }
 
   state = {
-    value: this.props.value
+    value: this.props.value,
+    ime: false
   };
 
   template = ({ item, index }, cb) => {
@@ -163,7 +168,9 @@ export class AcEditableTagGroup extends React.Component<Props> {
 
   handleInputKeyDown = (inEvent) => {
     const { triggers } = this.props;
+    const { ime } = this.state;
     if (triggers?.includes(inEvent.key)) {
+      if (inEvent.key === ' ' && ime) return;
       inEvent.preventDefault();
       this.actionCreate();
     }
@@ -185,6 +192,17 @@ export class AcEditableTagGroup extends React.Component<Props> {
     });
   };
 
+  componentDidMount() {
+    const doc = document as any;
+    this.imeStartRes = nx.DomEvent.on(doc, 'compositionstart', () => this.setState({ ime: true }));
+    this.imeEndRes = nx.DomEvent.on(doc, 'compositionend', () => this.setState({ ime: false }));
+  }
+
+  componentWillUnmount() {
+    this.imeStartRes.destroy();
+    this.imeEndRes.destroy();
+  }
+
   shouldComponentUpdate(nextProps: Readonly<Props>): boolean {
     const { value } = nextProps;
     if (!deepEqual(value, this.props.value)) {
@@ -195,7 +213,7 @@ export class AcEditableTagGroup extends React.Component<Props> {
 
   render() {
     const { className, value, onChange, min, max, ...props } = this.props;
-    const _value = this.state.value;
+    const { value: stateValue } = this.state;
 
     return (
       <ReactInteractiveList
@@ -204,7 +222,7 @@ export class AcEditableTagGroup extends React.Component<Props> {
         ref={this.rootRef}
         min={min}
         max={max}
-        items={_value}
+        items={stateValue}
         template={this.template}
         templateCreate={this.templateCreate}
         templateDefault={this.templateDefault}
