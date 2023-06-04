@@ -122,8 +122,8 @@ export default () => {
       <hr />
       <AcUploadPictureCard
         value={pval}
-        onChange={(e) => console.log(e.target.value)}
-        action="http://localhost:3200/weibo_api/interface/pic_upload.php"
+        onChange={(e) => console.log('pic card: ', e.target.value)}
+        action="https://admin.moban.work/weibo_api/interface/pic_upload.php"
       />
       <hr />
       <AcCheckableDropdown items={items3} onChange={(e) => console.log(e.target.value)} />
