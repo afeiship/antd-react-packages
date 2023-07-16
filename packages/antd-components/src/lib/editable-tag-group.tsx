@@ -62,7 +62,7 @@ export class AcEditableTagGroup extends React.Component<Props> {
   private inputRef = createRef<HTMLInputElement>();
   private btnRef = createRef<HTMLElement>();
   private rootForwardedRef = createRef<HTMLDivElement>();
-  private rootRef = createRef<ReactInteractiveList>();
+  private rootRef = createRef<any>();
   private imeStartRes;
   private imeEndRes;
 
