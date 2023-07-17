@@ -28,3 +28,4 @@ export * from './lib/tree-select';
 export * from './lib/upload-dragger';
 export * from './lib/upload-picture';
 export * from './lib/upload-picture-card';
+export * from './lib/upload';
