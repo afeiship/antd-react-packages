@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { AcUpload } from '../../src/main';
+import { AcUpload, AcUploadDragger } from '../../src/main';
 
 const Container = styled.div`
   width: 80%;
@@ -10,9 +10,8 @@ const Container = styled.div`
 export default () => {
   return (
     <Container>
-      <AcUpload
-        customRequest={(res) => {
-          const file = res.file;
+      <AcUploadDragger
+        onRequest={(file) => {
           const fd = new FormData();
           fd.append('file', file);
           fd.append('actionName', 'sys-admin-users-add');
