@@ -14,7 +14,7 @@ import {
 
 const CLASS_NAME = 'antd-form-builder';
 
-type StdEventTarget = { target: { value: any } };
+type StdEventTarget = any | { target: { value: any } };
 type StdFormTarget = { target: { value: FormInstance } };
 type StdCallback = (inEvent: StdEventTarget) => void;
 type StdFormCallback = (inEvent: StdFormTarget) => void;
