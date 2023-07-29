@@ -25,7 +25,7 @@ npm install -S @jswork/ant-abstract-form
 2. import js
   ```js
   import React from 'react';
-  import ReactAntAbstractForm from '@jswork/ant-abstract-form';
+  import AntAbstractForm from '@jswork/ant-abstract-form';
   import styled from 'styled-components';
   import nx from '@jswork/next';
 
@@ -72,7 +72,7 @@ npm install -S @jswork/ant-abstract-form
     }
   };
 
-  class App extends ReactAntAbstractForm {
+  class App extends AntAbstractForm {
     apiService = nx.$api;
     routeService = nx.$route;
 

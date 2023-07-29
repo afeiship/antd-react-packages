@@ -1,6 +1,6 @@
 // @ts-ignore
 import React from 'react';
-import ReactAntAbstractForm from '../../src/main';
+import AntAbstractForm from '../../src/main';
 import styled from 'styled-components';
 import nx from '@jswork/next';
 import ReactUploadMedia from '@jswork/react-upload-media';
@@ -36,7 +36,7 @@ nx.$api = {
   }
 };
 
-class App extends ReactAntAbstractForm {
+class App extends AntAbstractForm {
   apiService = nx.$api;
 
   constructor(props) {

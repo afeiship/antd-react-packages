@@ -13,7 +13,7 @@ import '@jswork/next-rollup-banner';
 const sharedOutput = {
   exports: 'named',
   sourcemap: false,
-  name: 'ReactAntAbstractForm',
+  name: 'AntAbstractForm',
   globals: {
     '@jswork/noop': 'noop',
     'prop-types': 'PropTypes',
