@@ -67,8 +67,12 @@ export const generateHelpers = (meta: InnerMeta) => {
  * @param form
  */
 export const initForm = (meta, form): Promise<void> => {
-  const initValues = meta.initialValues;
-  return new Promise((resolve) => {
+  const initValues =
+    typeof meta.initialValues === 'function'
+      ? meta.initialValues()
+      : meta.initialValues;
+
+      return new Promise((resolve) => {
     form.setFieldsValue(initValues);
     resolve();
   });
