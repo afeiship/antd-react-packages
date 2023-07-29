@@ -7,7 +7,7 @@
   "scripts": {
     "start": "cd packages/websites && npm run start",
     "build": "lerna run build --since master --no-private",
-    "build:all": "lerna run build",
+    "build:all": "lerna run build --parallel",
     "publish": "npm run build && lerna publish --no-private"
   },
   "devDependencies": {
