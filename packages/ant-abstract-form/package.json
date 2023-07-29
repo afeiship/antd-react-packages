@@ -1,7 +1,7 @@
 {
   "name": "@jswork/ant-abstract-form",
   "boilerplate": "ant-abstract-form",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "For curd form based on react.",
   "license": "MIT",
   "main": "dist/index.js",
