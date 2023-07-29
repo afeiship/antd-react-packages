@@ -100,6 +100,7 @@ export default class AntdFormBuilder extends Component<
       form,
       className,
       presets,
+      slim,
       meta,
       pipes,
       caption,
