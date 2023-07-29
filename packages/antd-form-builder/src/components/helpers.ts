@@ -4,10 +4,7 @@ import nx from '@jswork/next';
 
 export type InnerMeta = {
   fields?: FieldType[];
-  initValues?:
-    | Record<string, any>
-    | [() => Promise<any>]
-    | [() => Promise<any>, (response: any) => Record<string, any>];
+  initValues?: Record<string, any> | (() => Record<string, any>);
 } & Omit<Meta, 'fields' | 'initValues'>;
 
 export interface Presets {
@@ -66,13 +63,11 @@ export const generateHelpers = (meta: InnerMeta) => {
  * @param meta
  * @param form
  */
-export const initForm = (meta, form): Promise<void> => {
+export const initForm = (meta: InnerMeta, form): Promise<void> => {
   const initValues =
-    typeof meta.initialValues === 'function'
-      ? meta.initialValues()
-      : meta.initialValues;
+    typeof meta.initValues === 'function' ? meta.initValues() : meta.initValues;
 
-      return new Promise((resolve) => {
+  return new Promise((resolve) => {
     form.setFieldsValue(initValues);
     resolve();
   });
