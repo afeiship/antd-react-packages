@@ -28,6 +28,7 @@ type ComposeContext = {
 
 export type AntdFormBuilderProps = {
   className?: string;
+  slim?: boolean;
   presets?: Presets;
   meta: InnerMeta;
   pipes?: Promise<any>[] | any[];
@@ -49,6 +50,7 @@ export default class AntdFormBuilder extends Component<
 > {
   static displayName = CLASS_NAME;
   static defaultProps = {
+    slim: false,
     onInit: noop,
     onChange: noop,
     onFinish: noop,
@@ -88,8 +90,9 @@ export default class AntdFormBuilder extends Component<
   };
 
   handleFinish = (inEvent) => {
-    const { onFinish } = this.props;
-    onFinish!({ target: { value: inEvent } });
+    const { onFinish, slim } = this.props;
+    const value = slim ? inEvent : { target: { value: inEvent } };
+    onFinish!(value);
   };
 
   render() {
