@@ -23,5 +23,6 @@ docs
 
 jest.config.js
 .release-it.json
+.ncurc.json
 tsconfig.json
 vite.config.ts
