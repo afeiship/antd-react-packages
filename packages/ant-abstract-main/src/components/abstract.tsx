@@ -18,6 +18,9 @@ export type ReactAntAbstractProps = {
    * The extended className for component.
    */
   className?: string;
+  /**
+   * Language for component.
+   */
   lang?: string;
 };
 
@@ -31,13 +34,16 @@ export default class ReactAntAbstract extends Component<ReactAntAbstractProps, a
   protected eventService;
   protected refreshEvent;
 
-  lang = 'zh-CN';
   resources = 'users';
   size = 'small';
   module = 'modules';
   action = 'index';
   rowKey = 'id';
   current: any = { item: null, index: -1 };
+
+  get lang() {
+    return 'zh-CN';
+  }
 
   t = (inKey) => {
     const { lang } = this;

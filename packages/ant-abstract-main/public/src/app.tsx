@@ -64,6 +64,10 @@ class Index extends ReactAntCurdTable {
     total: 'total'
   };
 
+  // get lang() {
+  //   return 'en-US';
+  // }
+
   get fields() {
     return [
       nx.antColumn('ID', 'id'),
@@ -87,7 +91,9 @@ class TreeIndex extends ReactAntCurdTree {
   eventService = nx.mix(this, EventMitt); // nx.$app
   resources = 'repos';
   rowKey = 'value';
-  lang = 'en-US';
+  get lang() {
+    return 'en-US';
+  }
 }
 
 export default () => {
