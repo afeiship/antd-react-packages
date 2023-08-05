@@ -29,8 +29,8 @@ export default [
         'react-dom': 'ReactDOM'
       }
     },
-    context: 'global',
-    moduleContext: 'global',
+    // context: 'global',
+    // moduleContext: 'global',
     plugins: [
       // external(),
       externals({
