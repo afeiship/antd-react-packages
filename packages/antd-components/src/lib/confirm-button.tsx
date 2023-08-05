@@ -29,8 +29,7 @@ export class AcConfirmButton extends Component<AcConfirmButtonProps> {
   static formSchema = CLASS_NAME;
 
   static defaultProps = {
-    locale: 'zh-CN',
-    title: locals['zh-CN'].title,
+    lang: 'zh-CN',
     type: 'link',
     buttonProps: {}
   };
@@ -45,7 +44,19 @@ export class AcConfirmButton extends Component<AcConfirmButtonProps> {
   };
 
   render() {
-    const { className, onClick, type, children, buttonProps, title, ...props } = this.props;
+    const {
+      className,
+      onClick,
+      type,
+      children,
+      buttonProps,
+      lang,
+      title: _title,
+      ...props
+    } = this.props;
+
+    const title = _title || locals[lang!].title;
+
     return (
       <Popconfirm
         title={title}
