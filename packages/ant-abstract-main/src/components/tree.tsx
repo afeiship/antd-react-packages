@@ -43,9 +43,7 @@ export class ReactAntCurdTree extends Abstract {
         const items = this.dataDidLoad(response);
         this.setState({ items });
       })
-      .finally(() => {
-        this.setState({ loading: false });
-      });
+      .finally(() => this.setState({ loading: false }));
   };
 
   view() {

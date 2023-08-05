@@ -21,7 +21,7 @@ export interface AcConfirmButtonProps extends Omit<PopconfirmProps, 'title'> {
   type?: ButtonProps['type'];
   locale?: keyof typeof locals;
   buttonProps?: ButtonProps;
-  onClick?: () => void;
+  onClick?: React.MouseEventHandler<HTMLElement>;
 }
 
 export class AcConfirmButton extends Component<AcConfirmButtonProps> {

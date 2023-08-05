@@ -1,6 +1,5 @@
 import React, { Component, ReactNode } from 'react';
-import ReactAntConfirm from '@jswork/react-ant-confirm';
-import { Button, message, Space, Tag, Card } from 'antd';
+import { Button, message, Space, Tag, Card, Popconfirm } from 'antd';
 import { PlusOutlined, ReloadOutlined, UnorderedListOutlined } from '@ant-design/icons';
 import locals from './locals';
 
@@ -12,6 +11,7 @@ import '@jswork/next-url-operator';
 import '@jswork/next-kebab-case';
 
 const CLASS_NAME = 'react-ant-abstract';
+const stop = (e) => e?.stopPropagation();
 
 export type ReactAntAbstractProps = {
   /**
@@ -52,7 +52,9 @@ export default class ReactAntAbstract extends Component<ReactAntAbstractProps, a
         return (
           <Space>
             <a onClick={this.edit}>{this.t('edit')}</a>
-            <ReactAntConfirm onClick={this.del}>{this.t('delete')}</ReactAntConfirm>
+            <Popconfirm title={this.t('confirm_ok')} onConfirm={this.del} onCancel={stop}>
+              <a onClick={stop}>{this.t('delete')}</a>
+            </Popconfirm>
           </Space>
         );
       }
