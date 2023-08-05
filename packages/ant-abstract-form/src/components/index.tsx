@@ -84,7 +84,6 @@ export default class AntAbstractForm extends Component<AntAbstractFormProps, Ant
   private hotkeysRes;
   private winkeyRes;
 
-  lang = 'zh-CN';
   resources = 'curds';
   size: CardSize = 'small';
   options = {};
@@ -92,6 +91,10 @@ export default class AntAbstractForm extends Component<AntAbstractFormProps, Ant
   rawField = 'rawJSON';
   apiService: any;
   formRef: any;
+
+  get lang() {
+    return 'zh-CN';
+  }
 
   actions = {
     backAble: true,
@@ -111,8 +114,7 @@ export default class AntAbstractForm extends Component<AntAbstractFormProps, Ant
   }
 
   t = (inKey) => {
-    const { lang } = this;
-    return nx.get(locals, `${lang}.${inKey}`, inKey);
+    return nx.get(locals, `${this.lang}.${inKey}`, inKey);
   };
 
   get touchedView() {
