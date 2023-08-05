@@ -39,6 +39,8 @@ nx.$api = {
 class App extends AntAbstractForm {
   apiService = nx.$api;
 
+  lang = 'en-US';
+
   constructor(props) {
     super(props);
     this.state = {

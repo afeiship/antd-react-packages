@@ -19,14 +19,36 @@ import '@jswork/next-get2get';
 
 const CLASS_NAME = 'ant-abstract-form';
 const HOT_KEYS = 'cmd+s';
-const MESSAGES = {
-  OPERATION_DONE: '操作成功',
-  ONLY_CREATOR: '请在编辑情况下调用此快捷操作',
-  CONTENT_NO_CHANGED: '当前内容没有任何修改'
+const locals = {
+  'zh-CN': {
+    touched: '已修改',
+    edit: '编辑',
+    create: '创建',
+    title: '操作面板',
+    refresh: '刷新',
+    back: '返回',
+    save: '保存',
+    no_change: '数据未修改',
+    success: '操作成功',
+    action_on_edit: '请在编辑情况下调用此快捷操作'
+  },
+  'en-US': {
+    touched: 'Has Touched',
+    edit: 'Edit',
+    create: 'Create',
+    title: 'Operation Panel',
+    refresh: 'Refresh',
+    back: 'Back',
+    save: 'Save',
+    no_change: 'No Change',
+    success: 'Success',
+    action_on_edit: 'Please call this shortcut operation under edit'
+  }
 };
+
 const OPERATION_STATUS = [
-  { value: true, color: '#f50', label: '创建', action: 'create' },
-  { value: false, color: '#87d068', label: '编辑', action: 'update' }
+  { value: true, color: '#f50', action: 'create' },
+  { value: false, color: '#87d068', action: 'edit' }
 ];
 
 // By default hotkeys are not enabled for INPUT SELECT TEXTAREA elements
@@ -62,6 +84,7 @@ export default class AntAbstractForm extends Component<AntAbstractFormProps, Ant
   private hotkeysRes;
   private winkeyRes;
 
+  lang = 'zh-CN';
   resources = 'curds';
   size: CardSize = 'small';
   options = {};
@@ -87,9 +110,14 @@ export default class AntAbstractForm extends Component<AntAbstractFormProps, Ant
     this.init();
   }
 
+  t = (inKey) => {
+    const { lang } = this;
+    return nx.get(locals, `${lang}.${inKey}`, inKey);
+  };
+
   get touchedView() {
     return (
-      <Tooltip title="此处有修改">
+      <Tooltip title={this.t('touched')}>
         <em style={{ color: '#f60' }}>{this.isTouched && <DiffOutlined />}</em>
       </Tooltip>
     );
@@ -97,14 +125,17 @@ export default class AntAbstractForm extends Component<AntAbstractFormProps, Ant
 
   get titleView() {
     const item = OPERATION_STATUS[+this.isEdit];
+    const labels = { edit: this.t('edit'), create: this.t('create') };
+    console.log('labels:', labels, item.action);
+
     return (
       <Space>
         <FormOutlined />
         <Tag style={{ margin: 0 }} color={item.color}>
-          {item.label}
+          {labels[item.action]}
         </Tag>
         <Space>
-          <span>操作面板</span>
+          <span>{this.t('title')}</span>
           {this.touchedView}
         </Space>
       </Space>
@@ -143,11 +174,11 @@ export default class AntAbstractForm extends Component<AntAbstractFormProps, Ant
           loading={loading}
           icon={<ReloadOutlined />}
           size={'small'}
-          children="刷新"
+          children={this.t('refresh')}
           onClick={this.load}
         />
         <Button icon={<ArrowLeftOutlined />} size={'small'} onClick={() => history.back()}>
-          返回
+          {this.t('back')}
         </Button>
       </Space>
     );
@@ -164,10 +195,14 @@ export default class AntAbstractForm extends Component<AntAbstractFormProps, Ant
             htmlType="submit"
             type="primary"
             icon={<SaveOutlined />}
-            children="保存"
+            children={this.t('save')}
           />
           {backAble && (
-            <Button icon={<ArrowLeftOutlined />} onClick={() => history.back()} children="返回" />
+            <Button
+              icon={<ArrowLeftOutlined />}
+              onClick={() => history.back()}
+              children={this.t('back')}
+            />
           )}
         </Space>
       </Form.Item>
@@ -253,13 +288,13 @@ export default class AntAbstractForm extends Component<AntAbstractFormProps, Ant
     const action = this.isEdit ? 'update' : 'create';
     const shouldRefresh = this.isEdit && this.actions.refreshAble;
     const data = nx.mix(null, this.params, inEvent, this.options);
-    if (!this.isTouched) return message.info(MESSAGES.CONTENT_NO_CHANGED);
+    if (!this.isTouched) return message.info(this.t('no_change'));
 
     return new Promise((resolve, reject) => {
       const payload = this.dataWillSave(data);
       this.apiService[`${this.resources}_${action}`](payload)
         .then((res) => {
-          void message.success(MESSAGES.OPERATION_DONE);
+          void message.success(this.t('success'));
           inRedirect && history.back();
           shouldRefresh && this.load();
           this.setState({ previousState: this.fieldsValue });
@@ -281,7 +316,7 @@ export default class AntAbstractForm extends Component<AntAbstractFormProps, Ant
 
   handleHotkey = (inEvent) => {
     inEvent.preventDefault();
-    if (!this.isEdit) return message.info(MESSAGES.ONLY_CREATOR), Promise.resolve();
+    if (!this.isEdit) return message.info(this.t('action_on_edit')), Promise.resolve();
     return this.save(this.fieldsValue, false);
   };
 
