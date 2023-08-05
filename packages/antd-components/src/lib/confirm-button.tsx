@@ -7,11 +7,11 @@ const CLASS_NAME = 'ac-confirm-button';
 const locals = {
   'zh-CN': {
     title: '确认执行这个操作？',
-    msgCancel: '您取消了操作'
+    msgCancel: '您取消了操作~'
   },
   'en-US': {
     title: 'Are you sure to do this?',
-    msgCancel: 'You canceled the operation'
+    msgCancel: 'You canceled the operation~'
   }
 };
 
