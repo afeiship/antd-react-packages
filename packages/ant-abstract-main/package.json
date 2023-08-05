@@ -72,7 +72,6 @@
   },
   "dependencies": {
     "@jswork/antd-components": "^1.0.59",
-    "@jswork/next-ant-column": "^1.0.5",
     "@jswork/next-get2get": "^1.0.8",
     "@jswork/next-kebab-case": "^1.0.4",
     "@jswork/next-qs": "^1.0.9",

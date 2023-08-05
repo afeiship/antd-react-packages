@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactAntConfirm from '@jswork/react-ant-confirm';
+import { AcConfirmButton } from '@jswork/antd-components';
 import { Table, Button, Space, Tag } from 'antd';
 import { PlusOutlined, ReloadOutlined, UnorderedListOutlined } from '@ant-design/icons';
 import ReactAntInputSearch from '@jswork/react-ant-input-search';
@@ -81,7 +81,7 @@ export class ReactAntCurdTable extends Abstract {
         return (
           <Space>
             <a onClick={this.edit}>{this.t('edit')}</a>
-            <ReactAntConfirm onClick={this.del}>{this.t('delete')}</ReactAntConfirm>
+            <AcConfirmButton onClick={this.del}>{this.t('delete')}</AcConfirmButton>
           </Space>
         );
       }
