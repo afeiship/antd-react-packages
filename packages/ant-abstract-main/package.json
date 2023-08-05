@@ -74,7 +74,6 @@
     "@jswork/next-get2get": "^1.0.8",
     "@jswork/next-kebab-case": "^1.0.4",
     "@jswork/next-qs": "^1.0.9",
-    "@jswork/next-tmpl": "^1.0.7",
     "@jswork/next-url-operator": "^1.0.7",
     "@jswork/noop": "^1.0.0",
     "@jswork/react-ant-confirm": "^1.0.0",

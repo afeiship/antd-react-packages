@@ -21,9 +21,9 @@ export class ReactAntCurdTree extends Abstract {
         <Badge size="small" count={order}>
           {label}
         </Badge>
-        <a onClick={this.edit}>编辑</a>
-        <Popconfirm title="确认执行这个操作？" onConfirm={this.del} onCancel={stop}>
-          <a onClick={stop}>删除</a>
+        <a onClick={this.edit}>{this.t('edit')}</a>
+        <Popconfirm title={this.t('confirm_ok')} onConfirm={this.del} onCancel={stop}>
+          <a onClick={stop}>{this.t('delete')}</a>
         </Popconfirm>
       </Space>
     );

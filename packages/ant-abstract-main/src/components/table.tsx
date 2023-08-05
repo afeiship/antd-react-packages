@@ -13,7 +13,6 @@ import '@jswork/next-qs';
 import '@jswork/next-get2get';
 import '@jswork/next-url-operator';
 import '@jswork/next-kebab-case';
-import '@jswork/next-tmpl';
 
 const CLASS_NAME = 'react-ant-abstract-curd';
 

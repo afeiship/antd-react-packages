@@ -7,7 +7,8 @@ export default {
     refresh: '刷新',
     add: '添加',
     success: '操作成功',
-    search: '搜索'
+    search: '搜索',
+    confirm_ok: '确认执行这个操作？'
   },
   'en-US': {
     actions: 'Actions',
@@ -17,6 +18,7 @@ export default {
     refresh: 'Refresh',
     add: 'Add',
     success: 'Success',
-    search: 'Search'
+    search: 'Search',
+    confirm_ok: 'Are you sure to do this?'
   }
 };
