@@ -13,6 +13,7 @@ import '@jswork/next-qs';
 import '@jswork/next-get2get';
 import '@jswork/next-url-operator';
 import '@jswork/next-kebab-case';
+import '@jswork/next-tmpl';
 
 const CLASS_NAME = 'react-ant-abstract-curd';
 
@@ -75,13 +76,13 @@ export class ReactAntCurdTable extends Abstract {
 
   get actions() {
     return {
-      title: '操作',
+      title: this.t('actions'),
       width: 90,
       render: (_text: string, _record: any) => {
         return (
           <Space>
-            <a onClick={this.edit}>编辑</a>
-            <ReactAntConfirm onClick={this.del}>删除</ReactAntConfirm>
+            <a onClick={this.edit}>{this.t('edit')}</a>
+            <ReactAntConfirm onClick={this.del}>{this.t('delete')}</ReactAntConfirm>
           </Space>
         );
       }
@@ -96,7 +97,7 @@ export class ReactAntCurdTable extends Abstract {
     return (
       <Space>
         <UnorderedListOutlined />
-        <span>列表管理</span>
+        <span>{this.t('title')}</span>
         <Tag>{this.resources}</Tag>
       </Space>
     );
@@ -107,7 +108,7 @@ export class ReactAntCurdTable extends Abstract {
       <Space>
         {this.searchable && (
           <ReactAntInputSearch
-            placeholder={`按title搜索${this.resources}`}
+            placeholder={`${this.t('search')}${this.resources}`}
             allowClear
             autoFocus
             size="small"
@@ -119,11 +120,11 @@ export class ReactAntCurdTable extends Abstract {
         )}
         <Button size={'small'} onClick={this.forceRefresh}>
           <ReloadOutlined />
-          <span>刷新</span>
+          <span>{this.t('refresh')}</span>
         </Button>
         <Button size={'small'} onClick={this.add}>
           <PlusOutlined />
-          <span>新增</span>
+          <span>{this.t('add')}</span>
         </Button>
       </Space>
     );

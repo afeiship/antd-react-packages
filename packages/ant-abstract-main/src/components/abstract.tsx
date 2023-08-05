@@ -2,6 +2,7 @@ import React, { Component, ReactNode } from 'react';
 import ReactAntConfirm from '@jswork/react-ant-confirm';
 import { Button, message, Space, Tag, Card } from 'antd';
 import { PlusOutlined, ReloadOutlined, UnorderedListOutlined } from '@ant-design/icons';
+import locals from './locals';
 
 // next packages
 import '@jswork/next';
@@ -11,26 +12,6 @@ import '@jswork/next-url-operator';
 import '@jswork/next-kebab-case';
 
 const CLASS_NAME = 'react-ant-abstract';
-const locals = {
-  'zh-CN': {
-    actions: '操作',
-    edit: '编辑',
-    delete: '删除',
-    title: '列表管理',
-    refresh: '刷新',
-    add: '添加',
-    success: '操作成功'
-  },
-  'en-US': {
-    actions: 'Actions',
-    edit: 'Edit',
-    delete: 'Delete',
-    title: 'List Management',
-    refresh: 'Refresh',
-    add: 'Add',
-    success: 'Success'
-  }
-};
 
 export type ReactAntAbstractProps = {
   /**
