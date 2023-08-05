@@ -11,12 +11,33 @@ import '@jswork/next-url-operator';
 import '@jswork/next-kebab-case';
 
 const CLASS_NAME = 'react-ant-abstract';
+const locals = {
+  'zh-CN': {
+    actions: '操作',
+    edit: '编辑',
+    delete: '删除',
+    title: '列表管理',
+    refresh: '刷新',
+    add: '添加',
+    success: '操作成功'
+  },
+  'en-US': {
+    actions: 'Actions',
+    edit: 'Edit',
+    delete: 'Delete',
+    title: 'List Management',
+    refresh: 'Refresh',
+    add: 'Add',
+    success: 'Success'
+  }
+};
 
 export type ReactAntAbstractProps = {
   /**
    * The extended className for component.
    */
   className?: string;
+  lang?: string;
 };
 
 export default class ReactAntAbstract extends Component<ReactAntAbstractProps, any> {
@@ -29,6 +50,7 @@ export default class ReactAntAbstract extends Component<ReactAntAbstractProps, a
   protected eventService;
   protected refreshEvent;
 
+  lang = 'zh-CN';
   resources = 'users';
   size = 'small';
   module = 'modules';
@@ -36,15 +58,20 @@ export default class ReactAntAbstract extends Component<ReactAntAbstractProps, a
   rowKey = 'id';
   current: any = { item: null, index: -1 };
 
+  t = (inKey) => {
+    const { lang } = this;
+    return nx.get(locals, `${lang}.${inKey}`, inKey);
+  };
+
   get actions() {
     return {
-      title: '操作',
+      title: this.t('actions'),
       width: 90,
       render: (_text: string, _record: any) => {
         return (
           <Space>
-            <a onClick={this.edit}>编辑</a>
-            <ReactAntConfirm onClick={this.del}>删除</ReactAntConfirm>
+            <a onClick={this.edit}>{this.t('edit')}</a>
+            <ReactAntConfirm onClick={this.del}>{this.t('delete')}</ReactAntConfirm>
           </Space>
         );
       }
@@ -55,7 +82,7 @@ export default class ReactAntAbstract extends Component<ReactAntAbstractProps, a
     return (
       <Space>
         <UnorderedListOutlined />
-        <span>列表管理</span>
+        <span>{this.t('title')}</span>
         <Tag>{this.resources}</Tag>
       </Space>
     );
@@ -66,11 +93,11 @@ export default class ReactAntAbstract extends Component<ReactAntAbstractProps, a
       <Space>
         <Button size={'small'} onClick={this.forceRefresh}>
           <ReloadOutlined />
-          <span>刷新</span>
+          <span>{this.t('refresh')}</span>
         </Button>
         <Button size={'small'} onClick={this.add}>
           <PlusOutlined />
-          <span>新增</span>
+          <span>{this.t('add')}</span>
         </Button>
       </Space>
     );
@@ -200,7 +227,9 @@ export default class ReactAntAbstract extends Component<ReactAntAbstractProps, a
    */
   update = (inItem) => {
     const data = { id: this.id, ...inItem };
-    this.apiService[`${this.resources}_update`](data).then(() => message.success('操作成功'));
+    this.apiService[`${this.resources}_update`](data).then(() =>
+      message.success(this.t('success'))
+    );
   };
 
   view(inProps?): ReactNode {

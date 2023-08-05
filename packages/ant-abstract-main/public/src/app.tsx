@@ -87,6 +87,7 @@ class TreeIndex extends ReactAntCurdTree {
   eventService = nx.mix(this, EventMitt); // nx.$app
   resources = 'repos';
   rowKey = 'value';
+  lang = 'en-US';
 }
 
 export default () => {
