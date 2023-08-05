@@ -17,9 +17,9 @@ const locals = {
 
 export interface AcConfirmButtonProps extends Omit<PopconfirmProps, 'title'> {
   className?: string;
+  lang?: string;
   title?: string;
   type?: ButtonProps['type'];
-  locale?: keyof typeof locals;
   buttonProps?: ButtonProps;
   onClick?: React.MouseEventHandler<HTMLElement>;
 }
@@ -36,7 +36,12 @@ export class AcConfirmButton extends Component<AcConfirmButtonProps> {
   };
 
   handleCancel = () => {
-    message.info(locals[this.props.locale!].msgCancel);
+    message.info(this.t('msgCancel'));
+  };
+
+  t = (inKey) => {
+    const { lang } = this.props;
+    return nx.get(locals, `${lang}.${inKey}`, inKey);
   };
 
   render() {
