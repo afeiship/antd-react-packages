@@ -5,6 +5,7 @@ export * from './lib/checkable-tag-list';
 export * from './lib/checkbox';
 export * from './lib/checkbox-group';
 export * from './lib/codeflask';
+export * from './lib/confirm-button';
 export * from './lib/date-picker';
 export * from './lib/editable-tag-group';
 export * from './lib/input';
