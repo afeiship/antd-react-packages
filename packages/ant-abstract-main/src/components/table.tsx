@@ -178,10 +178,10 @@ export class ReactAntCurdTable extends Abstract {
     return true;
   }
 
-  refreshState() {
+  refreshState = () => {
     const { columns } = this;
     this.setState({ columns });
-  }
+  };
 
   refresh = () => {
     const { page, size } = this.pagination;

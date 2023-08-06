@@ -162,7 +162,7 @@ export default class ReactAntAbstract extends Component<ReactAntAbstractProps, a
 
   load = () => {};
 
-  refreshState() {}
+  refreshState = () => {};
 
   componentDidMount() {
     this.attachEvents();
