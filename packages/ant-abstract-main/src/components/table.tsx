@@ -107,7 +107,7 @@ export class ReactAntCurdTable extends Abstract {
       <Space>
         {this.searchable && (
           <ReactAntInputSearch
-            placeholder={`${this.t('search')}${this.resources}`}
+            placeholder={`${this.t('search')} ${this.resources}`}
             allowClear
             autoFocus
             size="small"
