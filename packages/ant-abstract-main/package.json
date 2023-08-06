@@ -1,7 +1,7 @@
 {
   "name": "@jswork/ant-abstract-main",
   "homepage": "https://js.work",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Antd abstract curd.",
   "license": "MIT",
   "main": "dist/index.js",
