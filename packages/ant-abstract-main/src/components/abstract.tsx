@@ -177,11 +177,8 @@ export default class ReactAntAbstract extends Component<ReactAntAbstractProps, a
 
   attachEvents() {
     const mainModule = `${this.resources}.${this.action}`;
-    this.refreshEvent = this.eventService.on(`${mainModule}.refresh`, () => this.refresh());
-    this.refreshStateEvent = this.eventService.on(
-      `${mainModule}.refreshState`,
-      this.refreshState()
-    );
+    this.refreshEvent = this.eventService.on(`${mainModule}.refresh`, this.refresh);
+    this.refreshStateEvent = this.eventService.on(`${mainModule}.refreshState`, this.refreshState);
   }
 
   detachEvents() {
