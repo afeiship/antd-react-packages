@@ -175,12 +175,10 @@ export class ReactAntCurdTable extends Abstract {
       this.refresh();
     }
 
-    this.refreshColumns();
-    
     return true;
   }
 
-  refreshColumns() {
+  refreshState() {
     const { columns } = this;
     this.setState({ columns });
   }

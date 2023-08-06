@@ -33,6 +33,7 @@ export default class ReactAntAbstract extends Component<ReactAntAbstractProps, a
   protected routeService;
   protected eventService;
   protected refreshEvent;
+  protected refreshStateEvent;
 
   resources = 'users';
   size = 'small';
@@ -161,6 +162,8 @@ export default class ReactAntAbstract extends Component<ReactAntAbstractProps, a
 
   load = () => {};
 
+  refreshState() {}
+
   componentDidMount() {
     this.attachEvents();
     setTimeout(() => {
@@ -173,13 +176,17 @@ export default class ReactAntAbstract extends Component<ReactAntAbstractProps, a
   }
 
   attachEvents() {
-    this.refreshEvent = this.eventService.on(`${this.resources}.${this.action}.refresh`, () => {
-      this.refresh();
-    });
+    const mainModule = `${this.resources}.${this.action}`;
+    this.refreshEvent = this.eventService.on(`${mainModule}.refresh`, () => this.refresh());
+    this.refreshStateEvent = this.eventService.on(
+      `${mainModule}.refreshState`,
+      this.refreshState()
+    );
   }
 
   detachEvents() {
-    this.refreshEvent && this.refreshEvent.destroy();
+    this.refreshEvent?.destroy();
+    this.refreshStateEvent?.destroy();
   }
 
   routerPrefix() {
