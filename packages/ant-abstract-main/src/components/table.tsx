@@ -174,7 +174,15 @@ export class ReactAntCurdTable extends Abstract {
       this.lastQs = this.qs;
       this.refresh();
     }
+
+    this.refreshColumns();
+    
     return true;
+  }
+
+  refreshColumns() {
+    const { columns } = this;
+    this.setState({ columns });
   }
 
   refresh = () => {
