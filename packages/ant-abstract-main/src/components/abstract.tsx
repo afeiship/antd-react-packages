@@ -124,7 +124,7 @@ export default class ReactAntAbstract extends Component<ReactAntAbstractProps, a
    * @template
    *
    */
-  initialState() {
+  initialState(): any {
     return null;
   }
 
