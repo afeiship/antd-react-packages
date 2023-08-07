@@ -15,9 +15,8 @@ import {
 const CLASS_NAME = 'antd-form-builder';
 
 type StdEventTarget = any | { target: { value: any } };
-type StdFormTarget = { target: { value: FormInstance } };
 type StdCallback = (inEvent: StdEventTarget) => void;
-type StdFormCallback = (inEvent: StdFormTarget) => void;
+type StdFormCallback = (inEvent: FormInstance) => void;
 type QueryInput = string | ((item: FieldType) => boolean);
 type ComposeContext = {
   find: (target: QueryInput) => FieldType | undefined;
@@ -68,7 +67,7 @@ export default class AntdFormBuilder extends Component<
     const { onInit } = this.props;
     const { meta } = this.state;
     const form = this.formRef.current!;
-    onInit!({ target: { value: form } });
+    onInit!(form);
     this.setState({ loading: true });
     initForm(meta, form).then(() => {
       this.setState({ loading: false });

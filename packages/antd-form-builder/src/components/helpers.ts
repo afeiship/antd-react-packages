@@ -68,7 +68,7 @@ export const initForm = (meta: InnerMeta, form): Promise<void> => {
     typeof meta.initValues === 'function' ? meta.initValues() : meta.initValues;
 
   return new Promise((resolve) => {
-    form.setFieldsValue(initValues);
+    form?.setFieldsValue(initValues);
     resolve();
   });
 };
