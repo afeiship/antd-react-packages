@@ -329,8 +329,7 @@ export default class AntAbstractForm extends Component<AntAbstractFormProps, Ant
   };
 
   handleInit = (inEvent) => {
-    const { value } = inEvent.target;
-    this.formRef = value;
+    this.formRef = inEvent;
   };
 
   formBuilder() {
