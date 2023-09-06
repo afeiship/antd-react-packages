@@ -128,7 +128,6 @@ export default class AntAbstractForm extends Component<AntAbstractFormProps, Ant
   get titleView() {
     const item = OPERATION_STATUS[+this.isEdit];
     const labels = { edit: this.t('edit'), create: this.t('create') };
-    console.log('labels:', labels, item.action);
 
     return (
       <Space>
