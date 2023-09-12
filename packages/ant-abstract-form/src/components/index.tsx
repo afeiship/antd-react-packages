@@ -84,7 +84,7 @@ export default class AntAbstractForm extends Component<AntAbstractFormProps, Ant
   private hotkeysRes;
   private winkeyRes;
 
-  resources = 'curds';
+  resources = 'resources';
   size: CardSize = 'small';
   options = {};
   rawJSON = false;
