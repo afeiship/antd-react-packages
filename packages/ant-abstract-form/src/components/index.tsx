@@ -151,6 +151,10 @@ export default class AntAbstractForm extends Component<AntAbstractFormProps, Ant
     return !nx.isEmptyObject(this.params);
   }
 
+  get action() {
+    return this.isEdit ? 'edit' : 'create';
+  }
+
   get fieldsValue() {
     return this.formRef?.getFieldsValue(true);
   }
