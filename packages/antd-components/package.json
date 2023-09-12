@@ -1,7 +1,7 @@
 {
   "name": "@jswork/antd-components",
   "homepage": "https://js.work",
-  "version": "1.0.63",
+  "version": "1.0.64",
   "description": "Antd wrapped components.",
   "license": "MIT",
   "main": "dist/index.js",
@@ -74,8 +74,8 @@
     "vite-plugin-pwa": "^0.7.3"
   },
   "dependencies": {
-    "@jswork/antd-form-builder": "^1.1.24",
-    "@jswork/antd-tpls": "^1.0.15",
+    "@jswork/antd-form-builder": "^1.1.25",
+    "@jswork/antd-tpls": "^1.0.16",
     "@jswork/loadkit": "^1.0.6",
     "@jswork/next-dom-event": "^1.0.7",
     "@jswork/next-gpid": "^1.0.2",
