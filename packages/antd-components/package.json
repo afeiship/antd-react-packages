@@ -1,7 +1,7 @@
 {
   "name": "@jswork/antd-components",
   "homepage": "https://js.work",
-  "version": "1.0.64",
+  "version": "1.0.65",
   "description": "Antd wrapped components.",
   "license": "MIT",
   "main": "dist/index.js",

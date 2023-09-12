@@ -1,7 +1,7 @@
 {
   "name": "@jswork/ant-abstract-main",
   "homepage": "https://js.work",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "Antd abstract curd.",
   "license": "MIT",
   "main": "dist/index.js",
@@ -71,7 +71,7 @@
     "vite-plugin-pwa": "^0.7.3"
   },
   "dependencies": {
-    "@jswork/antd-components": "^1.0.64",
+    "@jswork/antd-components": "^1.0.65",
     "@jswork/next-get2get": "^1.0.8",
     "@jswork/next-kebab-case": "^1.0.4",
     "@jswork/next-qs": "^1.0.9",
