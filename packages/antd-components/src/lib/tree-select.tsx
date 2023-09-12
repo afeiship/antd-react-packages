@@ -2,7 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 import noop from '@jswork/noop';
 import { TreeSelect, TreeSelectProps } from 'antd';
-import nxTreeWalk from '@jswork/next-tree-walk';
+import '@jswork/next-tree-walk';
 import { treeSelectKv } from '@jswork/antd-tpls';
 
 const CLASS_NAME = 'ac-tree-select';
@@ -31,7 +31,7 @@ export class AcTreeSelect extends React.Component<Props> {
 
   get childView() {
     const { items, template, itemsKey } = this.props;
-    return nxTreeWalk(items!, { template, itemsKey });
+    return nx.treeWalk(items!, { template, itemsKey });
   }
 
   handleChange = (inValue) => {

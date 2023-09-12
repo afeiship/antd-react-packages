@@ -2,7 +2,6 @@ import React from 'react';
 import noop from '@jswork/noop';
 import { DatePicker, DatePickerProps } from 'antd';
 import cx from 'classnames';
-import moment from 'dayjs';
 
 const CLASS_NAME = 'ac-date-picker';
 const STD_FORMAT = 'YYYY-MM-DD HH:mm:ss';
@@ -13,6 +12,7 @@ type StdCallback = (inEvent: StdEventTarget) => void;
 type Props = {
   className?: string;
   value?: any;
+  dayjs?: any;
   defaultValue?: any;
   onChange?: StdCallback;
 } & DatePickerProps;
@@ -31,8 +31,8 @@ export class AcDatePicker extends React.Component<Props> {
   };
 
   parse = (inValue) => {
-    const { format } = this.props;
-    return moment(inValue, format as string);
+    const { format, dayjs } = this.props;
+    return dayjs(inValue, format as string);
   };
 
   stringify = (inValue) => {
@@ -47,11 +47,7 @@ export class AcDatePicker extends React.Component<Props> {
     if (value) props['value'] = this.parse(value);
 
     return (
-      <DatePicker
-        className={cx(CLASS_NAME, className)}
-        onChange={this.handleChange}
-        {...props}
-      />
+      <DatePicker className={cx(CLASS_NAME, className)} onChange={this.handleChange} {...props} />
     );
   }
 }

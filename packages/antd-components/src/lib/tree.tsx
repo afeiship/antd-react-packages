@@ -1,7 +1,7 @@
 import React from 'react';
 import { Tree, TreeProps } from 'antd';
 import cx from 'classnames';
-import nxTreeWalk from '@jswork/next-tree-walk';
+import '@jswork/next-tree-walk';
 import { treeKv, kv as KvTmpl } from '@jswork/antd-tpls';
 
 const CLASS_NAME = 'ac-tree';
@@ -32,7 +32,7 @@ export class AcTree extends React.Component<Props> {
 
   get childView() {
     const { items, itemsKey } = this.props;
-    return nxTreeWalk(items!, { template: this.template, itemsKey });
+    return nx.treeWalk(items!, { template: this.template, itemsKey });
   }
 
   template = (args) => {
