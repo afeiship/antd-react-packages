@@ -152,7 +152,7 @@ export default class AntAbstractForm extends Component<AntAbstractFormProps, Ant
   }
 
   get action() {
-    return this.isEdit ? 'edit' : 'create';
+    return this.isEdit ? 'update' : 'create';
   }
 
   get fieldsValue() {
