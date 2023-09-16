@@ -268,6 +268,14 @@ export default class AntAbstractForm extends Component<AntAbstractFormProps, Ant
     return this.rawJSON ? JSON.parse(inValue[this.rawField]) : inValue;
   }
 
+  /**
+   * @template
+   * Hook after save.
+   */
+  dataDidSave(inPayload) {
+    console.log('dataDidSave', inPayload);
+  }
+
   load = () => {
     const { meta } = this.state;
     const data = nx.mix(null, this.params, this.options);
@@ -305,7 +313,10 @@ export default class AntAbstractForm extends Component<AntAbstractFormProps, Ant
           this.setState({ previousState: this.fieldsValue });
           resolve(res);
         })
-        .catch(reject);
+        .catch(reject)
+        .finally(() => {
+          this.dataDidSave(payload);
+        });
     });
   }
 
