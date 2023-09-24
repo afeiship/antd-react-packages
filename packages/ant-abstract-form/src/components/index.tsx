@@ -366,9 +366,10 @@ export default class AntAbstractForm extends Component<AntAbstractFormProps, Ant
   view() {
     const { loading } = this.state;
     const computedBusy = this.rawJSON ? false : loading;
+    const title = this.viewMode ? null : this.titleView;
 
     return (
-      <Card loading={computedBusy} size={this.size} title={this.titleView} extra={this.extraView}>
+      <Card loading={computedBusy} size={this.size} title={title} extra={this.extraView}>
         {this.formBuilder()}
       </Card>
     );
