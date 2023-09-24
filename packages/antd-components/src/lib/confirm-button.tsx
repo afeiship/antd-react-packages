@@ -19,8 +19,8 @@ export interface AcConfirmButtonProps extends Omit<PopconfirmProps, 'title'> {
   className?: string;
   lang?: string;
   title?: string;
-  type?: ButtonProps['type'];
-  buttonProps?: ButtonProps;
+  type?: ButtonProps['type'] | 'raw' | 'anchor';
+  childProps?: ButtonProps;
   onClick?: React.MouseEventHandler<HTMLElement>;
 }
 
@@ -31,8 +31,24 @@ export class AcConfirmButton extends Component<AcConfirmButtonProps> {
   static defaultProps = {
     lang: 'zh-CN',
     type: 'link',
-    buttonProps: {}
+    childProps: {}
   };
+
+  get computedChildren() {
+    const { type, children, childProps } = this.props;
+    switch (type) {
+      case 'raw':
+        return children;
+      case 'anchor':
+        return <a {...childProps}>{children}</a>;
+      default:
+        return (
+          <Button type={type} size="small" {...childProps}>
+            {children}
+          </Button>
+        );
+    }
+  }
 
   handleCancel = () => {
     message.info(this.t('msgCancel'));
@@ -49,7 +65,7 @@ export class AcConfirmButton extends Component<AcConfirmButtonProps> {
       onClick,
       type,
       children,
-      buttonProps,
+      childProps,
       lang,
       title: _title,
       ...props
@@ -64,9 +80,7 @@ export class AcConfirmButton extends Component<AcConfirmButtonProps> {
         onCancel={this.handleCancel}
         className={cx(CLASS_NAME, className)}
         {...props}>
-        <Button type={type} size="small" {...buttonProps}>
-          {children}
-        </Button>
+        {this.computedChildren}
       </Popconfirm>
     );
   }

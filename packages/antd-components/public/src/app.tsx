@@ -10,6 +10,7 @@ const Container = styled.div`
 export default () => {
   return (
     <Container>
+      <AcConfirmButton type="raw">test</AcConfirmButton>
       <AcConfirmButton>test</AcConfirmButton>
       <AcConfirmButton lang="en-US">test</AcConfirmButton>
       <AcDatePicker />
