@@ -4,13 +4,7 @@ import cx from 'classnames';
 import noop from '@jswork/noop';
 import compose from 'p-pipe';
 import FormBuilder, { FieldType } from 'antd-form-builder';
-import {
-  generateHelpers,
-  getComputedMeta,
-  initForm,
-  InnerMeta,
-  Presets
-} from './helpers';
+import { generateHelpers, getComputedMeta, initForm, InnerMeta, Presets } from './helpers';
 
 const CLASS_NAME = 'antd-form-builder';
 
@@ -30,6 +24,7 @@ export type AntdFormBuilderProps = {
   slim?: boolean;
   presets?: Presets;
   meta: InnerMeta;
+  builderOptions?: any;
   pipes?: Promise<any>[] | any[];
   caption?: React.ReactNode;
   children?: React.ReactNode;
@@ -43,10 +38,7 @@ type AntdBuilderState = {
   loading: boolean;
 };
 
-export default class AntdFormBuilder extends Component<
-  AntdFormBuilderProps,
-  AntdBuilderState
-> {
+export default class AntdFormBuilder extends Component<AntdFormBuilderProps, AntdBuilderState> {
   static displayName = CLASS_NAME;
   static defaultProps = {
     slim: false,
@@ -102,6 +94,7 @@ export default class AntdFormBuilder extends Component<
       slim,
       meta,
       pipes,
+      builderOptions,
       caption,
       children,
       onInit,
@@ -112,7 +105,9 @@ export default class AntdFormBuilder extends Component<
     } = this.props;
 
     const { loading, meta: computedMeta } = this.state;
-    if (form) return <FormBuilder meta={computedMeta} form={form} />;
+    const formBuilder = <FormBuilder meta={computedMeta} form={form} {...builderOptions} />;
+    if (form) return formBuilder;
+
     return (
       <Form
         ref={this.formRef}
@@ -122,7 +117,7 @@ export default class AntdFormBuilder extends Component<
         {...props}>
         <Spin spinning={loading}>
           {caption}
-          <FormBuilder meta={computedMeta} form={this.formRef.current!} />
+          {formBuilder}
           {children}
         </Spin>
       </Form>
