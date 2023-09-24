@@ -87,6 +87,7 @@ export default class AntAbstractForm extends Component<AntAbstractFormProps, Ant
   resources = 'curds';
   size: CardSize = 'small';
   options = {};
+  viewMode = false;
   rawJSON = false;
   rawField = 'rawJSON';
   apiService: any;
@@ -192,6 +193,7 @@ export default class AntAbstractForm extends Component<AntAbstractFormProps, Ant
   get submitView() {
     const { backAble } = this.actions;
     const { formItemLayout } = this.state.meta;
+    if (this.viewMode) return null;
     return (
       <Form.Item wrapperCol={{ span: formItemLayout[1], offset: formItemLayout[0] }}>
         <Space>
@@ -351,6 +353,7 @@ export default class AntAbstractForm extends Component<AntAbstractFormProps, Ant
     return (
       <FormBuilder
         meta={meta}
+        builderOptions={{ viewMode: this.viewMode }}
         onInit={this.handleInit}
         onChange={() => this.forceUpdate()}
         onFinish={this.handleFinish}
