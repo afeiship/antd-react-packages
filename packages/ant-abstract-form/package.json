@@ -1,7 +1,7 @@
 {
   "name": "@jswork/ant-abstract-form",
   "boilerplate": "ant-abstract-form",
-  "version": "1.0.15",
+  "version": "1.0.16",
   "description": "For curd form based on react.",
   "license": "MIT",
   "main": "dist/index.js",
@@ -79,7 +79,7 @@
     "vite-plugin-pwa": "^0.7.3"
   },
   "dependencies": {
-    "@jswork/antd-form-builder": "^1.1.25",
+    "@jswork/antd-form-builder": "^1.1.26",
     "@jswork/next-dom-event": "^1.0.7",
     "@jswork/next-get2get": "^1.0.8",
     "@jswork/next-is-empty-object": "^1.0.4",
