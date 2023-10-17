@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { AcUploadDragger, AcConfirmButton, AcDatePicker } from '../../src/main';
+import { AcUploadDragger, AcCodeFlask } from '../../src/main';
 
 const Container = styled.div`
   width: 80%;
@@ -10,10 +10,7 @@ const Container = styled.div`
 export default () => {
   return (
     <Container>
-      <AcConfirmButton type="raw">test</AcConfirmButton>
-      <AcConfirmButton>test</AcConfirmButton>
-      <AcConfirmButton lang="en-US">test</AcConfirmButton>
-      <AcDatePicker />
+      <AcCodeFlask />
       <AcUploadDragger
         onRequest={(file) => {
           const fd = new FormData();
