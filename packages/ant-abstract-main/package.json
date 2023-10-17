@@ -22,9 +22,11 @@
     "release": "release-it"
   },
   "devDependencies": {
+    "@ant-design/icons": "^5.0.1",
     "@babel/core": "^7.12.10",
     "@jswork/event-mitt": "^1.0.4",
     "@jswork/next": "^1.1.7",
+    "@jswork/next-ant-column": "^1.1.1",
     "@jswork/next-replace-in-file": "^1.0.0",
     "@jswork/next-rollup-banner": "^1.0.2",
     "@jswork/react-markdown-props": "^1.0.1",
@@ -72,6 +74,7 @@
     "vite-plugin-pwa": "^0.7.3"
   },
   "dependencies": {
+    "@jswork/antd-components": "^1.0.68",
     "@jswork/next-get2get": "^1.0.8",
     "@jswork/next-kebab-case": "^1.0.4",
     "@jswork/next-qs": "^1.0.9",
