@@ -1,13 +1,13 @@
 import cx from 'classnames';
 import React, { createRef } from 'react';
 import noop from '@jswork/noop';
-import ReactInteractiveList from '@jswork/react-interactive-list';
 import AutosizeInput from 'react-input-autosize';
 import { Button, Tag } from 'antd';
 import deepEqual from 'fast-deep-equal';
 import nx from '@jswork/next';
 import _ from 'lodash';
 import '@jswork/next-dom-event';
+import { AcInteractiveList } from './interactive-list-2';
 
 const CLASS_NAME = 'ac-editable-tag-group';
 type StdEventTarget = { target: { value: any } };
@@ -129,6 +129,7 @@ export class AcEditableTagGroup extends React.Component<Props> {
   actionCreate = () => {
     const { value } = this.state;
     value!.push(this.templateDefault());
+    console.log('this.rootRef,value: ', this.rootRef, value);
     this.handleChange(value);
     this.rootRef.current!.notify();
     this.actionFocusLast();
@@ -178,6 +179,7 @@ export class AcEditableTagGroup extends React.Component<Props> {
 
   handleInterChange = (inEvent) => {
     const { value } = inEvent.target;
+    console.log('inter change: ', value);
     this.handleChange(value);
   };
 
@@ -212,11 +214,13 @@ export class AcEditableTagGroup extends React.Component<Props> {
   }
 
   render() {
-    const { className, value, onChange, min, max, ...props } = this.props;
+    const { className, value, onChange, min, max, triggers, ...props } = this.props;
     const { value: stateValue } = this.state;
 
+    console.log('stateValue: ', stateValue);
+
     return (
-      <ReactInteractiveList
+      <AcInteractiveList
         className={cx(CLASS_NAME, className)}
         forwardedRef={this.rootForwardedRef}
         ref={this.rootRef}

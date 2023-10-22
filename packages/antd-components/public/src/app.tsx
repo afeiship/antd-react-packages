@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { AcUploadDragger, AcCodeFlask } from '../../src/main';
+import { AcEditableTagGroup, AcUploadDragger, AcCodeFlask } from '../../src/main';
 
 const Container = styled.div`
   width: 80%;
@@ -8,9 +8,11 @@ const Container = styled.div`
 `;
 
 export default () => {
+  const [v, setV] = useState(['t1', 't2']);
   return (
     <Container>
-      <AcCodeFlask />
+      <AcEditableTagGroup />
+      {/* <AcCodeFlask />
       <AcUploadDragger
         onRequest={(file) => {
           const fd = new FormData();
@@ -25,7 +27,7 @@ export default () => {
             }
           }).then((r) => r.json());
         }}
-      />
+      /> */}
     </Container>
   );
 };
