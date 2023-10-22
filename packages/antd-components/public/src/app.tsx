@@ -12,7 +12,7 @@ export default () => {
   return (
     <Container>
       <AcEditableTagGroup />
-      {/* <AcCodeFlask />
+      <AcCodeFlask />
       <AcUploadDragger
         onRequest={(file) => {
           const fd = new FormData();
@@ -27,7 +27,7 @@ export default () => {
             }
           }).then((r) => r.json());
         }}
-      /> */}
+      />
     </Container>
   );
 };

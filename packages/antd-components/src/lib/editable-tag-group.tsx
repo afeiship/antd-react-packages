@@ -7,7 +7,7 @@ import deepEqual from 'fast-deep-equal';
 import nx from '@jswork/next';
 import _ from 'lodash';
 import '@jswork/next-dom-event';
-import { AcInteractiveList } from './interactive-list-2';
+import { AcInteractiveList } from './interactive-list';
 
 const CLASS_NAME = 'ac-editable-tag-group';
 type StdEventTarget = { target: { value: any } };
@@ -129,9 +129,8 @@ export class AcEditableTagGroup extends React.Component<Props> {
   actionCreate = () => {
     const { value } = this.state;
     value!.push(this.templateDefault());
-    console.log('this.rootRef,value: ', this.rootRef, value);
     this.handleChange(value);
-    this.rootRef.current!.notify();
+    this.rootRef.current!.notify(value);
     this.actionFocusLast();
   };
 
@@ -162,7 +161,7 @@ export class AcEditableTagGroup extends React.Component<Props> {
       }
       this.handleChange(value);
       if (value?.length !== len) {
-        this.actionFocusLast(10);
+        this.actionFocusLast(100);
       }
     }, 10);
   };
@@ -179,7 +178,6 @@ export class AcEditableTagGroup extends React.Component<Props> {
 
   handleInterChange = (inEvent) => {
     const { value } = inEvent.target;
-    console.log('inter change: ', value);
     this.handleChange(value);
   };
 
@@ -216,8 +214,6 @@ export class AcEditableTagGroup extends React.Component<Props> {
   render() {
     const { className, value, onChange, min, max, triggers, ...props } = this.props;
     const { value: stateValue } = this.state;
-
-    console.log('stateValue: ', stateValue);
 
     return (
       <AcInteractiveList

@@ -112,7 +112,7 @@ class ReactInteractiveList extends Component<ReactInteractiveListProps, ReactInt
 
   shouldComponentUpdate(inProps) {
     const { items } = inProps;
-    const isEqual = deepEqual(this.props.items, items);
+    const isEqual = deepEqual(this.state.value, items);
     if (!isEqual) {
       this.setState({ value: [...items] });
     }
@@ -140,9 +140,8 @@ class ReactInteractiveList extends Component<ReactInteractiveListProps, ReactInt
     });
   };
 
-  notify = () => {
-    const { value } = this.state;
-    this.handleChange(value);
+  notify = (inValue) => {
+    this.handleChange(inValue);
   };
 
   render() {
