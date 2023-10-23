@@ -102,21 +102,26 @@ export class ReactAntCurdTable extends Abstract {
     );
   }
 
+  get searchView() {
+    if (!this.searchable) return null;
+    return (
+      <ReactAntInputSearch
+        placeholder={`${this.t('search')} ${this.resources}`}
+        allowClear
+        autoFocus
+        size="small"
+        value={this.state.keywords}
+        enterButton
+        onChange={(e) => this.setState({ keywords: e.target.value })}
+        onSearch={this.handleQuery}
+      />
+    );
+  }
+
   get extraView() {
     return (
       <Space>
-        {this.searchable && (
-          <ReactAntInputSearch
-            placeholder={`${this.t('search')} ${this.resources}`}
-            allowClear
-            autoFocus
-            size="small"
-            value={this.state.keywords}
-            enterButton
-            onChange={(e) => this.setState({ keywords: e.target.value })}
-            onSearch={this.handleQuery}
-          />
-        )}
+        {this.searchView}
         <Button size={'small'} onClick={this.forceRefresh}>
           <ReloadOutlined />
           <span>{this.t('refresh')}</span>
