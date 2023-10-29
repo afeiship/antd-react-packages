@@ -41,6 +41,8 @@ export default class ReactAntAbstract extends Component<ReactAntAbstractProps, a
   action = 'index';
   rowKey = 'id';
   current: any = { item: null, index: -1 };
+  refreshAble = true;
+  createAble = true;
 
   get lang() {
     return 'zh-CN';
@@ -79,16 +81,22 @@ export default class ReactAntAbstract extends Component<ReactAntAbstractProps, a
   }
 
   get extraView() {
+    const { refreshAble, createAble } = this;
+    if (!refreshAble && !createAble) return null;
     return (
       <Space>
-        <Button size={'small'} onClick={this.forceRefresh}>
-          <ReloadOutlined />
-          <span>{this.t('refresh')}</span>
-        </Button>
-        <Button size={'small'} onClick={this.add}>
-          <PlusOutlined />
-          <span>{this.t('add')}</span>
-        </Button>
+        {refreshAble && (
+          <Button size={'small'} onClick={this.forceRefresh}>
+            <ReloadOutlined />
+            <span>{this.t('refresh')}</span>
+          </Button>
+        )}
+        {createAble && (
+          <Button size={'small'} onClick={this.add}>
+            <PlusOutlined />
+            <span>{this.t('add')}</span>
+          </Button>
+        )}
       </Space>
     );
   }
