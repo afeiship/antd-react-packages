@@ -58,6 +58,7 @@ class Index extends ReactAntCurdTable {
   eventService = nx.mix(this, EventMitt); // nx.$app
   resources = 'repos';
   searchable = true;
+  createAble = false;
   pagination = {
     page: 'page',
     size: 'per_page',
