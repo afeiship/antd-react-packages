@@ -278,6 +278,17 @@ export default class AntAbstractForm extends Component<AntAbstractFormProps, Ant
     console.log('dataDidSave', inPayload);
   }
 
+  /**
+   * @template
+   * @param inEvent
+   */
+  onFormChange(_) {}
+
+  handleFormChange = (inEvent) => {
+    this.onFormChange(inEvent);
+    this.forceUpdate();
+  };
+
   load = () => {
     const { meta } = this.state;
     const data = nx.mix(null, this.params, this.options);
@@ -355,7 +366,7 @@ export default class AntAbstractForm extends Component<AntAbstractFormProps, Ant
         meta={meta}
         builderOptions={{ viewMode: this.viewMode }}
         onInit={this.handleInit}
-        onChange={() => this.forceUpdate()}
+        onChange={this.handleFormChange}
         onFinish={this.handleFinish}
         {...this.getFormProps()}>
         {this.submitView}
