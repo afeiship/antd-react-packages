@@ -43,6 +43,7 @@ export default class ReactAntAbstract extends Component<ReactAntAbstractProps, a
   current: any = { item: null, index: -1 };
   refreshAble = true;
   createAble = true;
+  loadingAble = true;
 
   get lang() {
     return 'zh-CN';
@@ -250,8 +251,9 @@ export default class ReactAntAbstract extends Component<ReactAntAbstractProps, a
 
   render() {
     const { loading } = this.state;
+    const extProps = this.loadingAble ? { loading } : {};
     return (
-      <Card title={this.titleView} extra={this.extraView} className={CLASS_NAME}>
+      <Card title={this.titleView} extra={this.extraView} {...extProps} className={CLASS_NAME}>
         {this.headerView()}
         {this.view()}
         {this.footerView()}
