@@ -239,24 +239,17 @@ export default class ReactAntAbstract extends Component<ReactAntAbstractProps, a
     return null;
   }
 
-  headerView(inProps?): ReactNode {
-    console.warn('May implement: ', inProps);
-    return null;
-  }
-
-  footerView(inProps?): ReactNode {
-    console.log('May implement: ', inProps);
-    return null;
-  }
-
   render() {
     const { loading } = this.state;
     const extProps = this.loadingAble ? { loading } : {};
     return (
-      <Card title={this.titleView} extra={this.extraView} {...extProps} className={CLASS_NAME}>
-        {this.headerView()}
+      <Card
+        loading={loading}
+        title={this.titleView}
+        extra={this.extraView}
+        className={CLASS_NAME}
+        {...extProps}>
         {this.view()}
-        {this.footerView()}
       </Card>
     );
   }
