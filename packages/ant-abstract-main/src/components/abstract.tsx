@@ -244,7 +244,6 @@ export default class ReactAntAbstract extends Component<ReactAntAbstractProps, a
     const extProps = this.loadingAble ? { loading } : {};
     return (
       <Card
-        loading={loading}
         title={this.titleView}
         extra={this.extraView}
         className={CLASS_NAME}
