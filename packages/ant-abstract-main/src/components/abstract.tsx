@@ -239,12 +239,12 @@ export default class ReactAntAbstract extends Component<ReactAntAbstractProps, a
   }
 
   headerView(inProps?): ReactNode {
-    // console.warn('Must implement: ', inProps);
+    console.warn('May implement: ', inProps);
     return null;
   }
 
   footerView(inProps?): ReactNode {
-    // console.warn('Must implement: ', inProps);
+    console.log('May implement: ', inProps);
     return null;
   }
 
