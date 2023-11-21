@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { AcEditableTagGroup, AcUploadDragger, AcCodeFlask } from '../../src/main';
+import { Button, Space } from 'antd';
 
 const Container = styled.div`
   width: 80%;
@@ -28,6 +29,30 @@ export default () => {
           }).then((r) => r.json());
         }}
       />
+      <footer>
+        <Space>
+          <Button
+            onClick={(e) => {
+              nx.alert('道可道，非常道；名可名，非常名。');
+            }}>
+            Show alert
+          </Button>
+          <Button
+            onClick={async (e) => {
+              const res = await nx.confirm('道可道，非常道；名可名，非常名。');
+              console.log('res: ', res);
+            }}>
+            Show Confirm
+          </Button>
+          <Button
+            onClick={async (e) => {
+              const res = await nx.prompt('Input some value');
+              console.log('res', res);
+            }}>
+            Show Promote
+          </Button>
+        </Space>
+      </footer>
     </Container>
   );
 };

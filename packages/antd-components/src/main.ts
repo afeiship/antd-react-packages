@@ -1,3 +1,4 @@
+export * from './lib/alert';
 export * from './lib/breadcrumb';
 export * from './lib/checkable-dropdown';
 export * from './lib/checkable-tag';
