@@ -274,8 +274,7 @@ export default class AntAbstractForm extends Component<AntAbstractFormProps, Ant
    * @template
    * Hook after save.
    */
-  dataDidSave(inPayload) {
-    console.log('dataDidSave', inPayload);
+  dataDidSave(_) {
   }
 
   /**
