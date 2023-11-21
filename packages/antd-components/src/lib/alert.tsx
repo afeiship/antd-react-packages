@@ -1,6 +1,6 @@
 import React from 'react';
 import nx from '@jswork/next';
-import { Input, Modal } from 'antd';
+import { Input, InputProps, Modal } from 'antd';
 
 declare global {
   interface NxStatic {
@@ -28,19 +28,18 @@ export const confirm = (inMessage: string, inTitle?: String) => {
   });
 };
 
-export const prompt = (inMessage: string, inTitle?: String) => {
+export const prompt = (inMessage: string, inOptions?: InputProps) => {
   let value = '';
   return new Promise((resolve) => {
     Modal.confirm({
-      title: inTitle || 'Prompt',
+      title: inMessage || 'Prompt',
       content: (
         <Input
           type="text"
           placeholder={inMessage}
           defaultValue={value}
-          onChange={(e) => {
-            value = e.target.value;
-          }}
+          onChange={(e) => (value = e.target.value)}
+          {...inOptions}
         />
       ),
       onOk: () => resolve(value),
