@@ -76,7 +76,7 @@ export class ReactAntCurdTable extends Abstract {
   get actions() {
     return {
       title: this.t('actions'),
-      width: 90,
+      width: 100,
       render: (_text: string, _record: any) => {
         return (
           <Space>
