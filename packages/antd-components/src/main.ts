@@ -12,6 +12,7 @@ export * from './lib/editable-tag-group';
 export * from './lib/input';
 export * from './lib/input-hidden';
 export * from './lib/input-number';
+export * from './lib/input-tags';
 export * from './lib/input-token';
 export * from './lib/pre-select';
 export * from './lib/radio-group';

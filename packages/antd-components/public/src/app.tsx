@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { AcEditableTagGroup, AcUploadDragger, AcCodeFlask } from '../../src/main';
+import { AcEditableTagGroup, AcUploadDragger, AcCodeFlask, AcInputTags } from '../../src/main';
 import { Button, Space } from 'antd';
 
 const Container = styled.div`
@@ -12,8 +12,7 @@ export default () => {
   const [v, setV] = useState(['t1', 't2']);
   return (
     <Container>
-      <AcEditableTagGroup />
-      <AcCodeFlask />
+      <AcInputTags />
       <AcUploadDragger
         onRequest={(file) => {
           const fd = new FormData();
