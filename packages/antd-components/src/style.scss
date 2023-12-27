@@ -1,6 +1,6 @@
-@import "./styles/override";
-@import "@jswork/react-codeflask/dist/style.scss";
-
+@import './styles/override';
+@import './styles/input-tags';
+@import '@jswork/react-codeflask/dist/style.scss';
 
 .ac-checkable-tag {
   user-select: none;
@@ -15,7 +15,7 @@
     background: #1677ff;
   }
 
-  > [role="img"] {
+  > [role='img'] {
     margin-left: 2px;
   }
 }
@@ -33,7 +33,7 @@
     background: var(--ac-checkable-tag-list-inactive-bg);
 
     &.ant-tag-checkable-checked {
-      background: var(--ac-checkable-tag-list-active-bg)
+      background: var(--ac-checkable-tag-list-active-bg);
     }
   }
 }
@@ -84,7 +84,7 @@
     &:after {
       position: absolute;
       left: 0;
-      content: "";
+      content: '';
       height: 10px;
       width: 1px;
       background-color: #333;
@@ -115,7 +115,7 @@
     &:after {
       position: absolute;
       left: 0;
-      content: "";
+      content: '';
       height: 10px;
       width: 1px;
       background-color: #333;
