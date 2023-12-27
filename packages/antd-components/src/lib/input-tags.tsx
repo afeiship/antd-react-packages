@@ -69,16 +69,17 @@ export class AcInputTags extends React.Component<Props, State> {
       if (val) {
         if (!items!.includes(val)) {
           items!.push(val);
+          this.setState({ inputValue: '' });
           this.execChange(items!);
         }
       }
     }
   };
 
-  handleTagRemove = (inIndex) => {
-    const { items } = this.state;
+  handleTagRemove = (inIndex, inForce?: boolean) => {
+    const { items, inputValue } = this.state;
     const newItems = items!.filter((_, idx) => idx !== inIndex);
-    this.execChange(newItems);
+    if (!inputValue || inForce) this.execChange(newItems);
   };
 
   handleMouseEnter = () => {
@@ -87,7 +88,7 @@ export class AcInputTags extends React.Component<Props, State> {
 
   execChange = (inItems) => {
     const { onChange } = this.props;
-    this.setState({ items: (inItems || []).slice(0), inputValue: '' }, () => {
+    this.setState({ items: (inItems || []).slice(0) }, () => {
       this.inputRef.current?.focus();
       onChange!({ target: { value: inItems } });
     });
@@ -98,13 +99,17 @@ export class AcInputTags extends React.Component<Props, State> {
     const { items, inputValue } = this.state;
 
     return (
-      <div className={cx(CLASS_NAME, className)} onMouseOver={this.handleMouseEnter} {...props}>
+      <div
+        className={cx(CLASS_NAME, className)}
+        onMouseOver={this.handleMouseEnter}
+        onClick={this.handleMouseEnter}
+        {...props}>
         {items!.map((item, idx) => {
           return (
             <Tag
               className={`${CLASS_NAME}__tag`}
               closeIcon
-              onClose={this.handleTagRemove.bind(this, idx)}
+              onClose={this.handleTagRemove.bind(this, idx, true)}
               key={idx}>
               {item}
             </Tag>

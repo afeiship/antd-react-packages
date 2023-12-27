@@ -2,10 +2,10 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  /* border: 1px solid lightgray; */
+  border: 1px solid #eee;
   outline: 1px solid transparent;
   transition: all 0.3s ease-in-out;
-  padding: 4px 0;
+  padding: 4px;
   border-radius: 4px;
   gap: 3px;
 
@@ -16,8 +16,6 @@
 
   &__tag {
     display: inline-flex;
-    font-size: 14px;
-    font-family: 'Helvetica Neue', Arial;
     padding: 2px 4px;
     border-radius: 6px;
   }
