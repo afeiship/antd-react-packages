@@ -2,9 +2,17 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  border: 1px solid lightgray;
-  padding: 4px;
+  /* border: 1px solid lightgray; */
+  outline: 1px solid transparent;
+  transition: all 0.3s ease-in-out;
+  padding: 4px 0;
+  border-radius: 4px;
   gap: 3px;
+
+  &:hover {
+    border-color: #4096ff;
+    outline-color: lighten(#4096ff, 10%);
+  }
 
   &__tag {
     display: inline-flex;
@@ -20,5 +28,6 @@
     background: none;
     outline: none;
     width: 100px;
+    height: 26px;
   }
 }

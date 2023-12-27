@@ -2,15 +2,18 @@ import React from 'react';
 import noop from '@jswork/noop';
 import { Input, InputProps, Button, Tag } from 'antd';
 import cx from 'classnames';
+import fde from 'fast-deep-equal';
+
+const CLASS_NAME = 'ac-input-tags';
+const TRIGGER_KEYS = ['Tab', 'Enter', 'Space'];
 
 // @ https://cdpn.io/iamqamarali/fullpage/qyawoR?anon=true&view=
-const CLASS_NAME = 'ac-input-tags';
 type StdEventTarget = { target: { value: any } };
 type StdCallback = (inEvent: StdEventTarget) => void;
 
 type Props = {
   className?: string;
-  items?: any[];
+  items?: string[];
   onChange?: StdCallback;
 } & InputProps;
 
@@ -34,6 +37,14 @@ export class AcInputTags extends React.Component<Props> {
     };
   }
 
+  shouldComponentUpdate(nextProps: Readonly<Props>): boolean {
+    const { items } = nextProps;
+    if (!fde(items, this.props.items)) {
+      this.setState({ items });
+    }
+    return true;
+  }
+
   handleInputChange = (inEvent) => {
     const { value } = inEvent.target;
     this.setState({ inputValue: value });
@@ -43,17 +54,17 @@ export class AcInputTags extends React.Component<Props> {
     const { code } = inEvent;
     const { value } = inEvent.target;
     const { items, isComposite } = this.state;
-    const triggerKeys = ['Tab', 'Enter', 'Space'];
     const val = value.trim();
     const idx = items.length - 1;
     if (isComposite) return false;
     if (code === 'Backspace') return this.handleTagRemove(idx);
     if (code === 'Tab') inEvent.preventDefault();
-    if (triggerKeys.includes(code)) {
+    if (TRIGGER_KEYS.includes(code)) {
       if (val) {
-        items.push(val);
-        this.setState({ items: items.slice(0), inputValue: '' });
-        this.inputRef.current?.focus();
+        if (!items.includes(val)) {
+          items.push(val);
+          this.execChange(items);
+        }
       }
     }
   };
@@ -61,31 +72,21 @@ export class AcInputTags extends React.Component<Props> {
   handleTagRemove = (inIndex) => {
     const { items } = this.state;
     const newItems = items.filter((_, idx) => idx !== inIndex);
-    this.setState({ items: newItems });
+    this.execChange(newItems);
   };
 
-  handleCompositionStart = (inEvent) => {
-    this.setState({
-      isComposite: true
+  execChange = (inItems) => {
+    this.setState({ items: inItems.slice(0), inputValue: '' }, () => {
+      this.inputRef.current?.focus();
     });
-  };
-
-  handleCompositionEnd = (inEvent) => {
-    this.setState({
-      isComposite: false
-    });
-  };
-
-  handleMouseEnter = (inEvent) => {
-    this.inputRef.current?.focus();
   };
 
   render() {
-    const { className, ...props } = this.props;
+    const { className, allowDuplicate, ...props } = this.props;
     const { items, inputValue } = this.state;
 
     return (
-      <div className={cx(CLASS_NAME, className)} onMouseEnter={this.handleMouseEnter} {...props}>
+      <div className={cx(CLASS_NAME, className)} onMouseOver={this.handleMouseEnter} {...props}>
         {items.map((item, idx) => {
           return (
             <Tag
@@ -100,8 +101,8 @@ export class AcInputTags extends React.Component<Props> {
         <input
           autoFocus
           ref={this.inputRef}
-          onCompositionStart={this.handleCompositionStart}
-          onCompositionEnd={this.handleCompositionEnd}
+          onCompositionStart={() => this.setState({ isComposite: true })}
+          onCompositionEnd={() => this.setState({ isComposite: false })}
           onInput={this.handleInputChange}
           onKeyDown={this.handleInputKeyAction}
           value={inputValue}

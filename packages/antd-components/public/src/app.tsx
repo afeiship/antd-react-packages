@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { AcEditableTagGroup, AcUploadDragger, AcCodeFlask, AcInputTags } from '../../src/main';
 import { Button, Space } from 'antd';
+import { useEffect } from 'react';
 
 const Container = styled.div`
   width: 80%;
@@ -10,9 +11,18 @@ const Container = styled.div`
 
 export default () => {
   const [v, setV] = useState(['t1', 't2']);
+  const [it1, setIt1] = useState<string>([]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      console.log('set data!');
+      setIt1(['a', 'b', 'c']);
+    }, 1000);
+  }, []);
+
   return (
     <Container>
-      <AcInputTags style={{ marginBottom: 10 }} />
+      <AcInputTags items={it1} style={{ marginBottom: 10 }} />
       <AcUploadDragger
         onRequest={(file) => {
           const fd = new FormData();
