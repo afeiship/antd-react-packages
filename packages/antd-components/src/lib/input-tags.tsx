@@ -1,6 +1,6 @@
 import React from 'react';
 import noop from '@jswork/noop';
-import { Input, InputProps, Button, Tag } from 'antd';
+import { Tag } from 'antd';
 import cx from 'classnames';
 import fde from 'fast-deep-equal';
 
@@ -15,9 +15,15 @@ type Props = {
   className?: string;
   items?: string[];
   onChange?: StdCallback;
-} & InputProps;
+};
 
-export class AcInputTags extends React.Component<Props> {
+type State = {
+  items?: string[];
+  inputValue: string;
+  isComposite: boolean;
+};
+
+export class AcInputTags extends React.Component<Props, State> {
   static displayName = CLASS_NAME;
   static formSchema = CLASS_NAME;
   static defaultProps = {
@@ -55,15 +61,15 @@ export class AcInputTags extends React.Component<Props> {
     const { value } = inEvent.target;
     const { items, isComposite } = this.state;
     const val = value.trim();
-    const idx = items.length - 1;
+    const idx = items!.length - 1;
     if (isComposite) return false;
     if (code === 'Backspace') return this.handleTagRemove(idx);
     if (code === 'Tab') inEvent.preventDefault();
     if (TRIGGER_KEYS.includes(code)) {
       if (val) {
-        if (!items.includes(val)) {
-          items.push(val);
-          this.execChange(items);
+        if (!items!.includes(val)) {
+          items!.push(val);
+          this.execChange(items!);
         }
       }
     }
@@ -71,23 +77,29 @@ export class AcInputTags extends React.Component<Props> {
 
   handleTagRemove = (inIndex) => {
     const { items } = this.state;
-    const newItems = items.filter((_, idx) => idx !== inIndex);
+    const newItems = items!.filter((_, idx) => idx !== inIndex);
     this.execChange(newItems);
   };
 
+  handleMouseEnter = () => {
+    this.inputRef.current?.focus();
+  };
+
   execChange = (inItems) => {
-    this.setState({ items: inItems.slice(0), inputValue: '' }, () => {
+    const { onChange } = this.props;
+    this.setState({ items: (inItems || []).slice(0), inputValue: '' }, () => {
       this.inputRef.current?.focus();
+      onChange!({ target: { value: inItems } });
     });
   };
 
   render() {
-    const { className, allowDuplicate, ...props } = this.props;
+    const { className, onChange, ...props } = this.props;
     const { items, inputValue } = this.state;
 
     return (
       <div className={cx(CLASS_NAME, className)} onMouseOver={this.handleMouseEnter} {...props}>
-        {items.map((item, idx) => {
+        {items!.map((item, idx) => {
           return (
             <Tag
               className={`${CLASS_NAME}__tag`}

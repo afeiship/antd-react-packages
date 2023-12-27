@@ -22,7 +22,13 @@ export default () => {
 
   return (
     <Container>
-      <AcInputTags items={it1} style={{ marginBottom: 10 }} />
+      <AcInputTags
+        items={it1}
+        style={{ marginBottom: 10 }}
+        onChange={(e) => {
+          console.log('e: ', e.target.value);
+        }}
+      />
       <AcUploadDragger
         onRequest={(file) => {
           const fd = new FormData();
