@@ -14,8 +14,9 @@ type StdCallback = (inEvent: StdEventTarget) => void;
 type Props = {
   className?: string;
   items?: string[];
+  disabled?: boolean;
   onChange?: StdCallback;
-};
+} & React.HTMLAttributes<HTMLDivElement>;
 
 type State = {
   items?: string[];
@@ -28,6 +29,7 @@ export class AcInputTags extends React.Component<Props, State> {
   static formSchema = CLASS_NAME;
   static defaultProps = {
     items: [],
+    disabled: false,
     onChange: noop
   };
 
@@ -77,7 +79,9 @@ export class AcInputTags extends React.Component<Props, State> {
   };
 
   handleTagRemove = (inIndex, inForce?: boolean) => {
+    const { disabled } = this.props;
     const { items, inputValue } = this.state;
+    if (disabled) return;
     const newItems = items!.filter((_, idx) => idx !== inIndex);
     if (!inputValue || inForce) this.execChange(newItems);
   };
@@ -95,11 +99,12 @@ export class AcInputTags extends React.Component<Props, State> {
   };
 
   render() {
-    const { className, onChange, ...props } = this.props;
+    const { className, onChange, disabled, ...props } = this.props;
     const { items, inputValue } = this.state;
 
     return (
       <div
+        data-disabled={disabled}
         className={cx(CLASS_NAME, className)}
         onMouseOver={this.handleMouseEnter}
         onClick={this.handleMouseEnter}
@@ -107,6 +112,7 @@ export class AcInputTags extends React.Component<Props, State> {
         {items!.map((item, idx) => {
           return (
             <Tag
+              data-disabled={disabled}
               className={`${CLASS_NAME}__tag`}
               closeIcon
               onClose={this.handleTagRemove.bind(this, idx, true)}
@@ -116,6 +122,7 @@ export class AcInputTags extends React.Component<Props, State> {
           );
         })}
         <input
+          disabled={disabled}
           autoFocus
           ref={this.inputRef}
           onCompositionStart={() => this.setState({ isComposite: true })}

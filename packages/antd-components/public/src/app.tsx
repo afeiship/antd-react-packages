@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { AcEditableTagGroup, AcUploadDragger, AcCodeFlask, AcInputTags } from '../../src/main';
+import { AcUploadDragger, AcInputTags } from '../../src/main';
 import { Button, Space } from 'antd';
 import { useEffect } from 'react';
 
@@ -10,8 +10,7 @@ const Container = styled.div`
 `;
 
 export default () => {
-  const [v, setV] = useState(['t1', 't2']);
-  const [it1, setIt1] = useState<string>([]);
+  const [it1, setIt1] = useState<string[]>([]);
 
   useEffect(() => {
     setTimeout(() => {
@@ -24,6 +23,7 @@ export default () => {
     <Container>
       <AcInputTags
         items={it1}
+        disabled
         style={{ marginBottom: 10 }}
         onChange={(e) => {
           console.log('e: ', e.target.value);
@@ -47,20 +47,20 @@ export default () => {
       <footer>
         <Space>
           <Button
-            onClick={(e) => {
+            onClick={() => {
               nx.alert('道可道，非常道；名可名，非常名。');
             }}>
             Show alert
           </Button>
           <Button
-            onClick={async (e) => {
+            onClick={async () => {
               const res = await nx.confirm('道可道，非常道；名可名，非常名。');
               console.log('res: ', res);
             }}>
             Show Confirm
           </Button>
           <Button
-            onClick={async (e) => {
+            onClick={async () => {
               const res = await nx.prompt('Input some value');
               console.log('res', res);
             }}>

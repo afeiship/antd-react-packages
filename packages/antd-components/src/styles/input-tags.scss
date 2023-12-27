@@ -9,7 +9,13 @@
   border-radius: 4px;
   gap: 3px;
 
-  &:hover {
+  &[data-disabled=true] {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  //not disabled
+  &:not([data-disabled="true"]) {
     border-color: #4096ff;
     outline-color: lighten(#4096ff, 10%);
   }
