@@ -1,18 +1,24 @@
 .ac-input-tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  border: 1px solid lightgray;
+  padding: 4px;
+  gap: 3px;
+
   &__tag {
-    display: inline-block;
-    background-color: #eee;
+    display: inline-flex;
     font-size: 14px;
     font-family: 'Helvetica Neue', Arial;
-    margin-right: 2px;
-    margin-bottom: 2px;
     padding: 2px 4px;
     border-radius: 6px;
   }
+
   &__input {
     appearance: none;
-    /* border: none; */
+    border: none;
     background: none;
     outline: none;
+    width: 100px;
   }
 }

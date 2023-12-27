@@ -29,6 +29,7 @@ export class AcInputTags extends React.Component<Props> {
     const { items } = inProps;
     this.state = {
       items,
+      isComposite: false,
       inputValue: ''
     };
   }
@@ -41,9 +42,12 @@ export class AcInputTags extends React.Component<Props> {
   handleInputKeyAction = (inEvent) => {
     const { code } = inEvent;
     const { value } = inEvent.target;
-    const { items } = this.state;
+    const { items, isComposite } = this.state;
     const triggerKeys = ['Tab', 'Enter', 'Space'];
     const val = value.trim();
+    const idx = items.length - 1;
+    if (isComposite) return false;
+    if (code === 'Backspace') return this.handleTagRemove(idx);
     if (code === 'Tab') inEvent.preventDefault();
     if (triggerKeys.includes(code)) {
       if (val) {
@@ -60,12 +64,28 @@ export class AcInputTags extends React.Component<Props> {
     this.setState({ items: newItems });
   };
 
+  handleCompositionStart = (inEvent) => {
+    this.setState({
+      isComposite: true
+    });
+  };
+
+  handleCompositionEnd = (inEvent) => {
+    this.setState({
+      isComposite: false
+    });
+  };
+
+  handleMouseEnter = (inEvent) => {
+    this.inputRef.current?.focus();
+  };
+
   render() {
     const { className, ...props } = this.props;
     const { items, inputValue } = this.state;
 
     return (
-      <div className={cx(CLASS_NAME, className)}>
+      <div className={cx(CLASS_NAME, className)} onMouseEnter={this.handleMouseEnter} {...props}>
         {items.map((item, idx) => {
           return (
             <Tag
@@ -78,12 +98,14 @@ export class AcInputTags extends React.Component<Props> {
           );
         })}
         <input
+          autoFocus
           ref={this.inputRef}
+          onCompositionStart={this.handleCompositionStart}
+          onCompositionEnd={this.handleCompositionEnd}
           onInput={this.handleInputChange}
           onKeyDown={this.handleInputKeyAction}
           value={inputValue}
           className={cx(`${CLASS_NAME}__input`, className)}
-          {...props}
         />
       </div>
     );

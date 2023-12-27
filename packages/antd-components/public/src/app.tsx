@@ -12,7 +12,7 @@ export default () => {
   const [v, setV] = useState(['t1', 't2']);
   return (
     <Container>
-      <AcInputTags />
+      <AcInputTags style={{ marginBottom: 10 }} />
       <AcUploadDragger
         onRequest={(file) => {
           const fd = new FormData();
