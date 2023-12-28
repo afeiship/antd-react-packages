@@ -64,6 +64,8 @@ export class AcInputTags extends React.Component<Props, State> {
     const { items, isComposite } = this.state;
     const val = value.trim();
     const idx = items!.length - 1;
+    inEvent.stopPropagation();
+
     if (isComposite) return false;
     if (code === 'Backspace') return this.handleTagRemove(idx);
     if (code === 'Tab') inEvent.preventDefault();
@@ -86,7 +88,7 @@ export class AcInputTags extends React.Component<Props, State> {
     if (!inputValue || inForce) this.execChange(newItems);
   };
 
-  handleMouseEnter = () => {
+  handleMouseEnter = (inEvent) => {
     this.inputRef.current?.focus();
   };
 
