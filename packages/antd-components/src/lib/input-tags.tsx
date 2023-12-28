@@ -88,7 +88,7 @@ export class AcInputTags extends React.Component<Props, State> {
     if (!inputValue || inForce) this.execChange(newItems);
   };
 
-  handleMouseEnter = (inEvent) => {
+  handleMouseEnter = () => {
     this.inputRef.current?.focus();
   };
 
