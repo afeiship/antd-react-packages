@@ -107,7 +107,6 @@ export default class AntAbstractForm extends Component<AntAbstractFormProps, Ant
     super(inProps);
     this.hotkeysRes = registerKey(HOT_KEYS, this.handleHotkey);
     this.state = nx.mix(
-      null,
       { meta: {}, previousState: null, loading: false },
       this.initialState()
     );
