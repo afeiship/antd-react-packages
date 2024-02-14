@@ -19,6 +19,7 @@ import '@jswork/next-get2get';
 
 const CLASS_NAME = 'react-ant-abstract-form';
 const HOT_KEYS = 'cmd+s';
+
 const locals = {
   'zh-CN': {
     touched: '已修改',
