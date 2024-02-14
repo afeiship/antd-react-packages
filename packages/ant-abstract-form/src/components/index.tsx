@@ -17,7 +17,7 @@ import '@jswork/next-dom-event';
 import '@jswork/next-is-empty-object';
 import '@jswork/next-get2get';
 
-const CLASS_NAME = 'ant-abstract-form';
+const CLASS_NAME = 'react-ant-abstract-form';
 const HOT_KEYS = 'cmd+s';
 const locals = {
   'zh-CN': {
@@ -106,10 +106,7 @@ export default class AntAbstractForm extends Component<AntAbstractFormProps, Ant
   constructor(inProps) {
     super(inProps);
     this.hotkeysRes = registerKey(HOT_KEYS, this.handleHotkey);
-    this.state = nx.mix(
-      { meta: {}, previousState: null, loading: false },
-      this.initialState()
-    );
+    this.state = nx.mix({ meta: {}, previousState: null, loading: false }, this.initialState());
     this.init();
   }
 
@@ -273,8 +270,7 @@ export default class AntAbstractForm extends Component<AntAbstractFormProps, Ant
    * @template
    * Hook after save.
    */
-  dataDidSave(_) {
-  }
+  dataDidSave(_) {}
 
   /**
    * @template
@@ -378,7 +374,12 @@ export default class AntAbstractForm extends Component<AntAbstractFormProps, Ant
     const title = this.viewMode ? null : this.titleView;
 
     return (
-      <Card loading={computedBusy} size={this.size} title={title} extra={this.extraView}>
+      <Card
+        className={CLASS_NAME}
+        loading={computedBusy}
+        size={this.size}
+        title={title}
+        extra={this.extraView}>
         {this.formBuilder()}
       </Card>
     );
