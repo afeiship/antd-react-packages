@@ -39,10 +39,10 @@ export class AcRadioGroup extends React.Component<Props> {
 
   state = { value: this.props.value };
 
-  shouldComponentUpdate(inProps: Readonly<Props>): boolean {
+  static getDerivedStateFromProps(inProps: Readonly<Props>, inState: any) {
     const { value } = inProps;
-    if (value !== this.props.value) this.setState({ value });
-    return true;
+    if (value !== inState.value) return { value };
+    return null;
   }
 
   handleChange = (inEvent) => {
