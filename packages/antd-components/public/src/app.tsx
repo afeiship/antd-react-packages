@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { AcUploadDragger, AcInputTags } from '../../src/main';
-import { Button, Space } from 'antd';
-import { useEffect } from 'react';
+import { AcRadioGroup } from '../../src/main';
 
 const Container = styled.div`
   width: 80%;
@@ -10,64 +8,22 @@ const Container = styled.div`
 `;
 
 export default () => {
-  const [it1, setIt1] = useState<string[]>([]);
-
-  useEffect(() => {
-    setTimeout(() => {
-      console.log('set data!');
-      setIt1(['a', 'b', 'c']);
-    }, 1000);
-  }, []);
+  const [v1, setV1] = useState('a');
 
   return (
     <Container>
-      <AcInputTags
-        items={it1}
-        disabled
-        style={{ marginBottom: 10 }}
+      <AcRadioGroup
+        value={v1}
+        items={[
+          { label: 'a', value: 'a' },
+          { label: 'b', value: 'b' },
+          { label: 'c', value: 'c' }
+        ]}
         onChange={(e) => {
-          console.log('e: ', e.target.value);
+          console.log(e.target.value);
+          setV1(e.target.value);
         }}
       />
-      <AcUploadDragger
-        onRequest={(file) => {
-          const fd = new FormData();
-          fd.append('file', file);
-          fd.append('actionName', 'sys-admin-users-add');
-          return fetch('http://dev.com/api/common/oss/upload', {
-            method: 'POST',
-            body: fd,
-            headers: {
-              'Content-Type': 'multipart/form-data',
-              'Authorization': 'Bearer QzI8Lt3rifOqGNfZpndDrTnXVmk='
-            }
-          }).then((r) => r.json());
-        }}
-      />
-      <footer>
-        <Space>
-          <Button
-            onClick={() => {
-              nx.alert('道可道，非常道；名可名，非常名。');
-            }}>
-            Show alert
-          </Button>
-          <Button
-            onClick={async () => {
-              const res = await nx.confirm('道可道，非常道；名可名，非常名。');
-              console.log('res: ', res);
-            }}>
-            Show Confirm
-          </Button>
-          <Button
-            onClick={async () => {
-              const res = await nx.prompt('Input some value');
-              console.log('res', res);
-            }}>
-            Show Promote
-          </Button>
-        </Space>
-      </footer>
     </Container>
   );
 };

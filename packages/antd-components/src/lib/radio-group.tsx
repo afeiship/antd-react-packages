@@ -8,15 +8,12 @@ import { radioKv } from '@jswork/antd-tpls/dist/esm';
 const CLASS_NAME = 'ac-radio-group';
 type StdEventTarget = { target: { value: any } };
 type StdCallback = (inEvent: StdEventTarget) => void;
-type TemplateCallback = (
-  item: { item: any; index: number },
-  opts?: any
-) => React.ReactNode;
+type TemplateCallback = (item: { item: any; index: number }, opts?: any) => React.ReactNode;
 
 type Props = {
   className?: string;
-  value?: any[];
-  defaultValue?: any[];
+  value?: any;
+  defaultValue?: any;
   items?: any[];
   onChange?: StdCallback;
   onSearch?: StdCallback;
@@ -40,29 +37,29 @@ export class AcRadioGroup extends React.Component<Props> {
     return (item) => template!(item, templateOptions);
   }
 
+  state = { value: this.props.value };
+
+  shouldComponentUpdate(inProps: Readonly<Props>): boolean {
+    const { value } = inProps;
+    if (value !== this.props.value) this.setState({ value });
+    return true;
+  }
+
   handleChange = (inEvent) => {
     const { onChange, onSearch } = this.props;
-    const stdEvent = { target: { value: inEvent } };
-    onChange!(stdEvent);
-    onSearch!(stdEvent);
+    const { value } = inEvent.target;
+    const target = { value };
+    this.setState(target);
+    onChange!({ target });
+    onSearch!({ target });
   };
 
   render() {
-    const {
-      className,
-      items,
-      template,
-      templateOptions,
-      onChange,
-      onSearch,
-      ...props
-    } = this.props;
+    const { className, items, template, templateOptions, onChange, onSearch, ...props } =
+      this.props;
 
     return (
-      <Radio.Group
-        className={cx(CLASS_NAME, className)}
-        onChange={this.handleChange}
-        {...props}>
+      <Radio.Group className={cx(CLASS_NAME, className)} onChange={this.handleChange} {...props}>
         <ReactList items={items} template={this.templateCallback} />
       </Radio.Group>
     );
