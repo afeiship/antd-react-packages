@@ -1,6 +1,6 @@
 import noop from '@jswork/noop';
 import classNames from 'classnames';
-import React, { Component } from 'react';
+import React, { HTMLAttributes, Component } from 'react';
 
 const CLASS_NAME = 'antd-form-field';
 
@@ -17,7 +17,7 @@ export type AntdFormFieldProps = {
    * The change handler.
    */
   onChange?: Function;
-} & HTMLAttributes<any>;
+} & HTMLAttributes<HTMLDivElement>;
 
 export default class AntdFormField extends Component<AntdFormFieldProps> {
   static displayName = CLASS_NAME;
