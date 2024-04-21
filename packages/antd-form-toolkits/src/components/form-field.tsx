@@ -4,7 +4,7 @@ import * as AcComponents from '@jswork/antd-components';
 import nx from '@jswork/next';
 import '@jswork/next-classify';
 
-interface FormFieldProps {
+export interface FormFieldProps {
   name: string;
   label?: string;
   widget?: string | React.ComponentType;
