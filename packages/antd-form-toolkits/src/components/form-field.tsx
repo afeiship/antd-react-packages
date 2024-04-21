@@ -5,10 +5,10 @@ import nx from '@jswork/next';
 import '@jswork/next-classify';
 
 interface FormFieldProps {
-  label: string;
   name: string;
+  label?: string;
   widget?: string | React.ComponentType;
-  widgetProps?: any;
+  widgetProps?: Record<string, any>;
 
   [key: string]: any;
 }
