@@ -52,7 +52,7 @@ export default () => {
             { name: 'username' },
             { name: 'password', rules: [{ required: true }] },
             { name: 'email', disabled: true },
-            { widget: 'ac-checkbox', label: 'NEW' }
+            { widget: 'ac-checkbox', label: 'NEW=OVERRIDE' }
           ]}
         />
         <Form.Item>
