@@ -17,21 +17,13 @@ export default () => {
         wrapperCol={{ span: 14 }}>
         <FormFields
           items={[
-            {
-              label: 'Username',
-              name: 'username',
-              rules: [{ required: true, message: 'Please input your username!' }]
-            },
-            {
-              label: 'Password',
-              name: 'password',
-              rules: [{ required: true, message: 'Please input your password!' }]
-            },
+            { label: 'Username', name: 'username', rules: [{ required: true }] },
+            { label: 'Password', name: 'password', rules: [{ required: true }] },
             {
               name: 'remember',
               label: 'Accept terms and conditions',
               widget: 'ac-checkbox',
-              widgetProps: { children: 'Remember me' }
+              widgetProps: { children: 'Remember' }
             }
           ]}
         />
