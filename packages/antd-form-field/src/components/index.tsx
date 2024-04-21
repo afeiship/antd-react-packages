@@ -1,6 +1,7 @@
 import noop from '@jswork/noop';
 import classNames from 'classnames';
 import React, { HTMLAttributes, Component } from 'react';
+import * as AcComponents from '@jswork/antd-components';
 
 const CLASS_NAME = 'antd-form-field';
 
@@ -35,10 +36,7 @@ export default class AntdFormField extends Component<AntdFormFieldProps> {
     const { className, value, onChange, ...props } = this.props;
 
     return (
-      <div
-        data-component={CLASS_NAME}
-        className={classNames(CLASS_NAME, className)}
-        {...props}>
+      <div data-component={CLASS_NAME} className={classNames(CLASS_NAME, className)} {...props}>
         <button
           style={{ padding: 20, width: '100%' }}
           onClick={this.handleClick}
