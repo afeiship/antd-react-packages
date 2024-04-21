@@ -12,15 +12,22 @@ export default () => {
     <>
       <h1>Form Fields Demo</h1>
       <Form
+        initialValues={{
+          username2: 'admin',
+          password2: '123456',
+          email2: 'admin@example.com',
+          remember2: false
+        }}
         onFinish={(values) => console.log(values)}
         labelCol={{ span: 6 }}
         wrapperCol={{ span: 14 }}>
         <FormFields
           items={[
-            { label: 'Username', name: 'username', rules: [{ required: true }] },
-            { label: 'Password', name: 'password', rules: [{ required: true }] },
+            { label: 'Username2', name: 'username2', rules: [{ required: true }] },
+            { label: 'Password2', name: 'password2', rules: [{ required: true }] },
+            { label: 'Email2', name: 'email2', disabled: true },
             {
-              name: 'remember',
+              name: 'remember2',
               label: 'Accept terms and conditions',
               widget: 'ac-checkbox',
               widgetProps: { children: 'Remember' }
