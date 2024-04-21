@@ -29,7 +29,7 @@ class FormField extends React.Component<FormFieldProps, any> {
     const { widget } = this.props;
     if (typeof widget === 'function') return widget;
     const widgetName = nx.classify(widget!);
-    return AcComponents[widgetName!] || AcComponents['AcInput'];
+    return AcComponents[widgetName!] || AcComponents.AcInput;
   }
 
   get widgetProps() {
