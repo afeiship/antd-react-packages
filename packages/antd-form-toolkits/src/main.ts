@@ -1,3 +1,3 @@
-import Component from './components';
+import FormField from './components/form-field';
 
-export default Component;
+export { FormField };
