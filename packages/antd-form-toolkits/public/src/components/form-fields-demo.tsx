@@ -7,6 +7,7 @@ import { FormFields } from '@/main';
 import { Button, Form } from 'antd';
 import React from 'react';
 
+// set name presets for FormFields
 export default () => {
   return (
     <>
@@ -23,7 +24,7 @@ export default () => {
         wrapperCol={{ span: 14 }}>
         <FormFields
           items={[
-            { label: 'Username2', name: 'username2', size: 'large', rules: [{ required: true }] },
+            { name: 'username2', size: 'large', rules: [{ required: true }] },
             { label: 'Password2', name: 'password2', rules: [{ required: true }] },
             { label: 'Email2', name: 'email2', disabled: true },
             {
