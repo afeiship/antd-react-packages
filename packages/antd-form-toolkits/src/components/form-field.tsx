@@ -3,6 +3,7 @@ import { Form } from 'antd';
 import * as AcComponents from '@jswork/antd-components';
 import nx from '@jswork/next';
 import '@jswork/next-classify';
+import '@jswork/next-compact-object';
 
 type NamePresets = Omit<FormFieldProps, 'name'>;
 type WidgetPresets = Omit<FormFieldProps, 'widget'>;
@@ -41,22 +42,27 @@ class FormField extends React.Component<FormFieldProps, any> {
     FormField.defaultProps.presets = presets;
   }
 
-  get namePresets() {
-    const { name, presets } = this.props;
-    const namePresets = presets?.name || {};
-    return namePresets[name!] || ({} as NamePresets);
-  }
-
-  get widgetPresets() {
-    const { widget, presets } = this.props;
+  processProps() {
+    const { name, label, widget, presets, ...restProps } = this.props;
+    const namedPresets = presets?.name || {};
     const widgetPresets = presets?.widget || {};
-    return widgetPresets[widget as string] || ({} as WidgetPresets);
+    const presetProps = {
+      ...namedPresets[name as string],
+      ...widgetPresets[widget as string]
+    };
+    return {
+      ...presetProps,
+      name: presetProps.name || name,
+      label: presetProps.label || label,
+      widget: presetProps.widget || widget,
+      ...restProps
+    } as FormFieldProps;
   }
 
   get widgetComponent() {
-    const { widget } = this.props;
+    const { widget } = this.processProps();
     if (typeof widget === 'function') return widget;
-    const widgetName = nx.classify(widget!);
+    const widgetName = nx.classify(widget as string);
     return AcComponents[widgetName!] || AcComponents.AcInput;
   }
 
@@ -70,34 +76,25 @@ class FormField extends React.Component<FormFieldProps, any> {
       readOnly,
       required,
       size
-    } = this.props;
+    } = this.processProps();
 
-    const { name, label, ...restPresetsWidgetProps } = {
-      ...this.widgetPresets,
-      ...this.namePresets
-    };
-
-    return [
-      { name, label },
-      {
-        autoFocus,
-        autoComplete,
-        placeholder,
-        disabled,
-        readOnly,
-        required,
-        size,
-        ...widgetProps,
-        ...restPresetsWidgetProps
-      }
-    ];
+    return nx.compactObject({
+      autoFocus,
+      autoComplete,
+      placeholder,
+      disabled,
+      readOnly,
+      required,
+      size,
+      ...widgetProps
+    });
   }
 
   render() {
     const {
       presets,
-      // name,
-      // label,
+      name,
+      label,
       widget,
       widgetProps,
       placeholder,
@@ -105,17 +102,13 @@ class FormField extends React.Component<FormFieldProps, any> {
       readOnly,
       required,
       ...restFormItemProps
-    } = this.props;
+    } = this.processProps();
 
     const Widget = this.widgetComponent;
-    const [arg0, arg1] = this.widgetProps;
-    // console.log('restFormItemProps: ', arg0, arg1);
-    delete arg1['widgetProps'];
-    // const [formItemProps, widgetProps as _widgetProps] = this.widgetProps;
 
     return (
-      <Form.Item {...arg0} {...restFormItemProps}>
-        <Widget {...arg1} />
+      <Form.Item name={name} label={label} {...restFormItemProps}>
+        <Widget {...this.widgetProps} />
       </Form.Item>
     );
   }

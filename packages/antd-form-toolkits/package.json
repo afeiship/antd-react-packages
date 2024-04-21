@@ -71,6 +71,7 @@
   },
   "dependencies": {
     "@jswork/next-classify": "^1.0.5",
+    "@jswork/next-compact-object": "^1.0.5",
     "@jswork/noop": "^1.0.0",
     "classnames": "^2.2.6"
   },

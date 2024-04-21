@@ -20,15 +20,15 @@ FormField.setPresets({
     },
     email: {
       label: 'Email',
-      disabled: true,
-      widgetProps: { children: 'Remember' }
+      disabled: true
     }
   },
   widget: {
     'ac-checkbox': {
       name: 'remember',
       label: 'Accept terms and conditions',
-      rules: [{ required: true }]
+      rules: [{ required: true }],
+      widgetProps: { children: 'Remember' }
     }
   }
 });
@@ -36,7 +36,7 @@ FormField.setPresets({
 export default () => {
   return (
     <>
-      <h1>Form Fields Demo2 with name presets</h1>
+      <h1>Form Fields Demo2 with name/widget presets</h1>
       <Form
         initialValues={{
           username: 'admin',
@@ -52,7 +52,7 @@ export default () => {
             { name: 'username' },
             { name: 'password', rules: [{ required: true }] },
             { name: 'email', disabled: true },
-            { widget: 'ac-checkbox', label: "NEW" }
+            { widget: 'ac-checkbox', label: 'NEW' }
           ]}
         />
         <Form.Item>
