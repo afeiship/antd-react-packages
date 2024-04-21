@@ -7,7 +7,7 @@ import '@jswork/next-classify';
 interface FormFieldProps {
   label: string;
   name: string;
-  widget?: string;
+  widget?: string | React.ComponentType;
   widgetProps?: any;
 
   [key: string]: any;
@@ -18,10 +18,16 @@ class FormField extends React.Component<FormFieldProps, any> {
     widget: 'ac-input'
   };
 
+  get WidgetComponent() {
+    const { widget } = this.props;
+    if (typeof widget === 'function') return widget;
+    const widgetName = nx.classify(widget!);
+    return AcComponents[widgetName!] || AcComponents['AcInput'];
+  }
+
   render() {
     const { label, name, widget, widgetProps, ...restFormItemProps } = this.props;
-    const widgetName = nx.classify(widget!);
-    const Widget = AcComponents[widgetName!];
+    const Widget = this.WidgetComponent;
 
     return (
       <Form.Item label={label} name={name} {...restFormItemProps}>
