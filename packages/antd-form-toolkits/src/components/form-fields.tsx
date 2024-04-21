@@ -14,7 +14,7 @@ class FormFields extends React.Component<FormFieldsProps, FormFieldsState> {
 
   render() {
     const { items } = this.props;
-    return items.map((field) => <FormField key={field.name} {...field} />);
+    return items.map((field, index) => <FormField key={index} {...field} />);
   }
 }
 
