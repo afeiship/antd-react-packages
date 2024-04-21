@@ -23,7 +23,7 @@ export default () => {
         wrapperCol={{ span: 14 }}>
         <FormFields
           items={[
-            { label: 'Username2', name: 'username2', rules: [{ required: true }] },
+            { label: 'Username2', name: 'username2', size: 'large', rules: [{ required: true }] },
             { label: 'Password2', name: 'password2', rules: [{ required: true }] },
             { label: 'Email2', name: 'email2', disabled: true },
             {

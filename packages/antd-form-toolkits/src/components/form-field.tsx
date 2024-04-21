@@ -15,6 +15,7 @@ export interface FormFieldProps {
   disabled?: boolean;
   readOnly?: boolean;
   required?: boolean;
+  size?: 'large' | 'default' | 'small';
 
   [key: string]: any;
 }
@@ -32,13 +33,14 @@ class FormField extends React.Component<FormFieldProps, any> {
   }
 
   get widgetProps() {
-    const { widgetProps, placeholder, disabled, readOnly, required } = this.props;
+    const { widgetProps, placeholder, disabled, readOnly, required, size } = this.props;
 
     return {
       placeholder,
       disabled,
       readOnly,
       required,
+      size,
       ...widgetProps
     };
   }
