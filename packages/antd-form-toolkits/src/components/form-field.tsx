@@ -11,6 +11,8 @@ export interface FormFieldProps {
   widgetProps?: Record<string, any>;
 
   // quick widget props
+  autoFocus?: boolean;
+  autoComplete?: string;
   placeholder?: string;
   disabled?: boolean;
   readOnly?: boolean;
@@ -33,9 +35,20 @@ class FormField extends React.Component<FormFieldProps, any> {
   }
 
   get widgetProps() {
-    const { widgetProps, placeholder, disabled, readOnly, required, size } = this.props;
+    const {
+      widgetProps,
+      autoFocus,
+      autoComplete,
+      placeholder,
+      disabled,
+      readOnly,
+      required,
+      size
+    } = this.props;
 
     return {
+      autoFocus,
+      autoComplete,
       placeholder,
       disabled,
       readOnly,
