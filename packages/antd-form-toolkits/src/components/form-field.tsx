@@ -52,9 +52,9 @@ class FormField extends React.Component<FormFieldProps, any> {
     };
     return {
       ...presetProps,
-      name: presetProps.name || name,
-      label: presetProps.label || label,
-      widget: presetProps.widget || widget,
+      name: name || presetProps.name,
+      label: label || presetProps.label,
+      widget: widget || presetProps.widget,
       ...restProps
     } as FormFieldProps;
   }
