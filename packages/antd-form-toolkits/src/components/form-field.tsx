@@ -25,7 +25,7 @@ class FormField extends React.Component<FormFieldProps, any> {
     widget: 'ac-input'
   };
 
-  get WidgetComponent() {
+  get widgetComponent() {
     const { widget } = this.props;
     if (typeof widget === 'function') return widget;
     const widgetName = nx.classify(widget!);
@@ -58,7 +58,7 @@ class FormField extends React.Component<FormFieldProps, any> {
       ...restFormItemProps
     } = this.props;
 
-    const Widget = this.WidgetComponent;
+    const Widget = this.widgetComponent;
 
     return (
       <Form.Item label={label} name={name} {...restFormItemProps}>
