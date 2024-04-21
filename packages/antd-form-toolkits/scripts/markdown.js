@@ -20,7 +20,7 @@ nx.declare({
 
       nx.replaceInFile('README.md', [
         ['__GENERATE_DAPP__', indentString(docApp, 2)],
-        ['@/main', '@jswork/antd-form-field']
+        ['@/main', '@jswork/antd-form-toolkits']
       ]);
     }
   }

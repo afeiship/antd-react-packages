@@ -1,8 +1,8 @@
 {
-  "name": "@jswork/antd-form-field",
+  "name": "@jswork/antd-form-toolkits",
   "homepage": "https://js.work",
   "version": "1.0.0",
-  "description": "Antd all in one form field.",
+  "description": "Form tookits for antd.",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/main.d.ts",

@@ -1,11 +1,10 @@
 import noop from '@jswork/noop';
 import classNames from 'classnames';
-import React, { HTMLAttributes, Component } from 'react';
-import * as AcComponents from '@jswork/antd-components';
+import React, { Component, HTMLAttributes } from 'react';
 
-const CLASS_NAME = 'antd-form-field';
+const CLASS_NAME = 'antd-form-toolkits';
 
-export type AntdFormFieldProps = {
+export type AntdFormToolkitsProps = {
   /**
    * The extended className for component.
    */
@@ -20,7 +19,7 @@ export type AntdFormFieldProps = {
   onChange?: Function;
 } & HTMLAttributes<HTMLDivElement>;
 
-export default class AntdFormField extends Component<AntdFormFieldProps> {
+export default class AntdFormToolkits extends Component<AntdFormToolkitsProps> {
   static displayName = CLASS_NAME;
   static version = '__VERSION__';
   static defaultProps = {
