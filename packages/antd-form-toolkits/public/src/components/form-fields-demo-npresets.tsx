@@ -7,7 +7,7 @@ import { FormField, FormFields, FormToolbar } from '@/main';
 import { Form } from 'antd';
 import React from 'react';
 
-// set name presets for FormFields
+// set name/widget presets for FormFields
 FormField.setPresets({
   name: {
     username: {
@@ -36,7 +36,7 @@ FormField.setPresets({
 export default () => {
   return (
     <>
-      <h1>Form Fields Demo2 with name/widget presets</h1>
+      <h1>Form Fields Demo2 with presets</h1>
       <Form
         initialValues={{
           username: 'admin',
