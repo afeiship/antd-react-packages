@@ -3,8 +3,8 @@
  * @description: A React page component.
  * @created_at: 2024-04-21 20:09:10
  */
-import { FormField, FormFields } from '@/main';
-import { Button, Form } from 'antd';
+import { FormField, FormFields, FormToolbar } from '@/main';
+import { Form } from 'antd';
 import React from 'react';
 
 // set name presets for FormFields
@@ -55,11 +55,7 @@ export default () => {
             { widget: 'ac-checkbox', label: 'NEW=OVERRIDE' }
           ]}
         />
-        <Form.Item>
-          <Button type="primary" htmlType="submit">
-            Login
-          </Button>
-        </Form.Item>
+        <FormToolbar resetAble backAble wrapAble />
       </Form>
     </>
   );

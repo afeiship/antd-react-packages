@@ -28,7 +28,7 @@
   "devDependencies": {
     "@ant-design/icons": "^5.0.1",
     "@babel/core": "^7.12.10",
-    "@jswork/next": "^1.1.11",
+    "@jswork/next": "^1.2.2",
     "@jswork/next-replace-in-file": "^1.0.0",
     "@jswork/next-rollup-banner": "^1.0.9",
     "@jswork/react-codeflask": "^1.0.9",

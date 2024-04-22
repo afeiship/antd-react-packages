@@ -25,7 +25,7 @@
     "@ant-design/icons": "^5.0.1",
     "@babel/core": "^7.12.10",
     "@jswork/event-mitt": "^1.0.4",
-    "@jswork/next": "^1.1.7",
+    "@jswork/next": "^1.2.2",
     "@jswork/next-ant-column": "^1.1.1",
     "@jswork/next-replace-in-file": "^1.0.0",
     "@jswork/next-rollup-banner": "^1.0.2",

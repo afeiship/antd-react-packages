@@ -42,25 +42,25 @@ class FormField extends React.Component<FormFieldProps, any> {
     FormField.defaultProps.presets = presets;
   }
 
-  processProps() {
+  get processedProps() {
     const { name, label, widget, presets, ...restProps } = this.props;
-    const namedPresets = presets?.name || {};
+    const namePresets = presets?.name || {};
     const widgetPresets = presets?.widget || {};
-    const presetProps = {
-      ...namedPresets[name as string],
+    const mergedPresets = {
+      ...namePresets[name!],
       ...widgetPresets[widget as string]
     };
     return {
-      ...presetProps,
-      name: name || presetProps.name,
-      label: label || presetProps.label,
-      widget: widget || presetProps.widget,
+      ...mergedPresets,
+      name: name || mergedPresets.name,
+      widget: widget || mergedPresets.widget,
+      label: label || mergedPresets.label,
       ...restProps
     } as FormFieldProps;
   }
 
   get widgetComponent() {
-    const { widget } = this.processProps();
+    const { widget } = this.processedProps;
     if (typeof widget === 'function') return widget;
     const widgetName = nx.classify(widget as string);
     return AcComponents[widgetName!] || AcComponents.AcInput;
@@ -76,7 +76,7 @@ class FormField extends React.Component<FormFieldProps, any> {
       readOnly,
       required,
       size
-    } = this.processProps();
+    } = this.processedProps;
 
     return nx.compactObject({
       autoFocus,
@@ -103,7 +103,7 @@ class FormField extends React.Component<FormFieldProps, any> {
       required,
       size,
       ...restFormItemProps
-    } = this.processProps();
+    } = this.processedProps;
 
     const Widget = this.widgetComponent;
 

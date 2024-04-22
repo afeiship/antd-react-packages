@@ -6,7 +6,8 @@
     "dev": "cd packages/antd-components && yarn dev",
     "start": "cd packages/websites && npm run start",
     "build": "lerna run build --since master --no-private",
-    "build:all": "lerna run build --parallel",
+    "build:all": "lerna run build",
+    "build:parallel": "lerna run build --parallel",
     "publish": "npm run build && lerna publish --no-private"
   },
   "devDependencies": {
