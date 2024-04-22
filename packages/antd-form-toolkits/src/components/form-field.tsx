@@ -101,6 +101,7 @@ class FormField extends React.Component<FormFieldProps, any> {
       disabled,
       readOnly,
       required,
+      size,
       ...restFormItemProps
     } = this.processProps();
 
