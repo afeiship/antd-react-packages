@@ -28,12 +28,10 @@ class FormToolbar extends React.Component<FormSubmitProps, any> {
       children: '提交'
     },
     resetButtonProps: {
-      type: 'default',
       htmlType: 'reset',
       children: '重置'
     },
     backButtonProps: {
-      type: 'default',
       children: '返回'
     }
   };
