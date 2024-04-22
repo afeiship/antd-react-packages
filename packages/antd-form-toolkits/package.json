@@ -1,7 +1,7 @@
 {
   "name": "@jswork/antd-form-toolkits",
   "homepage": "https://js.work",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Form tookits for antd.",
   "license": "MIT",
   "main": "dist/index.js",
