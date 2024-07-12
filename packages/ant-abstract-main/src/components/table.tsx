@@ -25,6 +25,7 @@ export class ReactAntCurdTable extends Abstract {
   private urlOperator = new nx.UrlOperator({ type: 'hash' });
 
   bordered = true;
+  skipLoad = false;
   action = 'index';
   searchable = false;
   pagination = {
@@ -177,7 +178,7 @@ export class ReactAntCurdTable extends Abstract {
     super.componentDidMount();
     const { page } = this.pagination;
     this.initCache();
-    this.load({ [page]: this.state[page] });
+    if (!this.skipLoad) this.load({ [page]: this.state[page] });
   }
 
   shouldComponentUpdate() {
