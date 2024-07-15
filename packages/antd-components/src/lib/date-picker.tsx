@@ -25,6 +25,14 @@ export class AcDatePicker extends React.Component<Props> {
     format: STD_FORMAT
   };
 
+  get values() {
+    const { value, defaultValue } = this.props;
+    let props = {};
+    if (value) props['value'] = value;
+    if (defaultValue) props['defaultValue'] = defaultValue;
+    return props;
+  }
+
   handleChange = (inEvent) => {
     const { onChange } = this.props;
     onChange!({ target: { value: this.stringify(inEvent) } });
@@ -43,11 +51,10 @@ export class AcDatePicker extends React.Component<Props> {
 
   render() {
     const { className, defaultValue, value, onChange, ...props } = this.props;
-    if (defaultValue) props['defaultValue'] = this.parse(defaultValue);
-    if (value) props['value'] = this.parse(value);
+    const rest = { ...props, ...this.values };
 
     return (
-      <DatePicker className={cx(CLASS_NAME, className)} onChange={this.handleChange} {...props} />
+      <DatePicker className={cx(CLASS_NAME, className)} onChange={this.handleChange} {...rest} />
     );
   }
 }
