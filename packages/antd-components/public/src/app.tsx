@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { AcRadioGroup } from '../../src/main';
+import dayjs from 'dayjs';
+import { AcRadioGroup, AcDatePicker } from '../../src/main';
 
 const Container = styled.div`
   width: 80%;
@@ -24,6 +25,8 @@ export default () => {
           setV1(e.target.value);
         }}
       />
+
+      <AcDatePicker defaultValue="2024-07-15 20:46:40" dayjs={dayjs} />
     </Container>
   );
 };

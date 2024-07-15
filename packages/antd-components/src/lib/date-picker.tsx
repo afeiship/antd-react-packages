@@ -28,8 +28,8 @@ export class AcDatePicker extends React.Component<Props> {
   get values() {
     const { value, defaultValue } = this.props;
     let props = {};
-    if (value) props['value'] = value;
-    if (defaultValue) props['defaultValue'] = defaultValue;
+    if (value) props['value'] = this.parse(value);
+    if (defaultValue) props['defaultValue'] = this.parse(defaultValue);
     return props;
   }
 
