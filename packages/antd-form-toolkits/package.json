@@ -1,7 +1,7 @@
 {
   "name": "@jswork/antd-form-toolkits",
   "homepage": "https://js.work",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Form tookits for antd.",
   "license": "MIT",
   "main": "dist/index.js",
@@ -71,7 +71,7 @@
     "vite-plugin-pwa": "^0.7.3"
   },
   "dependencies": {
-    "@jswork/antd-components": "^1.0.78",
+    "@jswork/antd-components": "^1.0.79",
     "@jswork/next-classify": "^1.0.5",
     "@jswork/next-compact-object": "^1.0.5",
     "@jswork/noop": "^1.0.0",
