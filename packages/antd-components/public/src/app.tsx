@@ -26,7 +26,7 @@ export default () => {
         }}
       />
 
-      <AcDatePicker defaultValue="2024-07-15 20:46:40" dayjs={dayjs} />
+      <AcDatePicker defaultValue="2024-07-15T00:03:44.000+08:00" dayjs={dayjs} />
     </Container>
   );
 };
