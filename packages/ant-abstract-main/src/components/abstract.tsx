@@ -29,6 +29,8 @@ export default class ReactAntAbstract extends Component<ReactAntAbstractProps, a
   static version = '__VERSION__';
 
   static defaultProps = {};
+
+  // services
   protected apiService;
   protected routeService;
   protected eventService;
