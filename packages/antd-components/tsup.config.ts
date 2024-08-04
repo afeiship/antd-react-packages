@@ -1,4 +1,5 @@
 import { defineConfig } from 'tsup';
+import { copy } from 'esbuild-plugin-copy'
 
 export default defineConfig({
   entry: ['src/main.ts'],
@@ -22,4 +23,13 @@ export default defineConfig({
       js: `.${format}.js`,
     };
   },
+  esbuildPlugins: [
+    copy({
+      resolveFrom: 'cwd',
+      assets: {
+        from: ['./src/styles/*'],
+        to: ['./dist/styles'],
+      },
+    }),
+  ]
 });

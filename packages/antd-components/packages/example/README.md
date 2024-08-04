@@ -1,2 +1,0 @@
-# demo-page
-> demo page.
