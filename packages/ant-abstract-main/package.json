@@ -24,11 +24,11 @@
   "devDependencies": {
     "@ant-design/icons": "^5.0.1",
     "@babel/core": "^7.12.10",
-    "@jswork/event-mitt": "^1.0.4",
+    "@jswork/event-mitt": "^1.0.14",
     "@jswork/next": "^1.2.2",
-    "@jswork/next-ant-column": "^1.1.1",
+    "@jswork/next-ant-column": "^1.1.4",
     "@jswork/next-replace-in-file": "^1.0.0",
-    "@jswork/next-rollup-banner": "^1.0.2",
+    "@jswork/next-rollup-banner": "^1.0.12",
     "@jswork/react-markdown-props": "^1.0.1",
     "@rollup/plugin-commonjs": "^25.0.3",
     "@rollup/plugin-image": "^2.1.1",
@@ -74,7 +74,7 @@
     "vite-plugin-pwa": "^0.7.3"
   },
   "dependencies": {
-    "@jswork/antd-components": "^1.0.79",
+    "@jswork/antd-components": "^1.0.80",
     "@jswork/next-get2get": "^1.0.8",
     "@jswork/next-kebab-case": "^1.0.4",
     "@jswork/next-qs": "^1.0.9",
