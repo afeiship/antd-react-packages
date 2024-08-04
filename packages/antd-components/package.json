@@ -1,6 +1,6 @@
 {
   "name": "@jswork/antd-components",
-  "version": "1.0.82",
+  "version": "1.0.83",
   "main": "dist/main.cjs.js",
   "module": "dist/main.esm.js",
   "types": "dist/main.d.ts",
@@ -36,8 +36,8 @@
     "registry": "https://registry.npmjs.org"
   },
   "dependencies": {
-    "@jswork/antd-form-builder": "^1.1.27",
-    "@jswork/antd-tpls": "^1.0.16",
+    "@jswork/antd-form-builder": "^1.1.28",
+    "@jswork/antd-tpls": "^1.0.17",
     "@jswork/loadkit": "^1.0.6",
     "@jswork/next-dom-event": "^1.0.7",
     "@jswork/next-gpid": "^1.0.4",
