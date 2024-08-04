@@ -74,7 +74,6 @@
     "vite-plugin-pwa": "^0.7.3"
   },
   "dependencies": {
-    "@jswork/antd-components": "^1.0.84",
     "@jswork/next-get2get": "^1.0.8",
     "@jswork/next-kebab-case": "^1.0.4",
     "@jswork/next-qs": "^1.0.9",

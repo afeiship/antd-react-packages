@@ -1,6 +1,5 @@
 import React from 'react';
-import { AcConfirmButton } from '@jswork/antd-components';
-import { Table, Button, Space, Tag } from 'antd';
+import { Table, Button, Space, Tag, Popconfirm } from 'antd';
 import { PlusOutlined, ReloadOutlined, UnorderedListOutlined } from '@ant-design/icons';
 import ReactAntInputSearch from '@jswork/react-ant-input-search';
 import deepEqual from 'deep-equal';
@@ -82,7 +81,9 @@ export class ReactAntCurdTable extends Abstract {
         return (
           <Space>
             <a onClick={this.edit}>{this.t('edit')}</a>
-            <AcConfirmButton onClick={this.del}>{this.t('delete')}</AcConfirmButton>
+            <Popconfirm title={this.t('confirm_ok')} onConfirm={this.del} onCancel={stop}>
+              <a onClick={stop}>{this.t('delete')}</a>
+            </Popconfirm>
           </Space>
         );
       }
