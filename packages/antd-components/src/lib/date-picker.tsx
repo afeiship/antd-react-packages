@@ -16,6 +16,7 @@ type Props = {
   onChange?: StdCallback;
 } & DatePickerProps;
 
+// todo: format_hooks should remove
 const DATA_FORMAT_HOOKS = {
   date: 'YYYY-MM-DD',
   datetime: 'YYYY-MM-DD HH:mm:ss',
