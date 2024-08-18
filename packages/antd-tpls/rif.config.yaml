@@ -1,0 +1,16 @@
+name: replace-in-files
+files:
+  - 'src/**/*.ts'
+  - 'src/**/*.tsx'
+  - 'src/**/*.scss'
+  - '.*'
+  - '*'
+  - '!node_modules'
+  - '!rif.config.yaml'
+replacements:
+  - from: /react-component-mono-lib-description/g
+    to: Antd list templates.
+  - from: /react-component-mono-lib/g
+    to: '${PROJECT_NAME}'
+  - from: /ReactComponentMonoLib/g
+    to: todo:ReactYourProjectName
