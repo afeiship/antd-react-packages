@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite';
-import { join } from 'path';
-import react from '@vitejs/plugin-react';
+import path from 'path';
+import reactRefresh from '@vitejs/plugin-react-refresh';
 
 // https://vitejs.dev/config/
 // https://github.com/antfu/vite-plugin-pwa
@@ -10,12 +10,12 @@ export default defineConfig({
   base: '',
   resolve: {
     alias: {
-      '@': join(__dirname, 'src')
+      '@': path.join(__dirname, 'src')
     }
   },
   build: {
     outDir: '../docs',
     emptyOutDir: true
   },
-  plugins: [react()]
+  plugins: [reactRefresh()]
 });

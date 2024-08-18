@@ -25,13 +25,19 @@ npm install -S @jswork/antd-tpls
 2. import js
   ```js
   import React from 'react';
-  import todo:ReactYourProjectName from '@jswork/antd-tpls';
+  import AntdTpls from '@jswork/antd-tpls';
+  import styled from 'styled-components';
 
-  export default () => {
+  const Container = styled.div`
+    width: 80%;
+    margin: 30px auto 0;
+  `;
+
+  export default (props: any) => {
     return (
-      <div className="p-5 border w-4/5 mx-auto mt-10 bg-gray-100 rounded-md hover:bg-gray-200">
-        <todo:ReactYourProjectName className="debug-red inline-block p-1" />
-      </div>
+      <Container>
+        <AntdTpls />
+      </Container>
     );
   };
 

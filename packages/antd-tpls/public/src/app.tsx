@@ -1,10 +1,16 @@
 import React from 'react';
-import ReactComponentMonoLib from '@/main';
+import AntdTpls from '../../src/main';
+import styled from 'styled-components';
 
-export default () => {
+const Container = styled.div`
+  width: 80%;
+  margin: 30px auto 0;
+`;
+
+export default (props: any) => {
   return (
-    <div className="p-5 border w-4/5 mx-auto mt-10 bg-gray-100 rounded-md hover:bg-gray-200">
-      <ReactComponentMonoLib className="debug-red inline-block p-1" />
-    </div>
+    <Container>
+      <AntdTpls />
+    </Container>
   );
 };

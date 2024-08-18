@@ -1,13 +1,12 @@
-// const fs = require('fs');
-// const indentString = require('indent-string');
-import fs from 'fs';
-import indentString from 'indent-string';
-import '@jswork/next-replace-in-file';
+const fs = require('fs');
+const indentString = require('indent-string');
+
+require('@jswork/next-replace-in-file');
 
 nx.declare({
   statics: {
     init: function () {
-      const instance = new this();
+      var instance = new this();
       instance.reset();
       instance.replace();
     }
@@ -21,7 +20,7 @@ nx.declare({
 
       nx.replaceInFile('README.md', [
         ['__GENERATE_DAPP__', indentString(docApp, 2)],
-        ['@/main', '@jswork/react-component-mono-lib']
+        ['@/main', '@jswork/antd-tpls']
       ]);
     }
   }

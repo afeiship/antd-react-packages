@@ -1,6 +1,8 @@
 import typescript from 'rollup-plugin-typescript2';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
+import copy from 'rollup-plugin-copy';
+import scss from 'rollup-plugin-scss';
 import externals from 'rollup-plugin-node-externals';
 import banner from 'rollup-plugin-banner';
 import { terser } from 'rollup-plugin-terser';
@@ -17,15 +19,15 @@ export default [
       file: pkg.main,
       format: 'umd',
       exports: 'named',
-      sourcemap: true,
-      name: 'AntdTpls',
+      sourcemap: false,
+      name: 'AntdTplsComponent',
       globals: {
         '@jswork/noop': 'noop',
         'prop-types': 'PropTypes',
-        'classnames': 'classNames',
-        'react': 'React',
-        'antd': 'antd',
-        'react-dom': 'ReactDOM'
+        classnames: 'classNames',
+        react: 'React',
+        'react-dom': 'ReactDOM',
+        'antd': 'antd'
       }
     },
     plugins: [
