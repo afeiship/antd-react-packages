@@ -18,7 +18,7 @@ export default [
       format: 'umd',
       exports: 'named',
       sourcemap: true,
-      name: 'todo:ReactYourProjectName',
+      name: 'AntdTpls',
       globals: {
         '@jswork/noop': 'noop',
         'prop-types': 'PropTypes',

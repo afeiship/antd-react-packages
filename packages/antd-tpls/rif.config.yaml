@@ -13,4 +13,4 @@ replacements:
   - from: /react-component-mono-lib/g
     to: '${PROJECT_NAME}'
   - from: /ReactComponentMonoLib/g
-    to: todo:ReactYourProjectName
+    to: AntdTpls
