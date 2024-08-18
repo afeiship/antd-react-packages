@@ -5,7 +5,7 @@
 
 import { breadcrumbDefault } from './lib/breadcrumb';
 import { kv, checkboxKv, radioKv, treeKv, selectKv, treeSelectKv } from './lib/kv';
-import { raw, checkboxRaw, radioRaw, selectRaw } from '@/lib/raw';
+import { raw, checkboxRaw, radioRaw, selectRaw } from './lib/raw';
 import { transferLabel } from './lib/transfer';
 
 export {
