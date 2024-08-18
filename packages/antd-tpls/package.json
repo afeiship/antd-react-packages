@@ -1,7 +1,7 @@
 {
   "name": "@jswork/antd-tpls",
   "homepage": "https://js.work",
-  "version": "1.0.19",
+  "version": "1.0.20",
   "description": "Antd list templates.",
   "license": "MIT",
   "type": "module",
@@ -43,6 +43,7 @@
     "@types/react-dom": "^18.0.8",
     "@types/react-test-renderer": "^17.0.0",
     "@vitejs/plugin-react": "^4.2.1",
+    "antd": "^5.9.0",
     "autoprefixer": "^10.4.19",
     "babel-loader": "^8.2.2",
     "core-js": "^3.8.2",
@@ -74,16 +75,15 @@
     "ts-jest": "^27.1.1",
     "typescript": "^4.9.5",
     "vite": "^5.2.10",
-    "vite-plugin-pwa": "^0.19.8",
-    "antd": "^5.9.0"
+    "vite-plugin-pwa": "^0.19.8"
   },
   "dependencies": {
     "@jswork/react-list": "^1.2.10"
   },
-  "peerDependencies":{
+  "peerDependencies": {
+    "antd": "^5.9.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "antd": "^5.9.0"
+    "react-dom": "^18.2.0"
   },
   "publishConfig": {
     "access": "public",
