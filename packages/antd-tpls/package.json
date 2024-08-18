@@ -1,7 +1,7 @@
 {
   "name": "@jswork/antd-tpls",
   "homepage": "https://js.work",
-  "version": "1.0.20",
+  "version": "1.0.21",
   "description": "Antd list templates.",
   "license": "MIT",
   "type": "module",
